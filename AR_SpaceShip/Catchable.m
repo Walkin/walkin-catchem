@@ -43,6 +43,9 @@ static inline float lerpf(float a, float b, float t)
 @synthesize Yorg;
 @synthesize Zorg;
 @synthesize Rorg;
+@synthesize locManager;
+@synthesize XInit;
+
 
 -(id)init {
     self = [super init];
@@ -52,6 +55,7 @@ static inline float lerpf(float a, float b, float t)
         CombineMoveCount = 1;
         scaleSpeed = 0.0;
         initialYaw = 0.0;
+        XInit = 0.0;
         wasTouched = YES;
         
         [self scheduleUpdate];
@@ -60,6 +64,12 @@ static inline float lerpf(float a, float b, float t)
         motionManager.deviceMotionUpdateInterval = 1.0/60.0;
         if (motionManager.isDeviceMotionAvailable) {
             [motionManager startDeviceMotionUpdates];
+            
+        self.locManager = [[[CLLocationManager alloc] init] autorelease];
+        self.locManager.delegate = self;
+//        if (self.locManager.headingAvailable) 
+        [self.locManager startUpdatingHeading];
+            
         }
         
 	}
@@ -67,6 +77,28 @@ static inline float lerpf(float a, float b, float t)
     
     return self;
 }
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+	NSLog(@"Location manager error: %@", [error description]);
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
+{
+    
+	CGFloat heading = -1.0f * M_PI * newHeading.magneticHeading / 180.0f;
+    yaw = (float)(CC_RADIANS_TO_DEGREES(heading));
+    yaw = yaw + 180.0;
+
+
+    
+}
+
+- (BOOL)locationManagerShouldDisplayHeadingCalibration:(CLLocationManager *)manager
+{
+	return YES;
+}
+
 
 -(void) setInitialPosition:(CGPoint)incPosition{
     self.Xdest = incPosition.x;
@@ -77,8 +109,10 @@ static inline float lerpf(float a, float b, float t)
 
 -(void)addRedSpot
 {
+    
     redSpot = [CCSprite spriteWithFile:@"redSpot.png"];
     redSpot.position = ccp(420,300);
+
 }
 
 -(void)moveSelf:(ccTime)delta{}
@@ -113,7 +147,7 @@ static inline float lerpf(float a, float b, float t)
     CMDeviceMotion *currentDeviceMotion = motionManager.deviceMotion;
     CMAttitude *currentAttitude = currentDeviceMotion.attitude;
     
-    yaw = (float)(CC_RADIANS_TO_DEGREES(currentAttitude.yaw));
+   // yaw = (float)(CC_RADIANS_TO_DEGREES(currentAttitude.yaw));
     float differentYaw;
     float catchableYaw;
     CGPoint circleCenter = ccp(420, 260);
@@ -122,6 +156,7 @@ static inline float lerpf(float a, float b, float t)
     
     ///////////////////////////Set Catchable's yawPosition back to 0 when it's over 360///////////////////////        
     if (self.yawPosition >360.0) {
+        
         self.yawPosition = 0.0;
     }
     
@@ -129,6 +164,7 @@ static inline float lerpf(float a, float b, float t)
     catchableYaw = self.yawPosition;
     
     ///////////////////////////Set device's yaw value vary between 0 and 360/////////////////////////////////
+
     if (yaw <= -0.0 && yaw >= -180.0) {
         yaw = yaw +360.0;
     }
@@ -148,10 +184,12 @@ static inline float lerpf(float a, float b, float t)
 -(void)update:(ccTime)delta {
     [self updatePosition:delta];
     [self updateScale:delta];
-
+    
+  
 }
 
-- (void)updatePosition:(ccTime)delta{
+- (void)updatePosition:(ccTime)delta {
+    
     
 }
 

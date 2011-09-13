@@ -14,11 +14,11 @@
 	},
 	{
         "key": "FloaterCombinedTotal",
-        "value": "2"
+        "value": "1"
 	},
 	{
         "key": "SpeedLeftToRight",
-        "value": "10"
+        "value": "0"
 	},
 	{
         "key": "SpeedLeftToRightVariance",
@@ -26,11 +26,11 @@
 	},
 	{
         "key": "SpeedUpDown",
-        "value": "10"
+        "value": "0"
 	},
 	{
         "key": "SpeedUpDownVariance",
-        "value": "20"
+        "value": "0"
 	},		
 	{
         "key": "SpeedScale",
@@ -67,6 +67,10 @@
     {
         "key": "MinimumYaw",
         "value": "-45"
+    },
+    {
+        "key": "UpdateFrequency",
+        "value": "20.0"
     }
 ]
 }

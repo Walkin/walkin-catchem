@@ -10,9 +10,10 @@
 #import "cocos2d.h"
 #import <CoreMotion/CoreMotion.h>
 #import <CoreFoundation/CoreFoundation.h>
+#import <CoreLocation/CoreLocation.h>
+#import <QuartzCore/QuartzCore.h>
 
-
-@interface Catchable : CCSprite {
+@interface Catchable : CCSprite <CLLocationManagerDelegate>{
     float yawPosition;
     float rollPosition;
     float kSpeedLeft;
@@ -27,6 +28,7 @@
     int CombineMoveCount;
     CCSprite *redSpot;
     CMMotionManager *motionManager;
+    CLLocationManager *locManager;
     float MaximumYaw;
     float initialYaw;
     float initialRoll;
@@ -39,6 +41,7 @@
     float Yorg;
     float Zorg;
     float Rorg;
+    float XInit;
 
 
 }
@@ -68,7 +71,8 @@
 @property (readwrite) float Yorg;
 @property (readwrite) float Zorg;
 @property (readwrite) float Rorg;
-
+@property (readwrite) float XInit;
+@property (retain) CLLocationManager *locManager;
 
 - (void)updatePosition:(ccTime)delta;
 - (void)updateScale:(ccTime)delta;

@@ -15,7 +15,8 @@
 #import "Catchable.h"
 
 @implementation PauseLayer
-@synthesize motionManager,mnuBackToMenu;
+@synthesize motionManager;
+@synthesize mnuBackToMenu;
 
 -(id) init
 {

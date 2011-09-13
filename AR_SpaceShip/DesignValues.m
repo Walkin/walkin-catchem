@@ -21,8 +21,7 @@ static DesignValues *sharedDesignValues = nil;
 @synthesize FloaterCombined;
 @synthesize MaximumYaw;
 @synthesize MinimumYaw;
-
-@synthesize temp;
+@synthesize UpdateFrequency;
 
 +(DesignValues *)sharedDesignValues
 {
@@ -85,8 +84,8 @@ static DesignValues *sharedDesignValues = nil;
         NSDictionary *jsonData = [responseString JSONValue];
         
         NSArray *designerValues = [jsonData valueForKey:@"designerValues"];
-        NSMutableArray *orderedKeys = [[NSMutableArray alloc] initWithCapacity:[designerValues count]];
-        NSMutableArray *orderedValues = [[NSMutableArray alloc] initWithCapacity:[designerValues count]];
+        orderedKeys = [[NSMutableArray alloc] initWithCapacity:[designerValues count]];
+        orderedValues = [[NSMutableArray alloc] initWithCapacity:[designerValues count]];
         
         
         for (NSDictionary *dict in designerValues){
@@ -94,15 +93,12 @@ static DesignValues *sharedDesignValues = nil;
             [orderedValues addObject:[dict objectForKey:@"value"]];
         }
         
-<<<<<<< .mine
-        self.temp  = [[NSDictionary alloc] initWithObjects:orderedValues forKeys:orderedKeys];        
-=======
         self.temp  = [[NSDictionary alloc] initWithObjects:orderedValues forKeys:orderedKeys];
         self.FloaterCombined = [[temp objectForKey:@"FloaterCombinedTotal"] intValue];
         self.MaximumYaw = [[temp objectForKey:@"MaximumYaw"] floatValue];
         self.MinimumYaw = [[temp objectForKey:@"MinimumYaw"] floatValue];
+        self.UpdateFrequency = [[temp objectForKey:@"UpdateFrequency"] floatValue];
         
->>>>>>> .r249
         catchableSprites = [[NSMutableArray alloc] init];
         
 		return self;
@@ -113,11 +109,7 @@ static DesignValues *sharedDesignValues = nil;
 {
 	@synchronized(self) {
 
-<<<<<<< .mine
-		return [[self.temp objectForKey:@"FloaterCombinedTotal"] intValue];
-=======
 		return self.FloaterCombined;
->>>>>>> .r249
 	}	
 }
 
@@ -125,11 +117,7 @@ static DesignValues *sharedDesignValues = nil;
 {
 	@synchronized(self) {
 
-<<<<<<< .mine
-		return [[self.temp objectForKey:@"MaximumYaw"] floatValue];
-=======
 		return self.MaximumYaw;
->>>>>>> .r249
 	}	
 
 }
@@ -137,13 +125,18 @@ static DesignValues *sharedDesignValues = nil;
 - (float)getMinimumYaw
 {
 	@synchronized(self) {
-<<<<<<< .mine
-		return [[self.temp objectForKey:@"MinimumYaw"] floatValue];
-=======
 		return  self.MinimumYaw;
->>>>>>> .r249
 	}	
 
 }
+
+- (float)getUpdateFrequency
+{
+    @synchronized(self) {
+		return  self.UpdateFrequency;
+	}	
+
+}
+
 
 @end

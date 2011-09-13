@@ -8,6 +8,8 @@
 
 #import <CoreMotion/CoreMotion.h>
 #import <CoreFoundation/CoreFoundation.h>
+#import <CoreLocation/CoreLocation.h>
+#import <QuartzCore/QuartzCore.h>
 #import "cocos2d.h"
 
 #define kXPositionMultiplier 15
@@ -15,6 +17,7 @@
 
 
 @class Catchable;
+@class AccelerometerFilter;
 
 @interface TestScene : CCScene {
 
@@ -24,7 +27,7 @@
 
 @end
 
-@interface TestLayer: CCLayer {
+@interface TestLayer: CCLayer <CLLocationManagerDelegate,UIAccelerometerDelegate> {
     
     CMMotionManager *motionManager;
     CCLabelTTF *yawLabel;
@@ -47,7 +50,12 @@
     BOOL enableTouch;
     BOOL playTouchSound;
     BOOL pauseGame;
+    BOOL useAdaptive;
     float yaw;
+    float roll;
+    CLLocationManager *locManager;
+    UIAccelerometer *accelerometer;
+    AccelerometerFilter *filter;
 
 }
 
@@ -73,9 +81,14 @@
 -(void)addScoreLabel;
 -(void)addRadar;
 -(void)presentWinCondition;
-
+-(void)changeFilter:(Class)filterClass;
+-(void)lowPassPressed:(id)sender;
+-(void)HighPassPressed:(id)sender;
+-(void)StandardPressed:(id)sender;
+-(void)AdaptivePressed:(id)sender;
 
 @property (nonatomic, retain) CMMotionManager *motionManager;
+@property (retain) CLLocationManager *locManager;
 @property (readwrite) int catchableCount;
 @property (readwrite) int score;
 @property (readwrite) int count;
@@ -84,7 +97,9 @@
 @property (readwrite) BOOL enableTouch;
 @property (readwrite) BOOL playTouchSound;
 @property (readwrite) float yaw;
+@property (readwrite) float roll;
 @property (readwrite) BOOL pauseGame;
+@property (readwrite) BOOL useAdaptive;
 //@property (nonatomic, retain) NSMutableArray *catchableSprites;
 
 @end

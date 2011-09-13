@@ -47,6 +47,9 @@
 		78A31EF913FA50AF001EF082 /* scope.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A31EF813FA50AF001EF082 /* scope.png */; };
 		78AD639713F390BA00209E3C /* PauseLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AD639613F390BA00209E3C /* PauseLayer.m */; };
 		78AD63B213F39B2E00209E3C /* TestScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AD63B113F39B2E00209E3C /* TestScene.m */; };
+		78BA6108140B97E20042CA1B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78BA6107140B97E20042CA1B /* CoreLocation.framework */; };
+		78BA610B140B97F20042CA1B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78BA610A140B97F20042CA1B /* SystemConfiguration.framework */; };
+		78CB39B5140E118C00881532 /* AccelerometerFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CB39B4140E118C00881532 /* AccelerometerFilter.m */; };
 		78DCDBA113EF86C400C76853 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DCDBA013EF86C400C76853 /* QuartzCore.framework */; };
 		78DCDBA313EF86C400C76853 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DCDBA213EF86C400C76853 /* OpenGLES.framework */; };
 		78DCDBA513EF86C400C76853 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DCDBA413EF86C400C76853 /* OpenAL.framework */; };
@@ -261,6 +264,10 @@
 		78AD63B013F39B2E00209E3C /* TestScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestScene.h; sourceTree = "<group>"; };
 		78AD63B113F39B2E00209E3C /* TestScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestScene.m; sourceTree = "<group>"; };
 		78AD63B713F3BDD600209E3C /* TestScene3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestScene3.h; sourceTree = "<group>"; };
+		78BA6107140B97E20042CA1B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		78BA610A140B97F20042CA1B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		78CB39B3140E118C00881532 /* AccelerometerFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccelerometerFilter.h; sourceTree = "<group>"; };
+		78CB39B4140E118C00881532 /* AccelerometerFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelerometerFilter.m; sourceTree = "<group>"; };
 		78DCDB9C13EF86C400C76853 /* AR_SpaceShip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AR_SpaceShip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78DCDBA013EF86C400C76853 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		78DCDBA213EF86C400C76853 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -572,6 +579,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78BA610B140B97F20042CA1B /* SystemConfiguration.framework in Frameworks */,
+				78BA6108140B97E20042CA1B /* CoreLocation.framework in Frameworks */,
 				78DCDD8B13EF88CF00C76853 /* CoreMotion.framework in Frameworks */,
 				78DCDBA113EF86C400C76853 /* QuartzCore.framework in Frameworks */,
 				78DCDBA313EF86C400C76853 /* OpenGLES.framework in Frameworks */,
@@ -603,6 +612,8 @@
 		78DCDB9113EF86C400C76853 = {
 			isa = PBXGroup;
 			children = (
+				78BA610A140B97F20042CA1B /* SystemConfiguration.framework */,
+				78BA6107140B97E20042CA1B /* CoreLocation.framework */,
 				789F189D13FBBEAE00422C14 /* Icon.png */,
 				78DCDD8A13EF88CF00C76853 /* CoreMotion.framework */,
 				78DCDBB013EF86C400C76853 /* AR_SpaceShip */,
@@ -644,6 +655,8 @@
 				78DCDD3113EF871900C76853 /* MainMenuScene.m */,
 				78DCDD3813EF871900C76853 /* RootViewController.h */,
 				78DCDD3913EF871900C76853 /* RootViewController.m */,
+				78CB39B3140E118C00881532 /* AccelerometerFilter.h */,
+				78CB39B4140E118C00881532 /* AccelerometerFilter.m */,
 				78DCDD0B13EF86EB00C76853 /* AppDelegate.h */,
 				78DCDD0C13EF86EB00C76853 /* AppDelegate.m */,
 				789B3DBD140755710088F6F6 /* DesignValues.h */,
@@ -1368,6 +1381,7 @@
 				7887CD4314036740002B40A5 /* PauseLayer2.m in Sources */,
 				7887CD471403674D002B40A5 /* PauseLayer3.m in Sources */,
 				789B3DBF140755710088F6F6 /* DesignValues.m in Sources */,
+				78CB39B5140E118C00881532 /* AccelerometerFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

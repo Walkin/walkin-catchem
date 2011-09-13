@@ -18,7 +18,9 @@
 #import "CCUIViewWrapper.h"
 #import "Tag.h"
 #import "DesignValues.h"
+#import "AccelerometerFilter.h"
 #define kScallSpeed 5
+#define kUpdateFrequency	20.0
 
 @implementation TestScene
 
@@ -53,9 +55,11 @@
 @synthesize MaximumYaw;
 @synthesize enableTouch; 
 @synthesize yaw;
+@synthesize roll;
 @synthesize playTouchSound;
 @synthesize pauseGame;
-//@synthesize catchableSprites;
+@synthesize locManager;
+@synthesize useAdaptive;
 
 
 -(id) init
@@ -183,14 +187,65 @@
                                           target:self 
                                         selector:@selector(GoToMainMenuScene:)];
     
-    CCMenu *aboutmenu = [CCMenu menuWithItems:mnuBack,nil];
+    
+    CCMenuItemFont *lowPass = [CCMenuItemFont itemFromString:@"LowPassFilter" target:self selector:@selector(lowPassPressed:)];
+    CCMenuItemFont *HighPass = [CCMenuItemFont itemFromString:@"HighPassFilter" target:self selector:@selector(HighPassPressed:)];
+    CCMenuItemFont *Standard = [CCMenuItemFont itemFromString:@"Standard" target:self selector:@selector(StandardPressed:)];
+    CCMenuItemFont *Adaptive = [CCMenuItemFont itemFromString:@"Adaptive" target:self selector:@selector(AdaptivePressed:)];
+    CCMenuItemFont *PauseCatchable = [CCMenuItemFont itemFromString:@"Pause" target:self selector:@selector(PausePressed:)];
+    CCMenuItemFont *ResumeCatchable = [CCMenuItemFont itemFromString:@"Resume" target:self selector:@selector(ResumePressed:)];
+    
+    CCMenu *aboutmenu = [CCMenu menuWithItems:mnuBack,lowPass,HighPass,Standard, Adaptive,PauseCatchable,ResumeCatchable, nil];
     [self addChild:aboutmenu z:4 tag:2];
     [aboutmenu setAnchorPoint:CGPointZero];
     [aboutmenu setPosition:CGPointZero];
     [mnuBack setAnchorPoint:CGPointZero];
     [mnuBack setPosition:CGPointMake(380,30)];
     [mnuBack setVisible:NO];
-    
+    [lowPass setPosition:CGPointMake(380, 50)];
+    [HighPass setPosition:CGPointMake(380, 90)];
+    [Standard setPosition:CGPointMake(380, 130)];
+    [Adaptive setPosition:CGPointMake(380, 170)];
+    [PauseCatchable setPosition:CGPointMake(50, 50)];
+    [ResumeCatchable setPosition:CGPointMake(160, 50)];
+}
+
+-(void)lowPassPressed:(id)sender
+{
+   [self changeFilter:[LowpassFilter class]];
+}
+
+-(void)HighPassPressed:(id)sender
+{
+   [self changeFilter:[HighpassFilter class]];
+}
+
+-(void)StandardPressed:(id)sender
+{
+    useAdaptive = NO;
+
+}
+
+-(void)AdaptivePressed:(id)sender
+{
+    useAdaptive = YES;
+
+}
+
+-(void)PausePressed:(id)sender
+{
+    for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
+        [catchable unscheduleUpdate];
+    }
+
+}
+
+-(void)ResumePressed:(id)sender
+{
+    for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
+        [catchable scheduleUpdate];
+    }
+
 }
 
 - (BOOL) circle:(CGPoint) circlePoint withRadius:(float) radius collisionWithCircle:(CGPoint) circlePointTwo collisionCircleRadius:(float) radiusTwo {
@@ -203,19 +258,55 @@
 	return NO;
 }
 
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+	NSLog(@"Location manager error: %@", [error description]);
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
+{
+    
+	CGFloat heading = -1.0f * M_PI * newHeading.magneticHeading / 180.0f;
+    yaw = (float)(CC_RADIANS_TO_DEGREES(heading));
+    yaw = yaw + 180.0;
+    
+    
+}
+
+- (BOOL)locationManagerShouldDisplayHeadingCalibration:(CLLocationManager *)manager
+{
+	return YES;
+}
+
+#pragma mark UIAccelerometerDelegate Methods
+
+- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
+{
+    
+//	roll = acceleration.z * (-90.0) - 90.0;
+    
+    [filter addAcceleration:acceleration];
+
+    roll = filter.z * (-90.0) - 90.0;
+	
+}
+
+
+
 -(void)update:(ccTime)delta {
     
     //NSLog(@"The catchable count is %d", catchableCount);
     
     CMDeviceMotion *currentDeviceMotion = motionManager.deviceMotion;
     CMAttitude *currentAttitude = currentDeviceMotion.attitude;
-
+ 
     
-    yaw = (float)(CC_RADIANS_TO_DEGREES(currentAttitude.yaw));
-    float roll = (float)(CC_RADIANS_TO_DEGREES(currentAttitude.roll));
+  //  yaw = (float)(CC_RADIANS_TO_DEGREES(currentAttitude.yaw));
+  // roll = (float)(CC_RADIANS_TO_DEGREES(currentAttitude.roll));
     
     [yawLabel setString:[NSString stringWithFormat:@"Yaw: %.0f", yaw]];
-    [rollLabel setString:[NSString stringWithFormat:@"roll: %.0f", roll]];
+    [rollLabel setString:[NSString stringWithFormat:@"roll: %f", roll]];
     
 
     for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
@@ -253,6 +344,9 @@
 
     
     x = randomX + yaw;
+    
+    catchable.initialYaw = yaw;
+    catchable.XInit = x;
 
     
     while ( randomY > -10 && randomY < -150 ) {
@@ -289,6 +383,20 @@
     
 }
 
+-(void)changeFilter:(Class)filterClass
+{
+	// Ensure that the new filter class is different from the current one...
+	if(filterClass != [filter class])
+	{
+		// And if it is, release the old one and create a new one.
+		[filter release];
+		filter = [[filterClass alloc] initWithSampleRate:[[DesignValues sharedDesignValues] getUpdateFrequency] cutoffFrequency:5.0];
+		// Set the adaptive flag
+		filter.adaptive = useAdaptive;
+
+	}
+}
+
 -(void)dataInitialize
 {
     
@@ -299,9 +407,25 @@
         [motionManager startDeviceMotionUpdates];
     }
     
+    self.locManager = [[[CLLocationManager alloc] init] autorelease];
+    self.locManager.delegate = self;
+    //        if (self.locManager.headingAvailable) 
+    [self.locManager startUpdatingHeading];
+    
+//    accelerometer = [UIAccelerometer sharedAccelerometer];
+//	accelerometer.updateInterval = 0.1;
+//	accelerometer.delegate = self;
+    
+    [self changeFilter:[LowpassFilter class]];
+	[[UIAccelerometer sharedAccelerometer] setUpdateInterval:1.0 / [[DesignValues sharedDesignValues] getUpdateFrequency]];
+	[[UIAccelerometer sharedAccelerometer] setDelegate:self];
+
+    useAdaptive = YES;
+    
     pauseGame = YES;
     
 }
+
 
 -(void)presentWinCondition
 {

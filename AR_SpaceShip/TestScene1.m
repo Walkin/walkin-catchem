@@ -86,6 +86,7 @@
         [self startGame];
         
         [self addScoreLabel];
+        
 
         
 	}
@@ -169,6 +170,7 @@
 
 -(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     CGPoint location = CGPointMake(240,160);
+    
     
     if (catchableCount != 0) {
         if (playTouchSound && pauseGame) {

@@ -22,6 +22,7 @@
     CCLabelBMFont *label3;
     CMMotionManager *motionManager;
 
+
 }
 
 @property (nonatomic, retain) CMMotionManager *motionManager;
