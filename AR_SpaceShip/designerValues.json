@@ -1,0 +1,72 @@
+{
+"designerValues": [
+	{
+	    "key": "FloaterUpDownTotal",
+		"value": "0"
+	},
+    {
+        "key": "FloaterLeftRightTotal",
+        "value": "0"
+	},	
+	{
+        "key": "FloaterScaleTotal",
+        "value": "0"
+	},
+	{
+        "key": "FloaterCombinedTotal",
+        "value": "2"
+	},
+	{
+        "key": "SpeedLeftToRight",
+        "value": "10"
+	},
+	{
+        "key": "SpeedLeftToRightVariance",
+        "value": "0"
+	},
+	{
+        "key": "SpeedUpDown",
+        "value": "10"
+	},
+	{
+        "key": "SpeedUpDownVariance",
+        "value": "20"
+	},		
+	{
+        "key": "SpeedScale",
+        "value": "0.3"
+	},
+	{
+        "key": "SpeedScaleVariance",
+        "value": "0"
+	},
+	{
+        "key": "ScoreToWin",
+        "value": "0"
+	},
+	{
+        "key": "MaximumRoll",
+        "value": "0"
+	},
+	{
+        "key": "MinimumRoll",
+        "value": "0"
+	},
+	{
+        "key": "MaximumPitch",
+        "value": "0"
+	},
+	{
+        "key": "MinimumPitch",
+        "value": "0"
+	},
+	{
+        "key": "MaximumYaw",
+        "value": "45"
+	},
+    {
+        "key": "MinimumYaw",
+        "value": "-45"
+    }
+]
+}
