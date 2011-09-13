@@ -213,7 +213,6 @@
 		F3557C65141F0FF70084C0E3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3557C64141F0FF70084C0E3 /* SystemConfiguration.framework */; };
 		F3557C68141F10000084C0E3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3557C67141F10000084C0E3 /* CoreLocation.framework */; };
 		F3557C6A141F10980084C0E3 /* designerValues.json in Resources */ = {isa = PBXBuildFile; fileRef = F3557C69141F10980084C0E3 /* designerValues.json */; };
-		F3557C6D141F12810084C0E3 /* AccelerometerFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = F3557C6C141F12800084C0E3 /* AccelerometerFilter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -570,8 +569,6 @@
 		F3557C64141F0FF70084C0E3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		F3557C67141F10000084C0E3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F3557C69141F10980084C0E3 /* designerValues.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = designerValues.json; sourceTree = "<group>"; };
-		F3557C6B141F127F0084C0E3 /* AccelerometerFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccelerometerFilter.h; sourceTree = "<group>"; };
-		F3557C6C141F12800084C0E3 /* AccelerometerFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelerometerFilter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -656,8 +653,6 @@
 				78DCDD3913EF871900C76853 /* RootViewController.m */,
 				78DCDD0B13EF86EB00C76853 /* AppDelegate.h */,
 				78DCDD0C13EF86EB00C76853 /* AppDelegate.m */,
-				F3557C6B141F127F0084C0E3 /* AccelerometerFilter.h */,
-				F3557C6C141F12800084C0E3 /* AccelerometerFilter.m */,
 				789B3DBD140755710088F6F6 /* DesignValues.h */,
 				789B3DBE140755710088F6F6 /* DesignValues.m */,
 				78DCDD0D13EF86EB00C76853 /* Catchable.h */,
@@ -1381,7 +1376,6 @@
 				7887CD4314036740002B40A5 /* PauseLayer2.m in Sources */,
 				7887CD471403674D002B40A5 /* PauseLayer3.m in Sources */,
 				789B3DBF140755710088F6F6 /* DesignValues.m in Sources */,
-				F3557C6D141F12810084C0E3 /* AccelerometerFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
