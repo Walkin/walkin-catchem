@@ -25,4 +25,5 @@
 #define GAME_AUTOROTATION kGameAutorotationNone
 
 
+
 #endif // __GAME_CONFIG_H

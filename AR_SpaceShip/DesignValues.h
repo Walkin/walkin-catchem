@@ -12,16 +12,22 @@
 {
 
     NSDictionary *temp;
+    NSMutableArray *orderedKeys;
     NSMutableArray *catchableSprites;
+    NSMutableArray *orderedValues;
+    int FloaterCombined;
+    float MaximumYaw;
+    float MinimumYaw;
+    float UpdateFrequency;
 }
 
-@property (nonatomic,retain) NSDictionary *temp;
 
 
 +(DesignValues *)sharedDesignValues;
 - (int)getFloaterCombined;
 - (float)getMaximumYaw;
 - (float)getMinimumYaw;
+- (float)getUpdateFrequency;
 
 @property(nonatomic,retain) NSDictionary *temp;
 @property(nonatomic,retain) NSMutableArray *orderedKeys;
@@ -30,5 +36,7 @@
 @property(readwrite) int FloaterCombined;
 @property(readwrite) float MaximumYaw;
 @property(readwrite) float MinimumYaw;
+@property(readwrite) float UpdateFrequency;
+
 
 @end

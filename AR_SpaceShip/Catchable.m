@@ -8,6 +8,7 @@
 
 #import "Catchable.h"
 #import "DesignValues.h"
+
 #define PI 3.1415926535897932384626
 
 static inline float lerpf(float a, float b, float t)
@@ -43,6 +44,9 @@ static inline float lerpf(float a, float b, float t)
 @synthesize Yorg;
 @synthesize Zorg;
 @synthesize Rorg;
+@synthesize XInit;
+
+
 
 -(id)init {
     self = [super init];
@@ -52,21 +56,26 @@ static inline float lerpf(float a, float b, float t)
         CombineMoveCount = 1;
         scaleSpeed = 0.0;
         initialYaw = 0.0;
+        XInit = 0.0;
         wasTouched = YES;
+
+
         
         [self scheduleUpdate];
-        
+
         self.motionManager = [[[CMMotionManager alloc] init] autorelease];
         motionManager.deviceMotionUpdateInterval = 1.0/60.0;
         if (motionManager.isDeviceMotionAvailable) {
             [motionManager startDeviceMotionUpdates];
-        }
+         }
+
         
 	}
-    
-    
-    return self;
+  
+     return self;
 }
+
+
 
 -(void) setInitialPosition:(CGPoint)incPosition{
     self.Xdest = incPosition.x;
@@ -106,19 +115,22 @@ static inline float lerpf(float a, float b, float t)
 }
 
 
-
 - (void)radarSystem
 {
  
     CMDeviceMotion *currentDeviceMotion = motionManager.deviceMotion;
     CMAttitude *currentAttitude = currentDeviceMotion.attitude;
     
+
+
+//////////////////////Using the CMDeviceMotion's yaw///////////////////////
     yaw = (float)(CC_RADIANS_TO_DEGREES(currentAttitude.yaw));
+
+    
     float differentYaw;
     float catchableYaw;
     CGPoint circleCenter = ccp(420, 260);
     CGPoint redSpotPos;
-
     
     ///////////////////////////Set Catchable's yawPosition back to 0 when it's over 360///////////////////////        
     if (self.yawPosition >360.0) {
@@ -148,7 +160,7 @@ static inline float lerpf(float a, float b, float t)
 -(void)update:(ccTime)delta {
     [self updatePosition:delta];
     [self updateScale:delta];
-
+    
 }
 
 - (void)updatePosition:(ccTime)delta{

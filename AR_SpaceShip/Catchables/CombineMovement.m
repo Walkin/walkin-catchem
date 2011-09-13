@@ -34,6 +34,7 @@ static inline float lerpf(float a, float b, float t)
         progressTimer = 0.0;
         Zdest = self.scale;
         Zorg = self.scale;
+        wasTouched = YES;
     }
     
     return self;
@@ -49,6 +50,12 @@ static inline float lerpf(float a, float b, float t)
 //}
 
 -(void)update:(ccTime)delta {
+    
+///////////////When using the accelerometer//////////////////////////
+//    [self updatePosition:delta*0.1];
+//    [self checkTime:delta*0.1];
+    
+    
     [self updatePosition:delta];
     [self checkTime:delta];
     
@@ -61,7 +68,19 @@ static inline float lerpf(float a, float b, float t)
         
         Zorg = 1.5;
         Zdest = 1.5;
+        
     }
+    
+    if(Ydest > -10.0 || Ydest < -150.0)
+    {
+        Ydest = -90.0;
+        Yorg =  -90.0;
+        
+    }
+    
+
+    NSLog(@"The Xdest is %f, Ydest is %f, Zdest is %f", Xdest, Ydest, Zdest);
+    
     
 }
 
@@ -76,10 +95,21 @@ static inline float lerpf(float a, float b, float t)
     
 }
 
-- (BOOL)yawPositionWithinBounds:(float)value{
+- (int)yawPositionWithinBounds:(float)value{
+    
+    if (Xdest > self.initialYaw + MaximumYaw || Xdest < self.initialYaw - MaximumYaw) {
+        
+        return 2;
+        
+    }
     
     
-    return YES;
+    if ( Xdest < self.initialYaw + MaximumYaw && Xdest > self.initialYaw - MaximumYaw) {
+        
+        return 1;
+    }
+    
+    return 0;
 }
 
 - (BOOL)rollPositionWithinBounds:(float)value{
@@ -99,10 +129,7 @@ static inline float lerpf(float a, float b, float t)
     //    NSLog(@"I am out of bounds!");
         return 2;
     }
-    
-//    if (value > 3.0 || value < 0.5) {
-//        return 3;
-//    }
+
  
     return 0;
 
@@ -110,14 +137,14 @@ static inline float lerpf(float a, float b, float t)
 
 
 - (void)resetRandomMovement{
+    
     progressTimer = 0.0f;
     timer = CCRANDOM_MINUS1_1() * 1.5;
- //   do {
-        Xdest = CCRANDOM_MINUS1_1()*10 + self.yawPosition;
- //   } while ([self yawPositionWithinBounds:Xdest]);
- //   do {
-        Ydest = -CCRANDOM_MINUS1_1()*10 + self.rollPosition;
- //   } while ([self rollPositionWithinBounds:Ydest]);
+    
+    //  Xdest = CCRANDOM_MINUS1_1()*10 + self.yawPosition;
+    
+    Ydest = -CCRANDOM_MINUS1_1()*10 + self.rollPosition;
+    
     
     switch ([self scaleWithinBounds:Zdest])
     
@@ -130,16 +157,41 @@ static inline float lerpf(float a, float b, float t)
             Zdest = CCRANDOM_MINUS1_1() * 0.5 + self.scale;
             break;
             
-//        case 3:
-//            Zorg = 1.5;
-//            Zdest = 1.5;
-//            
-//            break;
-//            
+            //        case 3:
+            //            Zorg = 1.5;
+            //            Zdest = 1.5;
+            //            
+            //            break;
+            //            
         default:
             break;
 	}
-        
+    
+    
+    switch ([self yawPositionWithinBounds:Xdest])
+    
+	{
+        case 1:
+            
+            Xdest = CCRANDOM_MINUS1_1()*10 + self.yawPosition;
+            
+            break;
+            
+        case 2: 
+            
+            Xdest = XInit;
+            Xorg = XInit;
+            
+            break;
+            
+            //        case 3:
+            //            Xorg = XInit;
+            //            Xdest = XInit;
+            //            break;
+            
+        default:
+            break;
+	}
     
     // We should double check our Randoms here to make sure that they
     // do not go beyond the maximums and minimums defined in designer values

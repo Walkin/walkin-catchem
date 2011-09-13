@@ -204,13 +204,16 @@
 		78DCDD9A13EF8A2E00C76853 /* CCSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DCDD9813EF8A2E00C76853 /* CCSlider.m */; };
 		DAD24FB013F25687005F2B3A /* SavingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD24FAD13F25687005F2B3A /* SavingPageViewController.m */; };
 		DAD24FB113F25687005F2B3A /* JSONDesginerTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD24FAF13F25687005F2B3A /* JSONDesginerTextFieldCell.m */; };
-		DAD24FB313F256D2005F2B3A /* designerValues.json in Resources */ = {isa = PBXBuildFile; fileRef = DAD24FB213F256D2005F2B3A /* designerValues.json */; };
 		DAD24FC113F25718005F2B3A /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD24FB613F25717005F2B3A /* NSObject+SBJSON.m */; };
 		DAD24FC213F25718005F2B3A /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD24FB813F25717005F2B3A /* NSString+SBJSON.m */; };
 		DAD24FC313F25718005F2B3A /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD24FBA13F25718005F2B3A /* SBJSON.m */; };
 		DAD24FC413F25718005F2B3A /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD24FBC13F25718005F2B3A /* SBJsonBase.m */; };
 		DAD24FC513F25718005F2B3A /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD24FBE13F25718005F2B3A /* SBJsonParser.m */; };
 		DAD24FC613F25718005F2B3A /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD24FC013F25718005F2B3A /* SBJsonWriter.m */; };
+		F3557C65141F0FF70084C0E3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3557C64141F0FF70084C0E3 /* SystemConfiguration.framework */; };
+		F3557C68141F10000084C0E3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3557C67141F10000084C0E3 /* CoreLocation.framework */; };
+		F3557C6A141F10980084C0E3 /* designerValues.json in Resources */ = {isa = PBXBuildFile; fileRef = F3557C69141F10980084C0E3 /* designerValues.json */; };
+		F3557C6D141F12810084C0E3 /* AccelerometerFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = F3557C6C141F12800084C0E3 /* AccelerometerFilter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -249,7 +252,7 @@
 		789F188A13FBB25200422C14 /* TieGuyBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TieGuyBackground.png; sourceTree = "<group>"; };
 		789F188B13FBB25200422C14 /* TreasureHunt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TreasureHunt.png; sourceTree = "<group>"; };
 		789F188C13FBB25200422C14 /* TreasureHuntSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TreasureHuntSelected.png; sourceTree = "<group>"; };
-		789F189D13FBBEAE00422C14 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		789F189D13FBBEAE00422C14 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		789F18A013FBBFCA00422C14 /* menu_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_normal.png; sourceTree = "<group>"; };
 		789F18A313FBC4FE00422C14 /* back_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_normal.png; sourceTree = "<group>"; };
 		789F18A413FBC4FF00422C14 /* back_press.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_press.png; sourceTree = "<group>"; };
@@ -551,7 +554,6 @@
 		DAD24FAD13F25687005F2B3A /* SavingPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavingPageViewController.m; sourceTree = "<group>"; };
 		DAD24FAE13F25687005F2B3A /* JSONDesginerTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONDesginerTextFieldCell.h; sourceTree = "<group>"; };
 		DAD24FAF13F25687005F2B3A /* JSONDesginerTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONDesginerTextFieldCell.m; sourceTree = "<group>"; };
-		DAD24FB213F256D2005F2B3A /* designerValues.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = designerValues.json; sourceTree = "<group>"; };
 		DAD24FB413F25717005F2B3A /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		DAD24FB513F25717005F2B3A /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
 		DAD24FB613F25717005F2B3A /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
@@ -565,6 +567,11 @@
 		DAD24FBE13F25718005F2B3A /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		DAD24FBF13F25718005F2B3A /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		DAD24FC013F25718005F2B3A /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		F3557C64141F0FF70084C0E3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		F3557C67141F10000084C0E3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		F3557C69141F10980084C0E3 /* designerValues.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = designerValues.json; sourceTree = "<group>"; };
+		F3557C6B141F127F0084C0E3 /* AccelerometerFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccelerometerFilter.h; sourceTree = "<group>"; };
+		F3557C6C141F12800084C0E3 /* AccelerometerFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelerometerFilter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -572,6 +579,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3557C68141F10000084C0E3 /* CoreLocation.framework in Frameworks */,
+				F3557C65141F0FF70084C0E3 /* SystemConfiguration.framework in Frameworks */,
 				78DCDD8B13EF88CF00C76853 /* CoreMotion.framework in Frameworks */,
 				78DCDBA113EF86C400C76853 /* QuartzCore.framework in Frameworks */,
 				78DCDBA313EF86C400C76853 /* OpenGLES.framework in Frameworks */,
@@ -603,8 +612,6 @@
 		78DCDB9113EF86C400C76853 = {
 			isa = PBXGroup;
 			children = (
-				789F189D13FBBEAE00422C14 /* Icon.png */,
-				78DCDD8A13EF88CF00C76853 /* CoreMotion.framework */,
 				78DCDBB013EF86C400C76853 /* AR_SpaceShip */,
 				78DCDB9F13EF86C400C76853 /* Frameworks */,
 				78DCDB9D13EF86C400C76853 /* Products */,
@@ -622,6 +629,9 @@
 		78DCDB9F13EF86C400C76853 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F3557C67141F10000084C0E3 /* CoreLocation.framework */,
+				F3557C64141F0FF70084C0E3 /* SystemConfiguration.framework */,
+				78DCDD8A13EF88CF00C76853 /* CoreMotion.framework */,
 				78DCDBA013EF86C400C76853 /* QuartzCore.framework */,
 				78DCDBA213EF86C400C76853 /* OpenGLES.framework */,
 				78DCDBA413EF86C400C76853 /* OpenAL.framework */,
@@ -646,6 +656,8 @@
 				78DCDD3913EF871900C76853 /* RootViewController.m */,
 				78DCDD0B13EF86EB00C76853 /* AppDelegate.h */,
 				78DCDD0C13EF86EB00C76853 /* AppDelegate.m */,
+				F3557C6B141F127F0084C0E3 /* AccelerometerFilter.h */,
+				F3557C6C141F12800084C0E3 /* AccelerometerFilter.m */,
 				789B3DBD140755710088F6F6 /* DesignValues.h */,
 				789B3DBE140755710088F6F6 /* DesignValues.m */,
 				78DCDD0D13EF86EB00C76853 /* Catchable.h */,
@@ -714,6 +726,7 @@
 				78DCDD6213EF873C00C76853 /* Sounds */,
 				789F188113FBB1B500422C14 /* Default.png */,
 				78DCDBB413EF86C400C76853 /* fps_images.png */,
+				789F189D13FBBEAE00422C14 /* Icon.png */,
 				78DCDBB613EF86C400C76853 /* Icon-72.png */,
 				78DCDBB813EF86C400C76853 /* Icon-Small-50.png */,
 				78DCDBBA13EF86C400C76853 /* Icon-Small.png */,
@@ -1038,7 +1051,7 @@
 				DAD24FC013F25718005F2B3A /* SBJsonWriter.m */,
 				78DCDD4213EF871900C76853 /* TextFieldCell.h */,
 				78DCDD4313EF871900C76853 /* TextFieldCell.m */,
-				DAD24FB213F256D2005F2B3A /* designerValues.json */,
+				F3557C69141F10980084C0E3 /* designerValues.json */,
 				78DCDD6A13EF873C00C76853 /* TunnableValue.plist */,
 				78DCDD2B13EF871900C76853 /* DesignerValuesTableView.h */,
 				78DCDD2C13EF871900C76853 /* DesignerValuesTableView.m */,
@@ -1195,7 +1208,6 @@
 				78DCDD8413EF875F00C76853 /* Sprites.plist in Resources */,
 				78DCDD8513EF875F00C76853 /* Sprites.pvr.ccz in Resources */,
 				7806AE2D13F247CE00175EB9 /* pauseBackground.jpg in Resources */,
-				DAD24FB313F256D2005F2B3A /* designerValues.json in Resources */,
 				787933CE13F4E52E00F3043A /* redSpot.png in Resources */,
 				786D399813F50CFE00547731 /* radarCircle.png in Resources */,
 				78A31EF913FA50AF001EF082 /* scope.png in Resources */,
@@ -1230,6 +1242,7 @@
 				7876700713FCB1FB00327166 /* getCatchable.wav in Resources */,
 				7876700813FCB1FB00327166 /* win.wav in Resources */,
 				7876700D13FCB3F200327166 /* catch.wav in Resources */,
+				F3557C6A141F10980084C0E3 /* designerValues.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1368,6 +1381,7 @@
 				7887CD4314036740002B40A5 /* PauseLayer2.m in Sources */,
 				7887CD471403674D002B40A5 /* PauseLayer3.m in Sources */,
 				789B3DBF140755710088F6F6 /* DesignValues.m in Sources */,
+				F3557C6D141F12810084C0E3 /* AccelerometerFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -96,7 +96,6 @@
 -(void)removeSpriteAndAddCatchemSpritesBegin:(CCNode *)n
 {
     
-    
     catchableCount = 0;
     
     
@@ -107,6 +106,7 @@
         catchable.MaximumYaw = 45;
         [catchable addRedSpot];
         [self addChild:catchable.redSpot z:4];
+
         
     }
 
@@ -243,7 +243,6 @@
             [self addChild:winLabel z:4];
             [mnuBack setVisible:YES];
             pauseGame = NO;
-            
             
             
             for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {

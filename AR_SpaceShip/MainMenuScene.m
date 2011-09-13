@@ -95,7 +95,7 @@
 		
 
 ////////////////////////////////DisplayFPS////////////////////////////////////		
-		[[CCDirector sharedDirector] setDisplayFPS:YES];
+		[[CCDirector sharedDirector] setDisplayFPS:NO];
 
         
 

@@ -11,7 +11,6 @@
 #import <CoreMotion/CoreMotion.h>
 #import <CoreFoundation/CoreFoundation.h>
 
-
 @interface Catchable : CCSprite {
     float yawPosition;
     float rollPosition;
@@ -39,6 +38,7 @@
     float Yorg;
     float Zorg;
     float Rorg;
+    float XInit;
 
 
 }
@@ -68,6 +68,8 @@
 @property (readwrite) float Yorg;
 @property (readwrite) float Zorg;
 @property (readwrite) float Rorg;
+@property (readwrite) float XInit;
+
 
 
 - (void)updatePosition:(ccTime)delta;
