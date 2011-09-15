@@ -39,6 +39,9 @@
     float Zorg;
     float Rorg;
     float XInit;
+    float EnableCatchTimer;
+    BOOL EnableCatch;
+
 
 
 }
@@ -69,6 +72,8 @@
 @property (readwrite) float Zorg;
 @property (readwrite) float Rorg;
 @property (readwrite) float XInit;
+@property (readwrite) float EnableCatchTimer;
+@property (readwrite) BOOL EnableCatch;
 
 
 

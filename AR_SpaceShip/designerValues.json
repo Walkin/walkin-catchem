@@ -71,6 +71,11 @@
     {
         "key": "UpdateFrequency",
         "value": "20.0"
+    },
+    {
+        "key": "EnableCatchTimer",
+        "value": "2.0"
     }
+
 ]
 }

@@ -15,9 +15,15 @@
     float timer;
     float progressTimer;
 
+
 }
 
 -(void)resetRandomMovement;
+
+@property (readwrite) float speed;
+@property (readwrite) float timer;
+@property (readwrite) float progressTimer;
+
 
 
 @end

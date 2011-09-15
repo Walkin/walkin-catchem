@@ -22,6 +22,7 @@ static DesignValues *sharedDesignValues = nil;
 @synthesize MaximumYaw;
 @synthesize MinimumYaw;
 @synthesize UpdateFrequency;
+@synthesize EnableCatchTimer;
 
 
 +(DesignValues *)sharedDesignValues
@@ -99,6 +100,7 @@ static DesignValues *sharedDesignValues = nil;
         self.MaximumYaw = [[temp objectForKey:@"MaximumYaw"] floatValue];
         self.MinimumYaw = [[temp objectForKey:@"MinimumYaw"] floatValue];
         self.UpdateFrequency = [[temp objectForKey:@"UpdateFrequency"] floatValue];
+        self.EnableCatchTimer =  [[temp objectForKey:@"EnableCatchTimer"] floatValue];
         
         catchableSprites = [[NSMutableArray alloc] init];
         
@@ -138,5 +140,13 @@ static DesignValues *sharedDesignValues = nil;
 	}	
     
 }
+- (float)getEnableCatchTimer
+{
+    @synchronized(self) {
+		return  self.EnableCatchTimer;
+	}	
+
+}
+
 
 @end

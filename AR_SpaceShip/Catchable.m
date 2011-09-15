@@ -45,6 +45,8 @@ static inline float lerpf(float a, float b, float t)
 @synthesize Zorg;
 @synthesize Rorg;
 @synthesize XInit;
+@synthesize EnableCatchTimer;
+@synthesize EnableCatch;
 
 
 
@@ -60,7 +62,6 @@ static inline float lerpf(float a, float b, float t)
         wasTouched = YES;
 
 
-        
         [self scheduleUpdate];
 
         self.motionManager = [[[CMMotionManager alloc] init] autorelease];
@@ -74,7 +75,6 @@ static inline float lerpf(float a, float b, float t)
   
      return self;
 }
-
 
 
 -(void) setInitialPosition:(CGPoint)incPosition{

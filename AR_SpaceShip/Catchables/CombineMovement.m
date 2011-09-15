@@ -20,6 +20,11 @@ static inline float lerpf(float a, float b, float t)
 
 
 @implementation CombineMovement
+@synthesize speed;
+@synthesize timer;
+@synthesize progressTimer;
+
+
 
 - (id)init
 {
@@ -29,17 +34,18 @@ static inline float lerpf(float a, float b, float t)
         MovingUp = YES;
         scaleTimer = 0;
         TimeToMove = 0.0;
-        timer = CCRANDOM_0_1() * 2 + 1;
+        self.timer = CCRANDOM_0_1() * 2 + 1;
         self.scale = 1.5;
-        progressTimer = 0.0;
+        self.progressTimer = 0.0;
         Zdest = self.scale;
         Zorg = self.scale;
+        self.EnableCatchTimer = 0.0;
         wasTouched = YES;
+
     }
     
     return self;
 }
-
 
 
 
@@ -55,6 +61,18 @@ static inline float lerpf(float a, float b, float t)
 //    [self updatePosition:delta*0.1];
 //    [self checkTime:delta*0.1];
     
+    if(self.EnableCatchTimer > 0.0 ) {
+       self.EnableCatch = YES;
+       self.EnableCatchTimer -= delta;
+
+   }
+    
+    if (self.EnableCatchTimer <= 0.0) {
+        self.EnableCatch = NO;
+        
+    }
+    
+   // NSLog(@"The value of EnableCatchTimer is %f", self.EnableCatchTimer);
     
     [self updatePosition:delta];
     [self checkTime:delta];
@@ -78,10 +96,6 @@ static inline float lerpf(float a, float b, float t)
         
     }
     
-
-    NSLog(@"The Xdest is %f, Ydest is %f, Zdest is %f", Xdest, Ydest, Zdest);
-    
-    
 }
 
 
@@ -89,7 +103,7 @@ static inline float lerpf(float a, float b, float t)
 {
  //   NSLog(@"timer: %f, progress: %f",timer, progressTimer);    
     
-    if ( progressTimer > timer) {
+    if ( progressTimer > self.timer) {
         [self resetRandomMovement];
     }
     
@@ -129,7 +143,6 @@ static inline float lerpf(float a, float b, float t)
     //    NSLog(@"I am out of bounds!");
         return 2;
     }
-
  
     return 0;
 
@@ -139,7 +152,7 @@ static inline float lerpf(float a, float b, float t)
 - (void)resetRandomMovement{
     
     progressTimer = 0.0f;
-    timer = CCRANDOM_MINUS1_1() * 1.5;
+    self.timer = CCRANDOM_MINUS1_1() * 1.5;
     
     //  Xdest = CCRANDOM_MINUS1_1()*10 + self.yawPosition;
     
@@ -206,7 +219,7 @@ static inline float lerpf(float a, float b, float t)
 - (void)updatePosition:(ccTime)delta {
     
     progressTimer += delta;
-    float ratio = progressTimer / timer;
+    float ratio = progressTimer / self.timer;
 
     if (ratio < 1.0) {
         self.yawPosition = lerpf(Xorg, Xdest, ratio);
@@ -221,6 +234,7 @@ static inline float lerpf(float a, float b, float t)
     }
 
 }
+
 
 
 - (void) dealloc
