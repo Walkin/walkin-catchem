@@ -58,7 +58,7 @@
 		[pausemenu  setAnchorPoint:CGPointZero];
 		[pausemenu  setPosition:CGPointZero];
 		[mnuBack setAnchorPoint:CGPointZero];
-		[mnuBack setPosition:CGPointMake(200,100)];
+		[mnuBack setPosition:CGPointMake(200,80)];
 		[mnuBackToMenu setAnchorPoint:CGPointZero];
 		[mnuBackToMenu setPosition:CGPointMake(200,150)];
         //		[mnuRestart setAnchorPoint:CGPointZero];

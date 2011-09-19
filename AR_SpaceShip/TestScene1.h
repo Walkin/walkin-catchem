@@ -21,12 +21,8 @@
 @interface TestLayer1 : TestLayer
 {
     PauseLayer * p;
-    float updateYaw;
 
-
-    
 }
 
-@property (readwrite) float updateYaw;
 
 @end

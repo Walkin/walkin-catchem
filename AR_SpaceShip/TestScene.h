@@ -48,6 +48,7 @@
     BOOL playTouchSound;
     BOOL pauseGame;
     float yaw;
+    float updateYaw;
 
 }
 
@@ -85,6 +86,7 @@
 @property (readwrite) BOOL playTouchSound;
 @property (readwrite) float yaw;
 @property (readwrite) BOOL pauseGame;
+@property (readwrite) float updateYaw;
 //@property (nonatomic, retain) NSMutableArray *catchableSprites;
 
 @end

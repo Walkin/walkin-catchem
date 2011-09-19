@@ -19,8 +19,7 @@
 @interface TestLayer2: TestLayer
 {
     PauseLayer2* p;
-    
-}
 
+}
 
 @end

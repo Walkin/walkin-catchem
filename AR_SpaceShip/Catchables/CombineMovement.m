@@ -47,17 +47,15 @@ static inline float lerpf(float a, float b, float t)
     return self;
 }
 
-
-
-//-(void)moveSelf:(ccTime)delta
-//{
-//
-//    
-//}
-
 -(void)update:(ccTime)delta {
     
-///////////////When using the accelerometer//////////////////////////
+    // NSLog(@"The value of EnableCatchTimer is %f", self.EnableCatchTimer);
+    // NSLog(@"The yaw of the device is %f", yaw);
+    // NSLog(@"The scale of the catchable is %f", self.scale);
+    // NSLog(@"The Zdest is %f and Zorg is %f", Zdest, Zorg);
+    // NSLog(@"Xdest: %f, Ydest: %f Zdest: %f  Rdest: %f",Xdest, Ydest, Zdest, circleRadius);
+    
+///////////////When using the accelerometer////////////////////////////////////////
 //    [self updatePosition:delta*0.1];
 //    [self checkTime:delta*0.1];
     
@@ -72,14 +70,8 @@ static inline float lerpf(float a, float b, float t)
         
     }
     
-   // NSLog(@"The value of EnableCatchTimer is %f", self.EnableCatchTimer);
-    
     [self updatePosition:delta];
     [self checkTime:delta];
-    
-    //NSLog(@"The yaw of the device is %f", yaw);
-    //  NSLog(@"The scale of the catchable is %f", self.scale);
-  //  NSLog(@"The Zdest is %f and Zorg is %f", Zdest, Zorg);
 
 //////////////////Control the scale size of catchable instantly///////////////////
     if (Zdest > 3.0 || Zdest < 0.5) {
@@ -116,7 +108,6 @@ static inline float lerpf(float a, float b, float t)
         return 2;
         
     }
-    
     
     if ( Xdest < self.initialYaw + MaximumYaw && Xdest > self.initialYaw - MaximumYaw) {
         
@@ -169,13 +160,7 @@ static inline float lerpf(float a, float b, float t)
         case 2: 
             Zdest = CCRANDOM_MINUS1_1() * 0.5 + self.scale;
             break;
-            
-            //        case 3:
-            //            Zorg = 1.5;
-            //            Zdest = 1.5;
-            //            
-            //            break;
-            //            
+
         default:
             break;
 	}
@@ -196,11 +181,7 @@ static inline float lerpf(float a, float b, float t)
             Xorg = XInit;
             
             break;
-            
-            //        case 3:
-            //            Xorg = XInit;
-            //            Xdest = XInit;
-            //            break;
+
             
         default:
             break;
@@ -209,7 +190,6 @@ static inline float lerpf(float a, float b, float t)
     // We should double check our Randoms here to make sure that they
     // do not go beyond the maximums and minimums defined in designer values
 
-    // NSLog(@"Xdest: %f, Ydest: %f Zdest: %f  Rdest: %f",Xdest, Ydest, Zdest, circleRadius);
     Xorg = self.yawPosition;
     Yorg = self.rollPosition;
     Zorg = self.scale;    
@@ -239,8 +219,7 @@ static inline float lerpf(float a, float b, float t)
 
 - (void) dealloc
 {    
-    
-   // [self removeFromParentAndCleanup:YES];
+
 	[super dealloc];
 }
 

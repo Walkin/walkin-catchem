@@ -43,7 +43,7 @@
 @end
 
 @implementation TestLayer1
-@synthesize updateYaw;
+
 
 
 -(id) init
@@ -165,12 +165,17 @@
     
     [self addChild:catchable z:3 tag:shipTag];
     
+    id waves = [CCWaves actionWithWaves:5 amplitude:20 horizontal:YES vertical:NO grid:ccg(15,10) duration:5];
+    [catchable runAction: [CCRepeatForever actionWithAction: waves]];
+    
     return catchable;
 }
     
 
 -(void) GoToPauseLayer
 {
+    [self unschedule:@selector(GoToPauseLayer)];
+    
     p.visible = YES;
     [p.mnuBackToMenu setIsEnabled:YES];
     [self pauseSchedulerAndActions];
@@ -215,24 +220,24 @@
     
     }
     
-	if (acceleration.x > violence * 0.6 || acceleration.x < (-1.5* violence))
-	{
-		
-		shake = TRUE;
-        NSLog(@"You are shaking in the x axis");  
-		
-	}
+//	if (acceleration.x > violence * 0.6 || acceleration.x < (-1.5* violence))
+//	{
+//		
+//		shake = TRUE;
+//      //  NSLog(@"You are shaking in the x axis");  
+//		
+//	}
     
 	if (acceleration.y > violence * 0.6 || acceleration.y < (-1.5 * violence))
 	{
 		shake = TRUE;
-        NSLog(@"You are shaking in the y axis");
+      //  NSLog(@"You are shaking in the y axis");
 	}
 	
-	if (acceleration.z > violence * 0.5 || acceleration.z < (-1.5 * violence))
+	if (acceleration.x > violence * 0.3 || acceleration.x < (-1.5* violence) || acceleration.z > violence * 0.5 || acceleration.z < (-1.5 * violence))
 	{
 		shake = TRUE;
-		NSLog(@"You are shaking in the z axis");
+	 	NSLog(@"You are shaking in the z axis");
 
         
         if (catchableCount != 0) {
@@ -243,23 +248,17 @@
         }
         
         
-        
         for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
-            
-            // Check to see if yaw position is in range
-      //      BOOL wasTouched = [self circle:location withRadius:50 collisionWithCircle:catchable.position collisionCircleRadius:50];
+
 
             if (catchable.EnableCatch && catchable.wasTouched) {
                 
                 CCParticleSystemQuad *particle = [CCParticleSystemQuad particleWithFile:@"Explosion.plist"];
                 particle.position = ccp(240,160);
                 [self addChild:particle z:20];
+                particle.life = 1.5;
                 particle.autoRemoveOnFinish = YES;
-                
-                //            catchable.wasTouched = NO;
-                //            catchable.visible = false;
-                //            catchable.redSpot.visible = false;
-                //            catchableCount -= 1;
+
                 
                 //////////////////////////Set the catchable randomly to another position of the range///////////////////////
                 
@@ -285,8 +284,7 @@
                 }
                 
                 
-                
-                ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
                 playTouchSound = YES;
                 score++;
                 
@@ -296,7 +294,7 @@
         }
         
         
-        //////////////////////////////////////////When you clean up the Catchable,You Win!/////////////////////////////////
+//////////////////////////////////////////When you clean up the Catchable,You Win!/////////////////////////////////
         if (score >= 20 && pauseGame == YES) {
             if(enableTouch)
             {
@@ -318,8 +316,6 @@
             
         }
 
-        
-        
 	}
 	
 	beenhere = FALSE;
