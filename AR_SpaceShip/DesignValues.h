@@ -20,6 +20,7 @@
     float MinimumYaw;
     float UpdateFrequency;
     float EnableCatchTimer;
+
 }
 
 
@@ -30,6 +31,7 @@
 - (float)getMinimumYaw;
 - (float)getUpdateFrequency;
 - (float)getEnableCatchTimer;
+
 
 @property(nonatomic,retain) NSDictionary *temp;
 @property(nonatomic,retain) NSMutableArray *orderedKeys;

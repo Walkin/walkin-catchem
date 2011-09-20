@@ -53,16 +53,17 @@ static inline float lerpf(float a, float b, float t)
 -(id)init {
     self = [super init];
     if (self){ 
+///////////////////////////////Initial yaw and roll value for catchables///////////////////////////
         yawPosition = 0.0;
-        rollPosition = 0.0;
+        rollPosition = -90.0;
         CombineMoveCount = 1;
         scaleSpeed = 0.0;
         initialYaw = 0.0;
         XInit = 0.0;
         wasTouched = YES;
 
-
-        [self scheduleUpdate];
+        
+     //   [self scheduleUpdate];
 
         self.motionManager = [[[CMMotionManager alloc] init] autorelease];
         motionManager.deviceMotionUpdateInterval = 1.0/60.0;

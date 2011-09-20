@@ -35,6 +35,15 @@
   //  NSMutableArray *catchableSprites;
 
     CCMenuItemImage *mnuBack;
+    CCMenuItemImage *mnuChange;
+    CCMenuItemImage *mnuMoveUp;
+    CCMenuItemImage *mnuMoveDown;
+    CCMenuItemImage *mnuScaleBig;
+    CCMenuItemImage *mnuScaleSmall;
+    CCMenuItemImage *mnuCapture;
+    
+    
+    
     int catchableCount;
     int score;
     int count;
@@ -49,6 +58,8 @@
     BOOL pauseGame;
     float yaw;
     float updateYaw;
+    
+    int changePic;
 
 }
 
@@ -74,7 +85,12 @@
 -(void)addScoreLabel;
 -(void)addRadar;
 -(void)presentWinCondition;
-
+-(void) ChangeCloths: (id) sender;
+-(void) MoveUp: (id) sender;
+-(void) MoveDown: (id) sender;
+-(void) ScaleBig: (id) sender;
+-(void) ScaleSmall: (id) sender;
+- (void)captureScreen: (id) sender;
 
 @property (nonatomic, retain) CMMotionManager *motionManager;
 @property (readwrite) int catchableCount;

@@ -94,6 +94,96 @@
 	return self;
 }
 
+-(void) ChangeCloths: (id) sender
+{
+
+  //  NSLog(@"the num of change pic is %d",changePic);
+    NSString *spritePic = [NSString stringWithFormat:@"catchable_00%d.png", changePic];
+    
+    
+    for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
+
+
+        [catchable setTexture:[[CCTextureCache sharedTextureCache] addImage:spritePic]];
+        
+    }
+    
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+    UIAlertView *alert;
+    
+    // Unable to save the image  
+    if (error)
+        alert = [[UIAlertView alloc] initWithTitle:@"Error" 
+                                           message:@"Unable to save image to Photo Album." 
+                                          delegate:self cancelButtonTitle:@"Ok" 
+                                 otherButtonTitles:nil];
+    else // All is well
+        alert = [[UIAlertView alloc] initWithTitle:@"Success" 
+                                           message:@"Image saved to Photo Album." 
+                                          delegate:self cancelButtonTitle:@"Ok" 
+                                 otherButtonTitles:nil];
+    [alert show];
+    [alert release];
+}
+
+- (void)captureScreen: (id) sender
+{
+    CGImageRef screen = UIGetScreenImage();
+    UIImage* image = [UIImage imageWithCGImage:screen];
+    CGImageRelease(screen);
+    
+    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    
+}
+
+
+-(void) MoveUp: (id) sender
+{
+    for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
+        
+        
+        catchable.rollPosition -= 1.0;
+        
+    }
+
+}
+
+-(void) MoveDown: (id) sender
+{
+    for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
+        
+        
+         catchable.rollPosition += 1.0;
+        
+    }
+
+}
+
+
+-(void) ScaleBig: (id) sender
+{
+    for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
+        
+        catchable.scale += 0.1;
+        
+    }
+
+}
+
+
+-(void) ScaleSmall: (id) sender
+{
+    for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
+        
+        catchable.scale -= 0.1;
+        
+    }
+
+}
+
 
 -(void)removeSpriteAndAddCatchemSpritesBegin:(CCNode *)n
 {
@@ -149,6 +239,7 @@
     }
     
     y = randomY;
+
     
     
     //    catchable.yawPosition = x;   
@@ -161,12 +252,16 @@
     [catchable setPosition:ccp(5000, 5000)];
     
     catchable.visible = true;
-    
+
+   // catchable.scale = 3.0;
     
     [self addChild:catchable z:3 tag:shipTag];
     
-    id waves = [CCWaves actionWithWaves:5 amplitude:20 horizontal:YES vertical:NO grid:ccg(15,10) duration:5];
-    [catchable runAction: [CCRepeatForever actionWithAction: waves]];
+///////////////////////////Make catchable Wave itself/////////////////////// 
+    
+//    id waves = [CCWaves actionWithWaves:5 amplitude:20 horizontal:YES vertical:NO grid:ccg(15,10) duration:5];
+//    [catchable runAction: [CCRepeatForever actionWithAction: waves]];
+
     
     return catchable;
 }

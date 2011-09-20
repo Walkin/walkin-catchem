@@ -35,7 +35,7 @@ static inline float lerpf(float a, float b, float t)
         scaleTimer = 0;
         TimeToMove = 0.0;
         self.timer = CCRANDOM_0_1() * 2 + 1;
-        self.scale = 1.5;
+      //  self.scale = 1.5;
         self.progressTimer = 0.0;
         Zdest = self.scale;
         Zorg = self.scale;

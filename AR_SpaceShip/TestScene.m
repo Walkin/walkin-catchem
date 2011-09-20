@@ -174,7 +174,6 @@
     
     enableTouch = YES;
 
-    
 }
 
 -(void)addMenuItems
@@ -184,12 +183,64 @@
                                           target:self 
                                         selector:@selector(GoToMainMenuScene:)];
     
-    CCMenu *aboutmenu = [CCMenu menuWithItems:mnuBack,nil];
+    mnuChange=[CCMenuItemImage itemFromNormalImage:@"right.png" 
+                                   selectedImage:@"right.png" 
+                                          target:self 
+                                        selector:@selector(ChangeCloths:)];
+    
+    mnuMoveUp = [CCMenuItemImage itemFromNormalImage:@"up.png" 
+                                     selectedImage:@"up.png" 
+                                            target:self 
+                                          selector:@selector(MoveUp:)];
+    
+    mnuMoveDown = [CCMenuItemImage itemFromNormalImage:@"down.png" 
+                                     selectedImage:@"down.png" 
+                                            target:self 
+                                          selector:@selector(MoveDown:)];
+    
+    mnuScaleBig = [CCMenuItemImage itemFromNormalImage:@"scaleBig.png" 
+                                         selectedImage:@"scaleBig.png" 
+                                                target:self 
+                                              selector:@selector(ScaleBig:)];
+    
+    mnuScaleSmall = [CCMenuItemImage itemFromNormalImage:@"scaleSmall.png" 
+                                         selectedImage:@"scaleSmall.png" 
+                                                target:self 
+                                              selector:@selector(ScaleSmall:)];
+    
+    mnuCapture = [CCMenuItemImage itemFromNormalImage:@"camera.png" 
+                                           selectedImage:@"camera.png" 
+                                                  target:self 
+                                                selector:@selector(captureScreen:)];
+    
+    CCMenu *aboutmenu = [CCMenu menuWithItems:mnuBack, mnuChange, mnuMoveUp, mnuMoveDown, mnuScaleBig, mnuScaleSmall, mnuCapture,nil];
     [self addChild:aboutmenu z:4 tag:2];
     [aboutmenu setAnchorPoint:CGPointZero];
     [aboutmenu setPosition:CGPointZero];
     [mnuBack setAnchorPoint:CGPointZero];
     [mnuBack setPosition:CGPointMake(380,30)];
+    
+    [mnuChange setAnchorPoint:CGPointZero];
+    [mnuChange setPosition:CGPointMake(430,80)];
+    
+    [mnuMoveUp setAnchorPoint:CGPointZero];
+    [mnuMoveUp setPosition:CGPointMake(380,70)];
+    
+    [mnuMoveDown setAnchorPoint:CGPointZero];
+    [mnuMoveDown setPosition:CGPointMake(380,10)];
+    
+    [mnuScaleBig setAnchorPoint:CGPointZero];
+    [mnuScaleBig setPosition:CGPointMake(30,20)];
+    
+    [mnuScaleSmall setAnchorPoint:CGPointZero];
+    [mnuScaleSmall setPosition:CGPointMake(80,20)];
+    
+    [mnuCapture setAnchorPoint:CGPointZero];
+    [mnuCapture setPosition:CGPointMake(430,20)];
+    
+    mnuScaleBig.scale = 0.8;
+    mnuScaleSmall.scale = 0.8;
+    
     [mnuBack setVisible:NO];
     
 }
@@ -208,6 +259,8 @@
     
     //NSLog(@"The catchable count is %d", catchableCount);
     
+    changePic = (int)(CCRANDOM_0_1()*10);
+    
     CMDeviceMotion *currentDeviceMotion = motionManager.deviceMotion;
     CMAttitude *currentAttitude = currentDeviceMotion.attitude;
 
@@ -215,8 +268,8 @@
     yaw = (float)(CC_RADIANS_TO_DEGREES(currentAttitude.yaw));
     float roll = (float)(CC_RADIANS_TO_DEGREES(currentAttitude.roll));
     
-    [yawLabel setString:[NSString stringWithFormat:@"Yaw: %.0f", yaw]];
-    [rollLabel setString:[NSString stringWithFormat:@"roll: %.0f", roll]];
+//    [yawLabel setString:[NSString stringWithFormat:@"Yaw: %.0f", yaw]];
+//    [rollLabel setString:[NSString stringWithFormat:@"roll: %.0f", roll]];
     
 
     for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
@@ -335,7 +388,37 @@
 	
 }
 
+-(void) ChangeCloths: (id) sender
+{
 
+}
+
+
+-(void) MoveUp:(id) sender
+{
+
+}
+
+-(void) MoveDown:(id) sender
+{
+
+}
+
+-(void) ScaleBig: (id) sender
+{
+
+}
+
+-(void) ScaleSmall: (id) sender
+{
+
+
+}
+
+- (void)captureScreen: (id) sender
+{
+
+}
 
 -(void)checkCatchablePositionX:(Catchable *)Catchable withYaw:(float)yawPosition {
     // Convert the yaw value to a value in the range of 0 to 360

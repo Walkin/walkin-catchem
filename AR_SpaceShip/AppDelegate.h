@@ -15,11 +15,14 @@
 	RootViewController	*viewController;
     UIView * overlay;
     BOOL paused;
+    UIImagePickerController *uip;
 }
 
 +(AppDelegate *) get;
 
+
 @property (nonatomic, retain) UIWindow *window;
+@property (nonatomic, retain) UIImagePickerController *uip;
 @property (readwrite) BOOL paused;
 
 @end

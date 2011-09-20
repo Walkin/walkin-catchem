@@ -17,7 +17,9 @@
 
 @implementation AppDelegate
 
-@synthesize window,paused;
+@synthesize window;
+@synthesize paused;
+@synthesize uip;
 
 - (void) removeStartupFlicker
 {
@@ -116,7 +118,7 @@
     
 #define CAMERA_TRANSFORM  1.24299
     
-    UIImagePickerController *uip;
+//    UIImagePickerController *uip;
     
     @try {
         uip = [[[UIImagePickerController alloc] init] autorelease];
@@ -127,6 +129,7 @@
         uip.wantsFullScreenLayout = YES;
         uip.cameraViewTransform = CGAffineTransformScale(uip.cameraViewTransform, 
                                                          CAMERA_TRANSFORM, CAMERA_TRANSFORM);
+        
     }
     @catch (NSException * e) {
         [uip release];
@@ -157,6 +160,15 @@
     [[CCDirector sharedDirector] runWithScene: [MainMenuScene node]];
 }
 
+
+
+- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+	UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+	UIImageWriteToSavedPhotosAlbum(image, self, nil, nil);
+}
+
+
 +(AppDelegate *) get {
 	
 	return (AppDelegate *) [[UIApplication sharedApplication] delegate];
@@ -164,6 +176,7 @@
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     
+
 	[[CCDirector sharedDirector] pause];
 }
 
@@ -199,6 +212,8 @@
 - (void)applicationSignificantTimeChange:(UIApplication *)application {
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
 }
+
+
 
 - (void)dealloc {
 	[[CCDirector sharedDirector] end];

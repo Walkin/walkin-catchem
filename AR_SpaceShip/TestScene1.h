@@ -18,11 +18,13 @@
 
 
 
-@interface TestLayer1 : TestLayer
+@interface TestLayer1 : TestLayer<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 {
     PauseLayer * p;
 
 }
+
+
 
 
 @end
