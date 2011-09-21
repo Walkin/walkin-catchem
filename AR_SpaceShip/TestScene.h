@@ -38,6 +38,8 @@
     CCMenuItemImage *mnuChange;
     CCMenuItemImage *mnuMoveUp;
     CCMenuItemImage *mnuMoveDown;
+    CCMenuItemImage *mnuMoveLeft;
+    CCMenuItemImage *mnuMoveRight;
     CCMenuItemImage *mnuScaleBig;
     CCMenuItemImage *mnuScaleSmall;
     CCMenuItemImage *mnuCapture;
@@ -52,6 +54,7 @@
     CCSprite *radar;
     
     int CombinedCatchemCount;
+    int StableCatchableCount;
     float MaximumYaw;
     BOOL enableTouch;
     BOOL playTouchSound;
@@ -64,6 +67,7 @@
 }
 
 -(Catchable *)addCombinedCatchable:(int)shipTag; 
+-(Catchable *)addStableCatchable:(int)shipTag; 
 -(void)dataInitialize;
 -(void)update:(ccTime)delta;
 -(void)ScoreUpdate;
@@ -88,15 +92,19 @@
 -(void) ChangeCloths: (id) sender;
 -(void) MoveUp: (id) sender;
 -(void) MoveDown: (id) sender;
+-(void) MoveLeft: (id) sender;
+-(void) MoveRight: (id) sender;
 -(void) ScaleBig: (id) sender;
 -(void) ScaleSmall: (id) sender;
-- (void)captureScreen: (id) sender;
+-(void) captureScreen: (id) sender;
+
 
 @property (nonatomic, retain) CMMotionManager *motionManager;
 @property (readwrite) int catchableCount;
 @property (readwrite) int score;
 @property (readwrite) int count;
 @property (readwrite) int CombinedCatchemCount;
+@property (readwrite) int StableCatchableCount;
 @property (readwrite) float MaximumYaw;
 @property (readwrite) BOOL enableTouch;
 @property (readwrite) BOOL playTouchSound;

@@ -10,6 +10,7 @@
 #import "SimpleAudioEngine.h"
 #import "Catchable.h"
 #import "CombineMovement.h"
+#import "StableCatchable.h"
 #import "MainMenuScene.h"
 #import "AppDelegate.h"
 #import "PauseLayer3.h"
@@ -50,7 +51,7 @@
 	
 	if( (self=[super init] )) {
         
-        self.isAccelerometerEnabled = YES;
+     //   self.isAccelerometerEnabled = YES;
         
 
 /////////////////////////////Create the pause layer//////////////////////////////
@@ -67,8 +68,8 @@
 		
 		[[CCDirector sharedDirector] setDisplayFPS:NO];
         
-        [self presentWinCondition];
-          [self presentCoreMotionData];
+      //  [self presentWinCondition];
+      //   [self presentCoreMotionData];
         
         [self addScopeCrosshairs];
         
@@ -86,12 +87,159 @@
         ///////////////////////////Show Ready,Set,Go before start playing game/////////////////////////
         [self startGame];
         
-        [self addScoreLabel];
+     //   [self addScoreLabel];
     
 
         
 	}
 	return self;
+}
+
+
+-(void)update:(ccTime)delta {
+    
+    
+    //NSLog(@"The catchable count is %d", catchableCount);
+    
+    changePic = (int)(CCRANDOM_0_1()*10);
+    
+    CMDeviceMotion *currentDeviceMotion = motionManager.deviceMotion;
+    CMAttitude *currentAttitude = currentDeviceMotion.attitude;
+    
+    
+    yaw = (float)(CC_RADIANS_TO_DEGREES(currentAttitude.yaw));
+    float roll = (float)(CC_RADIANS_TO_DEGREES(currentAttitude.roll));
+    
+    [yawLabel setString:[NSString stringWithFormat:@"Yaw: %.0f", yaw]];
+    [rollLabel setString:[NSString stringWithFormat:@"roll: %.0f", roll]];
+    
+    
+    for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
+        [self checkCatchablePositionX:catchable withYaw:yaw];
+        [self checkCatchablePositionY:catchable withRoll:roll];
+        
+        [catchable radarSystem];
+    }
+}
+
+
+
+-(void) ChangeCloths: (id) sender
+{
+    
+    //  NSLog(@"the num of change pic is %d",changePic);
+    NSString *spritePic = [NSString stringWithFormat:@"stableCatchable_00%d.png", changePic];
+    
+    
+    for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
+        
+        
+        [catchable setTexture:[[CCTextureCache sharedTextureCache] addImage:spritePic]];
+        
+    }
+    
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+    
+    
+    UIAlertView *alert;
+    
+    // Unable to save the image  
+    if (error)
+        alert = [[UIAlertView alloc] initWithTitle:@"Error" 
+                                           message:@"Unable to save image to Photo Album." 
+                                          delegate:self cancelButtonTitle:@"Ok" 
+                                 otherButtonTitles:nil];
+    else // All is well
+        alert = [[UIAlertView alloc] initWithTitle:@"Success" 
+                                           message:@"Image saved to Photo Album." 
+                                          delegate:self cancelButtonTitle:@"Ok" 
+                                 otherButtonTitles:nil];
+    [alert show];
+    [alert release];
+    
+}
+
+
+- (void)captureScreen: (id) sender
+{
+    CGImageRef screen = UIGetScreenImage();
+    UIImage* image = [UIImage imageWithCGImage:screen];
+    CGImageRelease(screen);
+    
+    [[SimpleAudioEngine sharedEngine] playEffect:@"takePicture.mp3"];
+    
+    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    
+}
+
+
+-(void) MoveUp: (id) sender
+{
+    for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
+        
+        
+        catchable.rollPosition -= 1.0;
+        
+    }
+    
+}
+
+-(void) MoveDown: (id) sender
+{
+    for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
+        
+        
+        catchable.rollPosition += 1.0;
+        
+    }
+    
+}
+
+-(void) MoveLeft: (id) sender
+{
+    for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
+        
+        
+        catchable.yawPosition += 1.0;
+        
+    }
+}
+
+-(void) MoveRight: (id) sender
+{
+    
+    for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
+        
+        
+        catchable.yawPosition -= 1.0;
+        
+    }
+    
+}
+
+
+-(void) ScaleBig: (id) sender
+{
+    for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
+        
+        catchable.scale += 0.1;
+        
+    }
+    
+}
+
+
+-(void) ScaleSmall: (id) sender
+{
+    for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
+        
+        catchable.scale -= 0.1;
+        
+    }
+    
 }
 
 
@@ -105,8 +253,9 @@
     
 
     
-    for(int i = 0; i < [[DesignValues sharedDesignValues]getFloaterCombined]; i++) {
-        Catchable *catchable = [self addCombinedCatchable:i];
+//    for(int i = 0; i < [[DesignValues sharedDesignValues]getFloaterCombined]; i++) {
+      for(int i = 0; i < 1; i++) {
+        Catchable *catchable = [self addStableCatchable:i];
         [[DesignValues sharedDesignValues].catchableSprites  addObject:catchable];
         catchableCount += 1;
         catchable.MaximumYaw = 45;
@@ -121,7 +270,7 @@
 }
 
 
--(Catchable *)addCombinedCatchable:(int)shipTag{
+-(Catchable *)addStableCatchable:(int)shipTag{
     
     Catchable *catchable;
     
@@ -135,8 +284,8 @@
     x = 0;
     y = 0;
     
-    catchable = [CombineMovement spriteWithFile:[NSString stringWithFormat:@"catchable_00%d.png",picChoose]];
-    CombinedCatchemCount += catchable.CombineMoveCount;
+    catchable = [StableCatchable spriteWithFile:[NSString stringWithFormat:@"stableCatchable_00%d.png",picChoose]];
+    StableCatchableCount += catchable.StableCount;
     
     randomX = CCRANDOM_MINUS1_1()*MaximumYaw;
     randomY = -CCRANDOM_0_1()*100;
@@ -170,6 +319,11 @@
     
     [self addChild:catchable z:3 tag:shipTag];
     
+    ///////////////////////////Make catchable Wave itself/////////////////////// 
+    
+ //       id waves = [CCWaves actionWithWaves:5 amplitude:20 horizontal:YES vertical:NO grid:ccg(15,10) duration:5];
+ //       [catchable runAction: [CCRepeatForever actionWithAction: waves]];
+    
     return catchable;
 }
 
@@ -177,6 +331,9 @@
 
 -(void) GoToPauseLayer
 {
+    
+    [self unschedule:@selector(GoToPauseLayer)];
+    
     p.visible = YES;
     [p.mnuBackToMenu setIsEnabled:YES];
     [self pauseSchedulerAndActions];
@@ -220,19 +377,26 @@
         
     }
     
-	if (acceleration.x > violence * 0.6 || acceleration.x < (-1.5* violence))
-	{
-		
-		shake = TRUE;
-        //  NSLog(@"You are shaking in the x axis");  
-        
-		
-	}
+//	if (acceleration.x > violence * 0.6 || acceleration.x < (-1.5* violence))
+//	{
+//		
+//		shake = TRUE;
+//        //  NSLog(@"You are shaking in the x axis");  
+//        
+//		
+//	}
     
 	if (acceleration.y > violence * 0.25 || acceleration.y < (-1.5 * violence))
 	{
 		shake = TRUE;
         //  NSLog(@"You are shaking in the y axis");
+        
+	}
+	
+	if (acceleration.x > violence * 0.3 || acceleration.x < (-1.5* violence) || acceleration.z > violence * 0.5 || acceleration.z < (-1.5 * violence))
+	{
+		shake = TRUE;
+        //	NSLog(@"You are shaking in the z axis");
         
         
         if (catchableCount != 0) {
@@ -308,13 +472,7 @@
                 }
             }   
         }
-        
-	}
-	
-	if (acceleration.z > violence * 0.3 || acceleration.z < (-1.5 * violence))
-	{
-		shake = TRUE;
-        //	NSLog(@"You are shaking in the z axis");
+
         
 	}
 	

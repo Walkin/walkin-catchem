@@ -50,6 +50,7 @@
 @synthesize score;
 @synthesize count;
 @synthesize CombinedCatchemCount;
+@synthesize StableCatchableCount;
 @synthesize MaximumYaw;
 @synthesize enableTouch; 
 @synthesize yaw;
@@ -81,6 +82,7 @@
 -(void)addAudio{
     
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"getCatchable.wav"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"takePicture.mp3"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"catch.wav"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"win.wav"];
     
@@ -183,8 +185,8 @@
                                           target:self 
                                         selector:@selector(GoToMainMenuScene:)];
     
-    mnuChange=[CCMenuItemImage itemFromNormalImage:@"right.png" 
-                                   selectedImage:@"right.png" 
+    mnuChange=[CCMenuItemImage itemFromNormalImage:@"change.png" 
+                                   selectedImage:@"change.png" 
                                           target:self 
                                         selector:@selector(ChangeCloths:)];
     
@@ -197,6 +199,17 @@
                                      selectedImage:@"down.png" 
                                             target:self 
                                           selector:@selector(MoveDown:)];
+    
+    mnuMoveLeft = [CCMenuItemImage itemFromNormalImage:@"left.png" 
+                                         selectedImage:@"left.png" 
+                                                target:self 
+                                              selector:@selector(MoveLeft:)];
+    
+    mnuMoveRight = [CCMenuItemImage itemFromNormalImage:@"right.png" 
+                                         selectedImage:@"right.png" 
+                                                target:self 
+                                              selector:@selector(MoveRight:)];
+    
     
     mnuScaleBig = [CCMenuItemImage itemFromNormalImage:@"scaleBig.png" 
                                          selectedImage:@"scaleBig.png" 
@@ -213,7 +226,7 @@
                                                   target:self 
                                                 selector:@selector(captureScreen:)];
     
-    CCMenu *aboutmenu = [CCMenu menuWithItems:mnuBack, mnuChange, mnuMoveUp, mnuMoveDown, mnuScaleBig, mnuScaleSmall, mnuCapture,nil];
+    CCMenu *aboutmenu = [CCMenu menuWithItems:mnuBack, mnuChange, mnuMoveUp, mnuMoveDown, mnuMoveLeft, mnuMoveRight, mnuScaleBig, mnuScaleSmall, mnuCapture,nil];
     [self addChild:aboutmenu z:4 tag:2];
     [aboutmenu setAnchorPoint:CGPointZero];
     [aboutmenu setPosition:CGPointZero];
@@ -221,13 +234,19 @@
     [mnuBack setPosition:CGPointMake(380,30)];
     
     [mnuChange setAnchorPoint:CGPointZero];
-    [mnuChange setPosition:CGPointMake(430,80)];
+    [mnuChange setPosition:CGPointMake(50,70)];
     
     [mnuMoveUp setAnchorPoint:CGPointZero];
-    [mnuMoveUp setPosition:CGPointMake(380,70)];
+    [mnuMoveUp setPosition:CGPointMake(390,70)];
     
     [mnuMoveDown setAnchorPoint:CGPointZero];
-    [mnuMoveDown setPosition:CGPointMake(380,10)];
+    [mnuMoveDown setPosition:CGPointMake(390,10)];
+    
+    [mnuMoveLeft setAnchorPoint:CGPointZero];
+    [mnuMoveLeft setPosition:CGPointMake(330,50)];
+    
+    [mnuMoveRight setAnchorPoint:CGPointZero];
+    [mnuMoveRight setPosition:CGPointMake(430,50)];
     
     [mnuScaleBig setAnchorPoint:CGPointZero];
     [mnuScaleBig setPosition:CGPointMake(30,20)];
@@ -236,10 +255,11 @@
     [mnuScaleSmall setPosition:CGPointMake(80,20)];
     
     [mnuCapture setAnchorPoint:CGPointZero];
-    [mnuCapture setPosition:CGPointMake(430,20)];
+    [mnuCapture setPosition:CGPointMake(230,20)];
     
     mnuScaleBig.scale = 0.8;
     mnuScaleSmall.scale = 0.8;
+    mnuChange.scale = 0.8;
     
     [mnuBack setVisible:NO];
     
@@ -268,8 +288,8 @@
     yaw = (float)(CC_RADIANS_TO_DEGREES(currentAttitude.yaw));
     float roll = (float)(CC_RADIANS_TO_DEGREES(currentAttitude.roll));
     
-//    [yawLabel setString:[NSString stringWithFormat:@"Yaw: %.0f", yaw]];
-//    [rollLabel setString:[NSString stringWithFormat:@"roll: %.0f", roll]];
+    [yawLabel setString:[NSString stringWithFormat:@"Yaw: %.0f", yaw]];
+    [rollLabel setString:[NSString stringWithFormat:@"roll: %.0f", roll]];
     
 
     for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
@@ -280,6 +300,11 @@
     }
 }
 
+-(Catchable *)addStableCatchable:(int)shipTag
+{
+
+
+}
 
 -(Catchable *)addCombinedCatchable:(int)shipTag{
     
@@ -412,10 +437,19 @@
 -(void) ScaleSmall: (id) sender
 {
 
-
 }
 
 - (void)captureScreen: (id) sender
+{
+
+}
+
+-(void) MoveLeft: (id) sender
+{
+
+}
+
+-(void) MoveRight: (id) sender
 {
 
 }

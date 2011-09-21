@@ -26,6 +26,7 @@ static inline float lerpf(float a, float b, float t)
 @synthesize TimeToMove;
 @synthesize scaleTimer;
 @synthesize CombineMoveCount;
+@synthesize StableCount;
 @synthesize scaleSpeed;
 @synthesize motionManager; 
 @synthesize redSpot;
@@ -47,6 +48,7 @@ static inline float lerpf(float a, float b, float t)
 @synthesize XInit;
 @synthesize EnableCatchTimer;
 @synthesize EnableCatch;
+@synthesize PauseMove;
 
 
 
@@ -54,16 +56,15 @@ static inline float lerpf(float a, float b, float t)
     self = [super init];
     if (self){ 
 ///////////////////////////////Initial yaw and roll value for catchables///////////////////////////
-        yawPosition = 0.0;
-        rollPosition = -90.0;
+//        yawPosition = 0.0;
+//        rollPosition = -90.0;
         CombineMoveCount = 1;
+        StableCount = 1;
         scaleSpeed = 0.0;
         initialYaw = 0.0;
         XInit = 0.0;
         wasTouched = YES;
 
-        
-     //   [self scheduleUpdate];
 
         self.motionManager = [[[CMMotionManager alloc] init] autorelease];
         motionManager.deviceMotionUpdateInterval = 1.0/60.0;
@@ -71,10 +72,15 @@ static inline float lerpf(float a, float b, float t)
             [motionManager startDeviceMotionUpdates];
          }
 
-        
 	}
   
      return self;
+}
+
+-(void)pauseCatchablesWithBool:(BOOL)pause andInitialYaw:(float)yawValue andRoll:(float)rollValue
+{
+
+        
 }
 
 
@@ -159,6 +165,8 @@ static inline float lerpf(float a, float b, float t)
 }
 
 -(void)update:(ccTime)delta {
+    
+    
     [self updatePosition:delta];
     [self updateScale:delta];
     

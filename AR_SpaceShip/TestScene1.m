@@ -68,8 +68,10 @@
 		
 		[[CCDirector sharedDirector] setDisplayFPS:NO];
 
-        [self presentCoreMotionData];
+      //  [self presentCoreMotionData];
         [self presentWinCondition];
+        
+        
         [self addScopeCrosshairs];
         
         
@@ -94,96 +96,51 @@
 	return self;
 }
 
--(void) ChangeCloths: (id) sender
-{
-
-  //  NSLog(@"the num of change pic is %d",changePic);
-    NSString *spritePic = [NSString stringWithFormat:@"catchable_00%d.png", changePic];
+-(void)update:(ccTime)delta {
+    
+    
+    //NSLog(@"The catchable count is %d", catchableCount);
+    
+    changePic = (int)(CCRANDOM_0_1()*10);
+    
+    CMDeviceMotion *currentDeviceMotion = motionManager.deviceMotion;
+    CMAttitude *currentAttitude = currentDeviceMotion.attitude;
+    
+    
+    yaw = (float)(CC_RADIANS_TO_DEGREES(currentAttitude.yaw));
+    float roll = (float)(CC_RADIANS_TO_DEGREES(currentAttitude.roll));
+    
+    [yawLabel setString:[NSString stringWithFormat:@"Yaw: %.0f", yaw]];
+    [rollLabel setString:[NSString stringWithFormat:@"roll: %.0f", roll]];
     
     
     for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
-
-
-        [catchable setTexture:[[CCTextureCache sharedTextureCache] addImage:spritePic]];
+        [self checkCatchablePositionX:catchable withYaw:yaw];
+        [self checkCatchablePositionY:catchable withRoll:roll];
         
+        [catchable radarSystem];
     }
+}
+
+
+-(void)addMenuItems
+{
+    mnuBack=[CCMenuItemImage itemFromNormalImage:@"back_normal.png" 
+                                   selectedImage:@"back_press.png" 
+                                          target:self 
+                                        selector:@selector(GoToMainMenuScene:)];
+    
+    
+    CCMenu *aboutmenu = [CCMenu menuWithItems:mnuBack,nil];
+    [self addChild:aboutmenu z:4 tag:2];
+    [aboutmenu setAnchorPoint:CGPointZero];
+    [aboutmenu setPosition:CGPointZero];
+    [mnuBack setAnchorPoint:CGPointZero];
+    [mnuBack setPosition:CGPointMake(380,30)];
+    
+    [mnuBack setVisible:NO];
     
 }
-
-- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
-{
-    UIAlertView *alert;
-    
-    // Unable to save the image  
-    if (error)
-        alert = [[UIAlertView alloc] initWithTitle:@"Error" 
-                                           message:@"Unable to save image to Photo Album." 
-                                          delegate:self cancelButtonTitle:@"Ok" 
-                                 otherButtonTitles:nil];
-    else // All is well
-        alert = [[UIAlertView alloc] initWithTitle:@"Success" 
-                                           message:@"Image saved to Photo Album." 
-                                          delegate:self cancelButtonTitle:@"Ok" 
-                                 otherButtonTitles:nil];
-    [alert show];
-    [alert release];
-}
-
-- (void)captureScreen: (id) sender
-{
-    CGImageRef screen = UIGetScreenImage();
-    UIImage* image = [UIImage imageWithCGImage:screen];
-    CGImageRelease(screen);
-    
-    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
-    
-}
-
-
--(void) MoveUp: (id) sender
-{
-    for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
-        
-        
-        catchable.rollPosition -= 1.0;
-        
-    }
-
-}
-
--(void) MoveDown: (id) sender
-{
-    for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
-        
-        
-         catchable.rollPosition += 1.0;
-        
-    }
-
-}
-
-
--(void) ScaleBig: (id) sender
-{
-    for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
-        
-        catchable.scale += 0.1;
-        
-    }
-
-}
-
-
--(void) ScaleSmall: (id) sender
-{
-    for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
-        
-        catchable.scale -= 0.1;
-        
-    }
-
-}
-
 
 -(void)removeSpriteAndAddCatchemSpritesBegin:(CCNode *)n
 {
@@ -206,6 +163,8 @@
     
 }
  
+
+
 -(Catchable *)addCombinedCatchable:(int)shipTag{
     
     Catchable *catchable;
@@ -259,8 +218,8 @@
     
 ///////////////////////////Make catchable Wave itself/////////////////////// 
     
-//    id waves = [CCWaves actionWithWaves:5 amplitude:20 horizontal:YES vertical:NO grid:ccg(15,10) duration:5];
-//    [catchable runAction: [CCRepeatForever actionWithAction: waves]];
+    id waves = [CCWaves actionWithWaves:5 amplitude:20 horizontal:YES vertical:NO grid:ccg(15,10) duration:5];
+    [catchable runAction: [CCRepeatForever actionWithAction: waves]];
 
     
     return catchable;
@@ -280,10 +239,7 @@
         [catchable pauseSchedulerAndActions];
     }
     
-
-    
 }
-
 
 
 #pragma mark Accelerometer Input

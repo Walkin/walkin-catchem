@@ -24,6 +24,7 @@
     BOOL MovingRight;
     BOOL wasTouched;
     int CombineMoveCount;
+    int StableCount;
     CCSprite *redSpot;
     CMMotionManager *motionManager;
     float MaximumYaw;
@@ -41,6 +42,7 @@
     float XInit;
     float EnableCatchTimer;
     BOOL EnableCatch;
+    BOOL PauseMove;
 
 
 
@@ -55,6 +57,7 @@
 @property (readwrite) float TimeToMove;
 @property (readwrite) int scaleTimer;
 @property (readwrite) int CombineMoveCount;
+@property (readwrite) int StableCount;
 @property (readwrite) BOOL wasTouched;
 @property (readwrite) float scaleSpeed;
 @property (readwrite) BOOL MovingRight;
@@ -74,6 +77,7 @@
 @property (readwrite) float XInit;
 @property (readwrite) float EnableCatchTimer;
 @property (readwrite) BOOL EnableCatch;
+@property (readwrite) BOOL PauseMove;
 
 
 
@@ -90,7 +94,6 @@
 -(void)moveSelf:(ccTime)delta;
 -(void)checkTime:(ccTime)delta;
 
-//-(void)LinearMovement;
-//-(void)updateWithNewPosition:(float)yawPosition;
+-(void)pauseCatchablesWithBool:(BOOL)pause andInitialYaw:(float)yaw andRoll:(float)roll;
 
 @end

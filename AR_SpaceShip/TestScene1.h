@@ -18,7 +18,7 @@
 
 
 
-@interface TestLayer1 : TestLayer<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface TestLayer1 : TestLayer
 {
     PauseLayer * p;
 
