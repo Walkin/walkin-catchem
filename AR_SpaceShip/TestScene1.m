@@ -118,6 +118,7 @@
         [self checkCatchablePositionX:catchable withYaw:yaw];
         [self checkCatchablePositionY:catchable withRoll:roll];
         
+        
         [catchable radarSystem];
     }
 }
@@ -198,8 +199,6 @@
     }
     
     y = randomY;
-
-    
     
     //    catchable.yawPosition = x;   
     //    catchable.rollPosition = y;
@@ -218,8 +217,8 @@
     
 ///////////////////////////Make catchable Wave itself/////////////////////// 
     
-    id waves = [CCWaves actionWithWaves:5 amplitude:20 horizontal:YES vertical:NO grid:ccg(15,10) duration:5];
-    [catchable runAction: [CCRepeatForever actionWithAction: waves]];
+    id shaky = [CCShaky3D actionWithRange:4 shakeZ:NO grid:ccg(15,10) duration:5];
+    [catchable runAction: [CCRepeatForever actionWithAction: shaky]];
 
     
     return catchable;

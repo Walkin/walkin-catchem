@@ -118,6 +118,9 @@
         [self checkCatchablePositionX:catchable withYaw:yaw];
         [self checkCatchablePositionY:catchable withRoll:roll];
         
+     //   NSLog(@"Yaw: %f, Roll: %f ", catchable.position.x, catchable.position.y);
+        
+        
         [catchable radarSystem];
     }
 }

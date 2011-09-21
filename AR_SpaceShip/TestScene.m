@@ -542,35 +542,35 @@
     
 }
 
--(void)updateCatchablePositionX:(float)positionInX360 withEnemy:(Catchable *)Catchable {
+-(void)updateCatchablePositionX:(float)positionInX360 withEnemy:(Catchable *)catchable {
     float difference = 0;
     if (positionInX360 < 150) {
         // Run 1
-        if (Catchable.yawPosition > 210) {
-            difference = (360 - Catchable.yawPosition) + positionInX360;
+        if (catchable.yawPosition > 210) {
+            difference = (360 - catchable.yawPosition) + positionInX360;
             float xPosition = 240 + (difference * kXPositionMultiplier);
-            [Catchable setPosition:ccp(xPosition, Catchable.position.y)];
-            
+            [catchable setPosition:ccp(xPosition, catchable.position.y)];
+        //    NSLog(@"Yaw1: %f ", xPosition);
             
         } else {
             // Run Standard Position Check
-            [self runStandardPositionXCheck:positionInX360 withDiff:difference withEnemy:Catchable];
+            [self runStandardPositionXCheck:positionInX360 withDiff:difference withEnemy:catchable];
         }
     } else if(positionInX360 > 210) {
         // Run 2
-        if (Catchable.yawPosition < 150) {
-            difference = Catchable.yawPosition + (360 - positionInX360);
+        if (catchable.yawPosition < 150) {
+            difference = catchable.yawPosition + (360 - positionInX360);
             float xPosition = 240 - (difference * kXPositionMultiplier);
-            [Catchable setPosition:ccp(xPosition, Catchable.position.y)];
-            
+            [catchable setPosition:ccp(xPosition, catchable.position.y)];
+        //    NSLog(@"Yaw2: %f ", xPosition);
             
         } else {
             // Run Standard Position Check
-            [self runStandardPositionXCheck:positionInX360 withDiff:difference withEnemy:Catchable];
+            [self runStandardPositionXCheck:positionInX360 withDiff:difference withEnemy:catchable];
         }
     } else {
         // Run Standard Position Check
-        [self runStandardPositionXCheck:positionInX360 withDiff:difference withEnemy:Catchable];
+        [self runStandardPositionXCheck:positionInX360 withDiff:difference withEnemy:catchable];
     }
 }
 
@@ -584,7 +584,7 @@
             difference = (360 - catchable.rollPosition) + positionInY360;
             float yPosition = 160 + (difference * kYPositionMultiplier);
             [catchable setPosition:ccp(catchable.position.x, yPosition)];
-            
+
             
         } else {
             // Run Standard Position Check
@@ -596,6 +596,7 @@
             difference = catchable.rollPosition + (360 - positionInY360);
             float yPosition = 160 - (difference * kYPositionMultiplier);
             [catchable setPosition:ccp(catchable.position.x, yPosition)];
+
             
         } else {
             // Run Standard Position Check

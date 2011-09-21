@@ -73,7 +73,7 @@ static inline float lerpf(float a, float b, float t)
     // NSLog(@"The yaw of the device is %f", yaw);
     // NSLog(@"The scale of the catchable is %f", self.scale);
     // NSLog(@"The Zdest is %f and Zorg is %f", Zdest, Zorg);
-    // NSLog(@"Xdest: %f, Ydest: %f Zdest: %f  Rdest: %f",Xdest, Ydest, Zdest, circleRadius);
+
     
     
 ///////////////When using the accelerometer////////////////////////////////////////
