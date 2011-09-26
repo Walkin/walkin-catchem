@@ -43,6 +43,11 @@
 
 @end
 
+@interface TestLayer (privateMethods)
+-(void)applyJoystick:(SneakyJoystick *)aJoystick toNode:(Catchable *)aNode forTimeDelta:(float)dt;
+@end
+
+
 @implementation TestLayer3
 
 
@@ -87,12 +92,39 @@
         ///////////////////////////Show Ready,Set,Go before start playing game/////////////////////////
         [self startGame];
         
-     //   [self addScoreLabel];
-    
+       // [self addScoreLabel];
+        
 
+        [self addJoyStick];
+        
+        
+        
         
 	}
 	return self;
+}
+
+-(void)addJoyStick
+{
+    leftJoy = [[[SneakyJoystickSkinnedBase alloc] init] autorelease];
+    leftJoy.position = ccp(414,64);
+    leftJoy.backgroundSprite = [ColoredCircleSprite circleWithColor:ccc4(255, 255, 255, 128) radius:64];
+    leftJoy.thumbSprite = [ColoredCircleSprite circleWithColor:ccc4(255, 255, 255, 255) radius:32];
+    leftJoy.joystick = [[SneakyJoystick alloc] initWithRect:CGRectMake(0,0,128,128)];
+    joystick = [leftJoy.joystick retain];
+    
+    [self addChild:leftJoy z:6];
+    
+    [self schedule:@selector(tick:) interval:1.0f/120.0f];
+}
+
+
+-(void)tick:(float)delta {
+    
+    for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
+        
+        [self applyJoystick:joystick toNode:catchable forTimeDelta:delta];
+    }
 }
 
 
@@ -108,7 +140,7 @@
     
     
     yaw = (float)(CC_RADIANS_TO_DEGREES(currentAttitude.yaw));
-    float roll = (float)(CC_RADIANS_TO_DEGREES(currentAttitude.roll));
+    roll = (float)(CC_RADIANS_TO_DEGREES(currentAttitude.roll));
     
     [yawLabel setString:[NSString stringWithFormat:@"Yaw: %.0f", yaw]];
     [rollLabel setString:[NSString stringWithFormat:@"roll: %.0f", roll]];
@@ -118,8 +150,10 @@
         [self checkCatchablePositionX:catchable withYaw:yaw];
         [self checkCatchablePositionY:catchable withRoll:roll];
         
-     //   NSLog(@"Yaw: %f, Roll: %f ", catchable.position.x, catchable.position.y);
         
+//       NSLog(@"Yaw: %f, Roll: %f ", catchable.position.x, catchable.position.y);
+//        
+//        catchable.position = CGPointMake(catchable.position.x, catchable.position.y);
         
         [catchable radarSystem];
     }
@@ -138,6 +172,7 @@
         
         
         [catchable setTexture:[[CCTextureCache sharedTextureCache] addImage:spritePic]];
+        [catchable cleanup];
         
     }
     
@@ -175,51 +210,6 @@
     [[SimpleAudioEngine sharedEngine] playEffect:@"takePicture.mp3"];
     
     UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
-    
-}
-
-
--(void) MoveUp: (id) sender
-{
-    for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
-        
-        
-        catchable.rollPosition -= 1.0;
-        
-    }
-    
-}
-
--(void) MoveDown: (id) sender
-{
-    for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
-        
-        
-        catchable.rollPosition += 1.0;
-        
-    }
-    
-}
-
--(void) MoveLeft: (id) sender
-{
-    for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
-        
-        
-        catchable.yawPosition += 1.0;
-        
-    }
-}
-
--(void) MoveRight: (id) sender
-{
-    
-    for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
-        
-        
-        catchable.yawPosition -= 1.0;
-        
-    }
     
 }
 
@@ -334,6 +324,7 @@
 
 -(void) GoToPauseLayer
 {
+    [leftJoy.joystick release];
     
     [self unschedule:@selector(GoToPauseLayer)];
     
@@ -500,10 +491,35 @@
 - (void) dealloc
 {
 
-
-
+    [joystick release];
+    [leftJoy release];
 	[super dealloc];
 }
+
+
+//function to apply a velocity to a position with delta
+static CGPoint applyVelocity(CGPoint velocity, Catchable *position, float delta){
+	return CGPointMake(position.yawPosition - velocity.x * delta, position.rollPosition - velocity.y * delta);
+}
+
+-(void)applyJoystick:(SneakyJoystick *)aJoystick toNode:(Catchable *)aNode forTimeDelta:(float)dt
+{
+    // you can create a velocity specific to the node if you wanted, just supply a different multiplier
+    // which will allow you to do a parallax scrolling of sorts
+	CGPoint scaledVelocity = ccpMult(aJoystick.velocity, 30.0f); 
+	
+    // apply the scaled velocity to the position over delta
+	aNode.yawPosition = applyVelocity(scaledVelocity, aNode, dt).x;
+    aNode.rollPosition = applyVelocity(scaledVelocity, aNode, dt).y;
+    
+    ///////////////////////////Set device's yaw value vary between 0 and 360/////////////////////////////////
+    if (aNode.yawPosition <= -0.0 && aNode.yawPosition >= -180.0) {
+        aNode.yawPosition = aNode.yawPosition +360.0;
+    }
+    
+    //  NSLog(@"yaw: %f, roll: %f", aNode.yawPosition, aNode.rollPosition);
+}
+
 
 @end
 

@@ -18,7 +18,10 @@
 #import "CCUIViewWrapper.h"
 #import "Tag.h"
 #import "DesignValues.h"
+
+
 #define kScallSpeed 5
+
 
 @implementation TestScene
 
@@ -54,6 +57,7 @@
 @synthesize MaximumYaw;
 @synthesize enableTouch; 
 @synthesize yaw;
+@synthesize roll;
 @synthesize playTouchSound;
 @synthesize pauseGame;
 @synthesize updateYaw;
@@ -69,13 +73,14 @@
         enableTouch = NO;
         playTouchSound = YES;
         yaw = 0.0;
+        roll = 0.0;
         
         
         
-
     }
     return self;
 }
+
 
 
 
@@ -180,6 +185,7 @@
 
 -(void)addMenuItems
 {
+    
     mnuBack=[CCMenuItemImage itemFromNormalImage:@"back_normal.png" 
                                    selectedImage:@"back_press.png" 
                                           target:self 
@@ -189,26 +195,6 @@
                                    selectedImage:@"change.png" 
                                           target:self 
                                         selector:@selector(ChangeCloths:)];
-    
-    mnuMoveUp = [CCMenuItemImage itemFromNormalImage:@"up.png" 
-                                     selectedImage:@"up.png" 
-                                            target:self 
-                                          selector:@selector(MoveUp:)];
-    
-    mnuMoveDown = [CCMenuItemImage itemFromNormalImage:@"down.png" 
-                                     selectedImage:@"down.png" 
-                                            target:self 
-                                          selector:@selector(MoveDown:)];
-    
-    mnuMoveLeft = [CCMenuItemImage itemFromNormalImage:@"left.png" 
-                                         selectedImage:@"left.png" 
-                                                target:self 
-                                              selector:@selector(MoveLeft:)];
-    
-    mnuMoveRight = [CCMenuItemImage itemFromNormalImage:@"right.png" 
-                                         selectedImage:@"right.png" 
-                                                target:self 
-                                              selector:@selector(MoveRight:)];
     
     
     mnuScaleBig = [CCMenuItemImage itemFromNormalImage:@"scaleBig.png" 
@@ -226,7 +212,7 @@
                                                   target:self 
                                                 selector:@selector(captureScreen:)];
     
-    CCMenu *aboutmenu = [CCMenu menuWithItems:mnuBack, mnuChange, mnuMoveUp, mnuMoveDown, mnuMoveLeft, mnuMoveRight, mnuScaleBig, mnuScaleSmall, mnuCapture,nil];
+    CCMenu *aboutmenu = [CCMenu menuWithItems:mnuBack, mnuChange,mnuScaleBig, mnuScaleSmall, mnuCapture,nil];
     [self addChild:aboutmenu z:4 tag:2];
     [aboutmenu setAnchorPoint:CGPointZero];
     [aboutmenu setPosition:CGPointZero];
@@ -234,19 +220,7 @@
     [mnuBack setPosition:CGPointMake(380,30)];
     
     [mnuChange setAnchorPoint:CGPointZero];
-    [mnuChange setPosition:CGPointMake(50,70)];
-    
-    [mnuMoveUp setAnchorPoint:CGPointZero];
-    [mnuMoveUp setPosition:CGPointMake(390,70)];
-    
-    [mnuMoveDown setAnchorPoint:CGPointZero];
-    [mnuMoveDown setPosition:CGPointMake(390,10)];
-    
-    [mnuMoveLeft setAnchorPoint:CGPointZero];
-    [mnuMoveLeft setPosition:CGPointMake(330,50)];
-    
-    [mnuMoveRight setAnchorPoint:CGPointZero];
-    [mnuMoveRight setPosition:CGPointMake(430,50)];
+    [mnuChange setPosition:CGPointMake(30,260)];
     
     [mnuScaleBig setAnchorPoint:CGPointZero];
     [mnuScaleBig setPosition:CGPointMake(30,20)];
@@ -286,7 +260,7 @@
 
     
     yaw = (float)(CC_RADIANS_TO_DEGREES(currentAttitude.yaw));
-    float roll = (float)(CC_RADIANS_TO_DEGREES(currentAttitude.roll));
+    roll = (float)(CC_RADIANS_TO_DEGREES(currentAttitude.roll));
     
     [yawLabel setString:[NSString stringWithFormat:@"Yaw: %.0f", yaw]];
     [rollLabel setString:[NSString stringWithFormat:@"roll: %.0f", roll]];
@@ -295,6 +269,7 @@
     for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
         [self checkCatchablePositionX:catchable withYaw:yaw];
         [self checkCatchablePositionY:catchable withRoll:roll];
+
         
         [catchable radarSystem];
     }
@@ -418,17 +393,6 @@
 
 }
 
-
--(void) MoveUp:(id) sender
-{
-
-}
-
--(void) MoveDown:(id) sender
-{
-
-}
-
 -(void) ScaleBig: (id) sender
 {
 
@@ -444,15 +408,7 @@
 
 }
 
--(void) MoveLeft: (id) sender
-{
 
-}
-
--(void) MoveRight: (id) sender
-{
-
-}
 
 -(void)checkCatchablePositionX:(Catchable *)Catchable withYaw:(float)yawPosition {
     // Convert the yaw value to a value in the range of 0 to 360
@@ -542,35 +498,36 @@
     
 }
 
--(void)updateCatchablePositionX:(float)positionInX360 withEnemy:(Catchable *)catchable {
+-(void)updateCatchablePositionX:(float)positionInX360 withEnemy:(Catchable *)catchableSprite {
     float difference = 0;
+    
     if (positionInX360 < 150) {
         // Run 1
-        if (catchable.yawPosition > 210) {
-            difference = (360 - catchable.yawPosition) + positionInX360;
+        if (catchableSprite.yawPosition > 210) {
+            difference = (360 - catchableSprite.yawPosition) + positionInX360;
             float xPosition = 240 + (difference * kXPositionMultiplier);
-            [catchable setPosition:ccp(xPosition, catchable.position.y)];
-        //    NSLog(@"Yaw1: %f ", xPosition);
+            [catchableSprite setPosition:ccp(xPosition, catchableSprite.position.y)];
+          //  NSLog(@"Yaw1: %f ", xPosition);
             
         } else {
             // Run Standard Position Check
-            [self runStandardPositionXCheck:positionInX360 withDiff:difference withEnemy:catchable];
+            [self runStandardPositionXCheck:positionInX360 withDiff:difference withEnemy:catchableSprite];
         }
     } else if(positionInX360 > 210) {
         // Run 2
-        if (catchable.yawPosition < 150) {
-            difference = catchable.yawPosition + (360 - positionInX360);
+        if (catchableSprite.yawPosition < 150) {
+            difference = catchableSprite.yawPosition + (360 - positionInX360);
             float xPosition = 240 - (difference * kXPositionMultiplier);
-            [catchable setPosition:ccp(xPosition, catchable.position.y)];
-        //    NSLog(@"Yaw2: %f ", xPosition);
+            [catchableSprite setPosition:ccp(xPosition, catchableSprite.position.y)];
+//            NSLog(@"Yaw2: %f ", xPosition);
             
         } else {
             // Run Standard Position Check
-            [self runStandardPositionXCheck:positionInX360 withDiff:difference withEnemy:catchable];
+            [self runStandardPositionXCheck:positionInX360 withDiff:difference withEnemy:catchableSprite];
         }
     } else {
         // Run Standard Position Check
-        [self runStandardPositionXCheck:positionInX360 withDiff:difference withEnemy:catchable];
+        [self runStandardPositionXCheck:positionInX360 withDiff:difference withEnemy:catchableSprite];
     }
 }
 
@@ -621,6 +578,7 @@
         difference = positionInX360 - catchable.yawPosition;
         float xPosition = 240 + (difference * kXPositionMultiplier);
         [catchable setPosition:ccp(xPosition, catchable.position.y)];
+
         
     }
 }
@@ -743,18 +701,14 @@
     
 }
 
-
 - (void) dealloc
 {    
+
+
     [motionManager release];
     [self removeSprite:scope];
     [self removeSprite:radar];
-
-    
 	[super dealloc];
 }
-
-
-
 
 @end

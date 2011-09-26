@@ -193,17 +193,23 @@
 		DAD24FC413F25718005F2B3A /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD24FBC13F25718005F2B3A /* SBJsonBase.m */; };
 		DAD24FC513F25718005F2B3A /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD24FBE13F25718005F2B3A /* SBJsonParser.m */; };
 		DAD24FC613F25718005F2B3A /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD24FC013F25718005F2B3A /* SBJsonWriter.m */; };
-		F32905171429C44100605AE5 /* stableCatchable_006.png in Resources */ = {isa = PBXBuildFile; fileRef = F32905161429C44100605AE5 /* stableCatchable_006.png */; };
 		F3379F431428ED9200CF62B2 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = F3379F421428ED9200CF62B2 /* camera.png */; };
 		F3557C65141F0FF70084C0E3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3557C64141F0FF70084C0E3 /* SystemConfiguration.framework */; };
 		F3557C68141F10000084C0E3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3557C67141F10000084C0E3 /* CoreLocation.framework */; };
+		F383B64A1430264700E7593C /* stableCatchable_001.png in Resources */ = {isa = PBXBuildFile; fileRef = F383B6491430264700E7593C /* stableCatchable_001.png */; };
+		F383B6501430335800E7593C /* stableCatchable_005.png in Resources */ = {isa = PBXBuildFile; fileRef = F383B64F1430335800E7593C /* stableCatchable_005.png */; };
+		F383B6521430336A00E7593C /* stableCatchable_006.png in Resources */ = {isa = PBXBuildFile; fileRef = F383B6511430336A00E7593C /* stableCatchable_006.png */; };
+		F383B66014305B1700E7593C /* SneakyJoystick.m in Sources */ = {isa = PBXBuildFile; fileRef = F383B65914305B0D00E7593C /* SneakyJoystick.m */; };
+		F383B66114305B1700E7593C /* SneakyJoystickSkinnedBase.m in Sources */ = {isa = PBXBuildFile; fileRef = F383B65B14305B0F00E7593C /* SneakyJoystickSkinnedBase.m */; };
+		F383B66214305B1700E7593C /* SneakyJoystickSkinnedDPadExample.m in Sources */ = {isa = PBXBuildFile; fileRef = F383B65D14305B1200E7593C /* SneakyJoystickSkinnedDPadExample.m */; };
+		F383B66314305B1700E7593C /* SneakyJoystickSkinnedJoystickExample.m in Sources */ = {isa = PBXBuildFile; fileRef = F383B65F14305B1700E7593C /* SneakyJoystickSkinnedJoystickExample.m */; };
+		F383B66814305C9900E7593C /* ColoredCircleSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = F383B66714305C9900E7593C /* ColoredCircleSprite.m */; };
 		F3DF8209142980D00056945E /* takePicture.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F3DF8208142980D00056945E /* takePicture.mp3 */; };
 		F3DF82111429860F0056945E /* left.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DF82101429860F0056945E /* left.png */; };
 		F3DF8213142986E40056945E /* change.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DF8212142986E30056945E /* change.png */; };
 		F3DF82231429A0CD0056945E /* StableCatchable.m in Sources */ = {isa = PBXBuildFile; fileRef = F3DF82221429A0CD0056945E /* StableCatchable.m */; };
 		F3DF822A1429A67F0056945E /* stableCatchable_002.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DF82251429A67D0056945E /* stableCatchable_002.png */; };
 		F3DF822B1429A67F0056945E /* stableCatchable_003.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DF82261429A67E0056945E /* stableCatchable_003.png */; };
-		F3DF822D1429A67F0056945E /* stableCatchable_005.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DF82281429A67E0056945E /* stableCatchable_005.png */; };
 		F3DF82331429A6E20056945E /* catchable_001.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DF822E1429A6E00056945E /* catchable_001.png */; };
 		F3DF82341429A6E20056945E /* catchable_002.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DF822F1429A6E10056945E /* catchable_002.png */; };
 		F3DF82351429A6E20056945E /* catchable_003.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DF82301429A6E10056945E /* catchable_003.png */; };
@@ -214,7 +220,6 @@
 		F3DF824E1429BF730056945E /* stableCatchable_008.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DF82491429BF700056945E /* stableCatchable_008.png */; };
 		F3DF824F1429BF730056945E /* stableCatchable_009.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DF824A1429BF710056945E /* stableCatchable_009.png */; };
 		F3DF82501429BF730056945E /* stableCatchable_010.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DF824B1429BF720056945E /* stableCatchable_010.png */; };
-		F3DF82531429C19C0056945E /* stableCatchable_001.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DF82511429C18E0056945E /* stableCatchable_001.png */; };
 		F3DF82541429C19C0056945E /* stableCatchable_004.png in Resources */ = {isa = PBXBuildFile; fileRef = F3DF82521429C1920056945E /* stableCatchable_004.png */; };
 		F3E43433142838A200A32B0D /* catchable_000.png in Resources */ = {isa = PBXBuildFile; fileRef = F3E43428142838A100A32B0D /* catchable_000.png */; };
 		F3E43439142838A200A32B0D /* catchable_006.png in Resources */ = {isa = PBXBuildFile; fileRef = F3E4342E142838A100A32B0D /* catchable_006.png */; };
@@ -564,10 +569,22 @@
 		DAD24FBE13F25718005F2B3A /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		DAD24FBF13F25718005F2B3A /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		DAD24FC013F25718005F2B3A /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		F32905161429C44100605AE5 /* stableCatchable_006.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stableCatchable_006.png; sourceTree = "<group>"; };
 		F3379F421428ED9200CF62B2 /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
 		F3557C64141F0FF70084C0E3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		F3557C67141F10000084C0E3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		F383B6491430264700E7593C /* stableCatchable_001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stableCatchable_001.png; sourceTree = "<group>"; };
+		F383B64F1430335800E7593C /* stableCatchable_005.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stableCatchable_005.png; sourceTree = "<group>"; };
+		F383B6511430336A00E7593C /* stableCatchable_006.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stableCatchable_006.png; sourceTree = "<group>"; };
+		F383B65814305B0B00E7593C /* SneakyJoystick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SneakyJoystick.h; sourceTree = "<group>"; };
+		F383B65914305B0D00E7593C /* SneakyJoystick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SneakyJoystick.m; sourceTree = "<group>"; };
+		F383B65A14305B0E00E7593C /* SneakyJoystickSkinnedBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SneakyJoystickSkinnedBase.h; sourceTree = "<group>"; };
+		F383B65B14305B0F00E7593C /* SneakyJoystickSkinnedBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SneakyJoystickSkinnedBase.m; sourceTree = "<group>"; };
+		F383B65C14305B1100E7593C /* SneakyJoystickSkinnedDPadExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SneakyJoystickSkinnedDPadExample.h; sourceTree = "<group>"; };
+		F383B65D14305B1200E7593C /* SneakyJoystickSkinnedDPadExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SneakyJoystickSkinnedDPadExample.m; sourceTree = "<group>"; };
+		F383B65E14305B1600E7593C /* SneakyJoystickSkinnedJoystickExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SneakyJoystickSkinnedJoystickExample.h; sourceTree = "<group>"; };
+		F383B65F14305B1700E7593C /* SneakyJoystickSkinnedJoystickExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SneakyJoystickSkinnedJoystickExample.m; sourceTree = "<group>"; };
+		F383B66614305C9900E7593C /* ColoredCircleSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColoredCircleSprite.h; sourceTree = "<group>"; };
+		F383B66714305C9900E7593C /* ColoredCircleSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColoredCircleSprite.m; sourceTree = "<group>"; };
 		F3DF8208142980D00056945E /* takePicture.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = takePicture.mp3; sourceTree = "<group>"; };
 		F3DF82101429860F0056945E /* left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left.png; sourceTree = "<group>"; };
 		F3DF8212142986E30056945E /* change.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = change.png; sourceTree = "<group>"; };
@@ -575,7 +592,6 @@
 		F3DF82221429A0CD0056945E /* StableCatchable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StableCatchable.m; sourceTree = "<group>"; };
 		F3DF82251429A67D0056945E /* stableCatchable_002.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stableCatchable_002.png; sourceTree = "<group>"; };
 		F3DF82261429A67E0056945E /* stableCatchable_003.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stableCatchable_003.png; sourceTree = "<group>"; };
-		F3DF82281429A67E0056945E /* stableCatchable_005.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stableCatchable_005.png; sourceTree = "<group>"; };
 		F3DF822E1429A6E00056945E /* catchable_001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = catchable_001.png; sourceTree = "<group>"; };
 		F3DF822F1429A6E10056945E /* catchable_002.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = catchable_002.png; sourceTree = "<group>"; };
 		F3DF82301429A6E10056945E /* catchable_003.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = catchable_003.png; sourceTree = "<group>"; };
@@ -586,7 +602,6 @@
 		F3DF82491429BF700056945E /* stableCatchable_008.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stableCatchable_008.png; sourceTree = "<group>"; };
 		F3DF824A1429BF710056945E /* stableCatchable_009.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stableCatchable_009.png; sourceTree = "<group>"; };
 		F3DF824B1429BF720056945E /* stableCatchable_010.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stableCatchable_010.png; sourceTree = "<group>"; };
-		F3DF82511429C18E0056945E /* stableCatchable_001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stableCatchable_001.png; sourceTree = "<group>"; };
 		F3DF82521429C1920056945E /* stableCatchable_004.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stableCatchable_004.png; sourceTree = "<group>"; };
 		F3E43428142838A100A32B0D /* catchable_000.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = catchable_000.png; sourceTree = "<group>"; };
 		F3E4342E142838A100A32B0D /* catchable_006.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = catchable_006.png; sourceTree = "<group>"; };
@@ -683,6 +698,7 @@
 		78DCDBB013EF86C400C76853 /* AR_SpaceShip */ = {
 			isa = PBXGroup;
 			children = (
+				F383B66414305B1F00E7593C /* SneakyJoyStick */,
 				78DCDD9B13EF8A3500C76853 /* TestScene */,
 				7806AE2713F245F600175EB9 /* PauseLayer */,
 				78DCDD9013EF897200C76853 /* TableView */,
@@ -1135,16 +1151,41 @@
 			name = TestScene;
 			sourceTree = "<group>";
 		};
+		F383B66414305B1F00E7593C /* SneakyJoyStick */ = {
+			isa = PBXGroup;
+			children = (
+				F383B66614305C9900E7593C /* ColoredCircleSprite.h */,
+				F383B66714305C9900E7593C /* ColoredCircleSprite.m */,
+				F383B65814305B0B00E7593C /* SneakyJoystick.h */,
+				F383B65914305B0D00E7593C /* SneakyJoystick.m */,
+				F383B66514305B3900E7593C /* Skinning */,
+			);
+			name = SneakyJoyStick;
+			sourceTree = "<group>";
+		};
+		F383B66514305B3900E7593C /* Skinning */ = {
+			isa = PBXGroup;
+			children = (
+				F383B65A14305B0E00E7593C /* SneakyJoystickSkinnedBase.h */,
+				F383B65B14305B0F00E7593C /* SneakyJoystickSkinnedBase.m */,
+				F383B65C14305B1100E7593C /* SneakyJoystickSkinnedDPadExample.h */,
+				F383B65D14305B1200E7593C /* SneakyJoystickSkinnedDPadExample.m */,
+				F383B65E14305B1600E7593C /* SneakyJoystickSkinnedJoystickExample.h */,
+				F383B65F14305B1700E7593C /* SneakyJoystickSkinnedJoystickExample.m */,
+			);
+			name = Skinning;
+			sourceTree = "<group>";
+		};
 		F3E4344C14284C8D00A32B0D /* catchablePictures */ = {
 			isa = PBXGroup;
 			children = (
 				F3DF82471429BF6E0056945E /* stableCatchable_000.png */,
-				F3DF82511429C18E0056945E /* stableCatchable_001.png */,
+				F383B6491430264700E7593C /* stableCatchable_001.png */,
 				F3DF82251429A67D0056945E /* stableCatchable_002.png */,
 				F3DF82261429A67E0056945E /* stableCatchable_003.png */,
 				F3DF82521429C1920056945E /* stableCatchable_004.png */,
-				F3DF82281429A67E0056945E /* stableCatchable_005.png */,
-				F32905161429C44100605AE5 /* stableCatchable_006.png */,
+				F383B64F1430335800E7593C /* stableCatchable_005.png */,
+				F383B6511430336A00E7593C /* stableCatchable_006.png */,
 				F3DF82481429BF6F0056945E /* stableCatchable_007.png */,
 				F3DF82491429BF700056945E /* stableCatchable_008.png */,
 				F3DF824A1429BF710056945E /* stableCatchable_009.png */,
@@ -1317,7 +1358,6 @@
 				F3DF8213142986E40056945E /* change.png in Resources */,
 				F3DF822A1429A67F0056945E /* stableCatchable_002.png in Resources */,
 				F3DF822B1429A67F0056945E /* stableCatchable_003.png in Resources */,
-				F3DF822D1429A67F0056945E /* stableCatchable_005.png in Resources */,
 				F3DF82331429A6E20056945E /* catchable_001.png in Resources */,
 				F3DF82341429A6E20056945E /* catchable_002.png in Resources */,
 				F3DF82351429A6E20056945E /* catchable_003.png in Resources */,
@@ -1328,9 +1368,10 @@
 				F3DF824E1429BF730056945E /* stableCatchable_008.png in Resources */,
 				F3DF824F1429BF730056945E /* stableCatchable_009.png in Resources */,
 				F3DF82501429BF730056945E /* stableCatchable_010.png in Resources */,
-				F3DF82531429C19C0056945E /* stableCatchable_001.png in Resources */,
 				F3DF82541429C19C0056945E /* stableCatchable_004.png in Resources */,
-				F32905171429C44100605AE5 /* stableCatchable_006.png in Resources */,
+				F383B64A1430264700E7593C /* stableCatchable_001.png in Resources */,
+				F383B6501430335800E7593C /* stableCatchable_005.png in Resources */,
+				F383B6521430336A00E7593C /* stableCatchable_006.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1470,6 +1511,11 @@
 				F3E6F32C142210AA00DD9C28 /* DesignValues.m in Sources */,
 				F3E6F32F142210D100DD9C28 /* CombineMovement.m in Sources */,
 				F3DF82231429A0CD0056945E /* StableCatchable.m in Sources */,
+				F383B66014305B1700E7593C /* SneakyJoystick.m in Sources */,
+				F383B66114305B1700E7593C /* SneakyJoystickSkinnedBase.m in Sources */,
+				F383B66214305B1700E7593C /* SneakyJoystickSkinnedDPadExample.m in Sources */,
+				F383B66314305B1700E7593C /* SneakyJoystickSkinnedJoystickExample.m in Sources */,
+				F383B66814305C9900E7593C /* ColoredCircleSprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

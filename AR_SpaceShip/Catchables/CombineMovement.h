@@ -11,7 +11,7 @@
 @interface CombineMovement : Catchable
 {
     float speed;
-    
+    float ratio;
     float timer;
     float progressTimer;
 
@@ -22,6 +22,7 @@
 
 @property (readwrite) float speed;
 @property (readwrite) float timer;
+@property (readwrite) float ratio;
 @property (readwrite) float progressTimer;
 
 

@@ -10,11 +10,13 @@
 #import <CoreFoundation/CoreFoundation.h>
 #import "cocos2d.h"
 
+
 #define kXPositionMultiplier 15
 #define kYPositionMultiplier 15
 
 
 @class Catchable;
+
 
 @interface TestScene : CCScene {
 
@@ -36,15 +38,9 @@
 
     CCMenuItemImage *mnuBack;
     CCMenuItemImage *mnuChange;
-    CCMenuItemImage *mnuMoveUp;
-    CCMenuItemImage *mnuMoveDown;
-    CCMenuItemImage *mnuMoveLeft;
-    CCMenuItemImage *mnuMoveRight;
     CCMenuItemImage *mnuScaleBig;
     CCMenuItemImage *mnuScaleSmall;
     CCMenuItemImage *mnuCapture;
-    
-    
     
     int catchableCount;
     int score;
@@ -60,9 +56,10 @@
     BOOL playTouchSound;
     BOOL pauseGame;
     float yaw;
+    float roll;
     float updateYaw;
-    
     int changePic;
+
 
 }
 
@@ -89,14 +86,10 @@
 -(void)addScoreLabel;
 -(void)addRadar;
 -(void)presentWinCondition;
--(void) ChangeCloths: (id) sender;
--(void) MoveUp: (id) sender;
--(void) MoveDown: (id) sender;
--(void) MoveLeft: (id) sender;
--(void) MoveRight: (id) sender;
--(void) ScaleBig: (id) sender;
--(void) ScaleSmall: (id) sender;
--(void) captureScreen: (id) sender;
+-(void)ChangeCloths: (id) sender;
+-(void)ScaleBig: (id) sender;
+-(void)ScaleSmall: (id) sender;
+-(void)captureScreen: (id) sender;
 
 
 @property (nonatomic, retain) CMMotionManager *motionManager;
@@ -109,6 +102,7 @@
 @property (readwrite) BOOL enableTouch;
 @property (readwrite) BOOL playTouchSound;
 @property (readwrite) float yaw;
+@property (readwrite) float roll;
 @property (readwrite) BOOL pauseGame;
 @property (readwrite) float updateYaw;
 //@property (nonatomic, retain) NSMutableArray *catchableSprites;

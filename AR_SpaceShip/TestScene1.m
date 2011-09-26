@@ -61,7 +61,7 @@
         [p.mnuBackToMenu setIsEnabled:NO];
         
         
-        MaximumYaw = 45;
+        MaximumYaw = 90;
         
         [self addMenuItems];
         [self dataInitialize];
@@ -108,7 +108,7 @@
     
     
     yaw = (float)(CC_RADIANS_TO_DEGREES(currentAttitude.yaw));
-    float roll = (float)(CC_RADIANS_TO_DEGREES(currentAttitude.roll));
+    roll = (float)(CC_RADIANS_TO_DEGREES(currentAttitude.roll));
     
     [yawLabel setString:[NSString stringWithFormat:@"Yaw: %.0f", yaw]];
     [rollLabel setString:[NSString stringWithFormat:@"roll: %.0f", roll]];
@@ -117,7 +117,6 @@
     for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
         [self checkCatchablePositionX:catchable withYaw:yaw];
         [self checkCatchablePositionY:catchable withRoll:roll];
-        
         
         [catchable radarSystem];
     }
@@ -153,7 +152,7 @@
         Catchable *catchable = [self addCombinedCatchable:i];
         [[DesignValues sharedDesignValues].catchableSprites  addObject:catchable];
         catchableCount += 1;
-        catchable.MaximumYaw = 45;
+        catchable.MaximumYaw = 90;
         [catchable addRedSpot];
         [self addChild:catchable.redSpot z:4];
 
@@ -172,7 +171,6 @@
     
     int picChoose = (int)(CCRANDOM_0_1()*10);
     
-    
     float x;
     float y;
     float randomX;
@@ -180,6 +178,7 @@
     x = 0;
     y = 0;
     
+
     catchable = [CombineMovement spriteWithFile:[NSString stringWithFormat:@"catchable_00%d.png",picChoose]];
     CombinedCatchemCount += catchable.CombineMoveCount;
     
@@ -190,9 +189,7 @@
         yaw = yaw +360.0;
     }
     
-    
     x = randomX + yaw;
-    
     
     while ( randomY > -10 && randomY < -150 ) {
         randomY = -CCRANDOM_0_1()*100;
@@ -217,9 +214,10 @@
     
 ///////////////////////////Make catchable Wave itself/////////////////////// 
     
-    id shaky = [CCShaky3D actionWithRange:4 shakeZ:NO grid:ccg(15,10) duration:5];
-    [catchable runAction: [CCRepeatForever actionWithAction: shaky]];
+  id shaky = [CCShaky3D actionWithRange:2 shakeZ:NO grid:ccg(15,10) duration:20];
 
+ //   id waves = [CCWaves actionWithWaves:3 amplitude:20 horizontal:YES vertical:YES grid:ccg(15,10) duration:5];
+    [catchable runAction: [CCRepeatForever actionWithAction: shaky]];
     
     return catchable;
 }

@@ -42,9 +42,6 @@
     float XInit;
     float EnableCatchTimer;
     BOOL EnableCatch;
-    BOOL PauseMove;
-
-
 
 }
 
@@ -77,7 +74,7 @@
 @property (readwrite) float XInit;
 @property (readwrite) float EnableCatchTimer;
 @property (readwrite) BOOL EnableCatch;
-@property (readwrite) BOOL PauseMove;
+
 
 
 
@@ -94,6 +91,8 @@
 -(void)moveSelf:(ccTime)delta;
 -(void)checkTime:(ccTime)delta;
 
--(void)pauseCatchablesWithBool:(BOOL)pause andInitialYaw:(float)yaw andRoll:(float)roll;
+-(void)pauseCatchablesWithBool:(BOOL)pause;
+
+-(void)moveCatchableToFront;
 
 @end

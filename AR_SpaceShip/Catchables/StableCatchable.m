@@ -39,28 +39,32 @@ static inline float lerpf(float a, float b, float t)
         Zorg = self.scale;
         self.EnableCatchTimer = 0.0;
         wasTouched = YES;
-        PauseMove = YES;
+
+        [self schedule:@selector(moveCatchableToFront) interval:2.0];
         
-        [self pauseCatchablesWithBool:PauseMove andInitialYaw:0.0 andRoll:-90.0];
+        [self pauseCatchablesWithBool:YES];
         
     }
     
     return self;
 }
 
--(void)pauseCatchablesWithBool:(BOOL)pause andInitialYaw:(float)yawValue andRoll:(float)rollValue
+-(void)moveCatchableToFront
+{
+    [self unschedule:@selector(moveCatchableToFront)]; 
+    [self unscheduleUpdate];
+    rollPosition = -90.0;
+
+}
+
+-(void)pauseCatchablesWithBool:(BOOL)pause
 {
     
     if (pause == YES) {
         
-        yawPosition = yawValue;
-        rollPosition = rollValue;
-        
-    }else
-    {
         [self scheduleUpdate];
-        yawPosition = yawValue;
-        rollPosition = rollValue;
+        [self schedule:@selector(moveCatchableToFront) interval:2.0]; 
+        
     }
     
 }

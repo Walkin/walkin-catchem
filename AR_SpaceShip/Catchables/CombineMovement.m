@@ -22,6 +22,7 @@ static inline float lerpf(float a, float b, float t)
 @implementation CombineMovement
 @synthesize speed;
 @synthesize timer;
+@synthesize ratio;
 @synthesize progressTimer;
 
 
@@ -34,38 +35,24 @@ static inline float lerpf(float a, float b, float t)
         MovingUp = YES;
         scaleTimer = 0;
         TimeToMove = 0.0;
-        self.timer = CCRANDOM_0_1() * 2 + 1;
-        self.scale = 0.8;
+        self.timer = CCRANDOM_0_1() * 2 + 3;
+        self.scale = 0.7;
         self.progressTimer = 0.0;
         Zdest = self.scale;
         Zorg = self.scale;
         self.EnableCatchTimer = 0.0;
         wasTouched = YES;
-        PauseMove = NO;
+
         
-        [self pauseCatchablesWithBool:PauseMove andInitialYaw:0.0 andRoll:-90.0];
+        [self scheduleUpdate];
+        
 
     }
     
     return self;
 }
 
--(void)pauseCatchablesWithBool:(BOOL)pause andInitialYaw:(float)yawValue andRoll:(float)rollValue
-{
-    
-    if (pause == YES) {
-        
-        yawPosition = yawValue;
-        rollPosition = rollValue;
-        
-    }else
-    {
-        [self scheduleUpdate];
-        yawPosition = yawValue;
-        rollPosition = rollValue;
-    }
-    
-}
+
 
 -(void)update:(ccTime)delta {
     
@@ -79,6 +66,8 @@ static inline float lerpf(float a, float b, float t)
 ///////////////When using the accelerometer////////////////////////////////////////
 //    [self updatePosition:delta*0.1];
 //    [self checkTime:delta*0.1];
+    
+    NSLog(@"The ratio is %f, progressTimer is %f, timer is %f",self.ratio,self.progressTimer,self.timer);
     
     if(self.EnableCatchTimer > 0.0 ) {
        self.EnableCatch = YES;
@@ -111,12 +100,11 @@ static inline float lerpf(float a, float b, float t)
     
 }
 
-
 -(void)checkTime:(ccTime)delta
 {
  //   NSLog(@"timer: %f, progress: %f",timer, progressTimer);    
     
-    if ( progressTimer > self.timer) {
+    if ( self.progressTimer > self.timer) {
         [self resetRandomMovement];
     }
     
@@ -163,8 +151,8 @@ static inline float lerpf(float a, float b, float t)
 
 - (void)resetRandomMovement{
     
-    progressTimer = 0.0f;
-    self.timer = CCRANDOM_MINUS1_1() * 1.5;
+    self.progressTimer = 0.0f;
+    self.timer = CCRANDOM_MINUS1_1() + 1;
     
     //  Xdest = CCRANDOM_MINUS1_1()*10 + self.yawPosition;
     
@@ -190,16 +178,28 @@ static inline float lerpf(float a, float b, float t)
     switch ([self yawPositionWithinBounds:Xdest])
     
 	{
+            
+//////////////////////When the catchable is in the range, update it's Xdest//////////////////            
         case 1:
             
             Xdest = CCRANDOM_MINUS1_1()*10 + self.yawPosition;
             
             break;
             
+///////////////////////When the catchable is out of the range, reset its Xdest to the initialYaw//////////
         case 2: 
+
             
-            Xdest = XInit;
-            Xorg = XInit;
+//            Xdest = self.initialYaw;
+//            Xorg = self.initialYaw;
+            
+            
+            if (yaw <= -0.0 && yaw >= -180.0) {
+                yaw = yaw +360.0;
+            }
+            
+            Xdest = CCRANDOM_MINUS1_1()* self.MaximumYaw + yaw;
+            Xorg = CCRANDOM_MINUS1_1()* self.MaximumYaw + yaw;
             
             break;
 
@@ -219,13 +219,14 @@ static inline float lerpf(float a, float b, float t)
 
 - (void)updatePosition:(ccTime)delta {
     
-    progressTimer += delta;
-    float ratio = progressTimer / self.timer;
+    self.progressTimer += delta;
+    self.ratio = self.progressTimer / self.timer;
+    
 
-    if (ratio < 1.0) {
-        self.yawPosition = lerpf(Xorg, Xdest, ratio);
-        self.rollPosition = lerpf(Yorg, Ydest, ratio);
-        self.scale = lerpf(Zorg, Zdest, ratio);
+    if (self.ratio < 1.0) {
+        self.yawPosition = lerpf(Xorg, Xdest, self.ratio);
+        self.rollPosition = lerpf(Yorg, Ydest, self.ratio);
+        self.scale = lerpf(Zorg, Zdest, self.ratio);
     }
     
     else{

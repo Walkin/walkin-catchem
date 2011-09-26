@@ -8,6 +8,10 @@
 
 
 #import "TestScene.h"
+#import "SneakyJoystick.h"
+#import "SneakyJoystickSkinnedJoystickExample.h"
+#import "SneakyJoystickSkinnedDPadExample.h"
+#import "ColoredCircleSprite.h"
 
 @class PauseLayer3;
 
@@ -20,10 +24,12 @@
 @interface TestLayer3: TestLayer <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 {
     PauseLayer3 *p;
-
+    SneakyJoystick *joystick;
+    SneakyJoystickSkinnedBase *leftJoy;
     
 }
 
+-(void)addJoyStick;
 
 
 @end
