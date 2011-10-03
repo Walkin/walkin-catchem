@@ -211,8 +211,14 @@
                                            selectedImage:@"camera.png" 
                                                   target:self 
                                                 selector:@selector(captureScreen:)];
+
     
-    CCMenu *aboutmenu = [CCMenu menuWithItems:mnuBack, mnuChange,mnuScaleBig, mnuScaleSmall, mnuCapture,nil];
+    mnuMatch = [CCMenuItemImage itemFromNormalImage:@"match.png" 
+                                        selectedImage:@"match.png" 
+                                               target:self 
+                                             selector:@selector(MatchCamera:)];
+    
+    aboutmenu = [CCMenu menuWithItems:mnuBack, mnuChange,mnuScaleBig, mnuScaleSmall, mnuCapture, mnuMatch, nil];
     [self addChild:aboutmenu z:4 tag:2];
     [aboutmenu setAnchorPoint:CGPointZero];
     [aboutmenu setPosition:CGPointZero];
@@ -231,9 +237,14 @@
     [mnuCapture setAnchorPoint:CGPointZero];
     [mnuCapture setPosition:CGPointMake(230,20)];
     
+    [mnuMatch setAnchorPoint:CGPointZero];
+    [mnuMatch setPosition:CGPointMake(400,130)];
+    
     mnuScaleBig.scale = 0.8;
     mnuScaleSmall.scale = 0.8;
     mnuChange.scale = 0.8;
+    mnuMatch.scale = 0.8;
+    mnuCapture.scale = 1.2;
     
     [mnuBack setVisible:NO];
     
@@ -408,7 +419,27 @@
 
 }
 
+-(void)MatchCamera: (id) sender
+{
 
+
+}
+
+
+-(void)HideItemsBeforeCapture
+{
+
+}
+
+-(void)TakePictures
+{
+
+}
+
+-(void)ShowItemsAfterCapture
+{
+
+}
 
 -(void)checkCatchablePositionX:(Catchable *)Catchable withYaw:(float)yawPosition {
     // Convert the yaw value to a value in the range of 0 to 360

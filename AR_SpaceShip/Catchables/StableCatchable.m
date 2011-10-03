@@ -23,7 +23,6 @@ static inline float lerpf(float a, float b, float t)
 @synthesize progressTimer;
 
 
-
 - (id)init
 {
     self = [super init];
@@ -40,14 +39,19 @@ static inline float lerpf(float a, float b, float t)
         self.EnableCatchTimer = 0.0;
         wasTouched = YES;
 
-        [self schedule:@selector(moveCatchableToFront) interval:2.0];
+        [self schedule:@selector(moveCatchableToFront) interval:1.0];
         
         [self pauseCatchablesWithBool:YES];
+        
+
         
     }
     
     return self;
 }
+
+
+
 
 -(void)moveCatchableToFront
 {
@@ -76,6 +80,7 @@ static inline float lerpf(float a, float b, float t)
     // NSLog(@"The scale of the catchable is %f", self.scale);
     // NSLog(@"The Zdest is %f and Zorg is %f", Zdest, Zorg);
     // NSLog(@"Xdest: %f, Ydest: %f Zdest: %f  Rdest: %f",Xdest, Ydest, Zdest, circleRadius);
+
     
     
     ///////////////When using the accelerometer////////////////////////////////////////

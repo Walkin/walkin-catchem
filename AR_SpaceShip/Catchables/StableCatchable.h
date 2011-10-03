@@ -9,12 +9,14 @@
 
 #import "Catchable.h"
 
-@interface StableCatchable : Catchable
+
+@interface StableCatchable : Catchable 
 {
     float speed;
     
     float timer;
     float progressTimer;
+
     
     
 }

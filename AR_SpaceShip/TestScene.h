@@ -36,11 +36,14 @@
     CCLabelTTF *winCondition;
   //  NSMutableArray *catchableSprites;
 
+    CCMenu *aboutmenu;
     CCMenuItemImage *mnuBack;
     CCMenuItemImage *mnuChange;
     CCMenuItemImage *mnuScaleBig;
     CCMenuItemImage *mnuScaleSmall;
     CCMenuItemImage *mnuCapture;
+    CCMenuItemImage *mnuMatch;
+
     
     int catchableCount;
     int score;
@@ -90,7 +93,10 @@
 -(void)ScaleBig: (id) sender;
 -(void)ScaleSmall: (id) sender;
 -(void)captureScreen: (id) sender;
-
+-(void)MatchCamera: (id) sender;
+-(void)HideItemsBeforeCapture;
+-(void)TakePictures;
+-(void)ShowItemsAfterCapture;
 
 @property (nonatomic, retain) CMMotionManager *motionManager;
 @property (readwrite) int catchableCount;

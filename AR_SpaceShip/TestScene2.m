@@ -120,7 +120,6 @@
     
     int picChoose = (int)(CCRANDOM_0_1()*10);
     
-    
     float x;
     float y;
     float randomX;
@@ -137,7 +136,6 @@
     if (yaw <= -0.0 && yaw >= -180.0) {
         yaw = yaw +360.0;
     }
-    
     
     x = randomX + yaw;
     

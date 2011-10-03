@@ -94,15 +94,26 @@
         
        // [self addScoreLabel];
         
-
         [self addJoyStick];
-        
-        
-        
-        
+
 	}
 	return self;
 }
+
+
+-(void)MatchCamera: (id) sender
+{
+    
+    NSLog(@"My touchLocation is x: %f, y: %f ", yaw, roll);
+    
+    for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
+        
+        catchable.yawPosition = yaw;
+        catchable.rollPosition = roll;
+    }
+
+}
+
 
 -(void)addJoyStick
 {
@@ -203,16 +214,68 @@
 
 - (void)captureScreen: (id) sender
 {
-    CGImageRef screen = UIGetScreenImage();
-    UIImage* image = [UIImage imageWithCGImage:screen];
-    CGImageRelease(screen);
+
+        
+    [self HideItemsBeforeCapture];
     
-    [[SimpleAudioEngine sharedEngine] playEffect:@"takePicture.mp3"];
-    
-    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
     
 }
 
+-(void)HideItemsBeforeCapture
+{
+    
+    [aboutmenu setVisible:NO];
+    leftJoy.visible = NO;
+    radar.visible = NO;
+    scope.visible = NO;
+    
+    for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
+        catchable.redSpot.visible = NO;
+    }
+    
+    
+    [self schedule:@selector(TakePictures) interval:0.1];
+
+}
+
+-(void)TakePictures
+{
+    [self unschedule:@selector(TakePictures)];
+    
+    CGImageRef screen = UIGetScreenImage();
+    
+    UIImage *sourceImage = [UIImage imageWithCGImage:screen];
+    NSData *data = UIImagePNGRepresentation(sourceImage);
+    UIImage *tmp = [UIImage imageWithData:data];
+    UIImage *fixed = [UIImage imageWithCGImage:tmp.CGImage
+                                         scale:sourceImage.scale
+                                   orientation: UIImageOrientationLeft];
+    
+    
+    UIImageWriteToSavedPhotosAlbum(fixed, self, nil, nil);
+    
+    [[SimpleAudioEngine sharedEngine] playEffect:@"takePicture.mp3"];
+    
+
+    CGImageRelease(screen);
+    
+    [self schedule:@selector(ShowItemsAfterCapture) ];
+
+}
+
+-(void)ShowItemsAfterCapture
+{
+    [self unschedule:@selector(ShowItemsAfterCapture)];
+    
+    [aboutmenu setVisible:YES];
+    leftJoy.visible = YES;
+    radar.visible = YES;
+    scope.visible = YES;
+    
+    for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
+        catchable.redSpot.visible = YES;
+    }
+}
 
 -(void) ScaleBig: (id) sender
 {
@@ -506,7 +569,7 @@ static CGPoint applyVelocity(CGPoint velocity, Catchable *position, float delta)
 {
     // you can create a velocity specific to the node if you wanted, just supply a different multiplier
     // which will allow you to do a parallax scrolling of sorts
-	CGPoint scaledVelocity = ccpMult(aJoystick.velocity, 30.0f); 
+	CGPoint scaledVelocity = ccpMult(aJoystick.velocity, 20.0f); 
 	
     // apply the scaled velocity to the position over delta
 	aNode.yawPosition = applyVelocity(scaledVelocity, aNode, dt).x;

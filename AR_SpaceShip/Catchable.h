@@ -11,7 +11,7 @@
 #import <CoreMotion/CoreMotion.h>
 #import <CoreFoundation/CoreFoundation.h>
 
-@interface Catchable : CCSprite {
+@interface Catchable : CCSprite{
     float yawPosition;
     float rollPosition;
     float kSpeedLeft;
