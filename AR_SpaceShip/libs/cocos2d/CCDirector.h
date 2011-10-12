@@ -301,4 +301,8 @@ and when to execute the Scenes.
 // Profiler
 -(void) showProfilers;
 
+- (UIImage*) screenshotUIImage;
+- (UIImage*) screenshotUIImageFromHeight:(int)height;
+- (CCTexture2D*) screenshotTexture;
+
 @end

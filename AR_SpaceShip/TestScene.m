@@ -15,7 +15,6 @@
 #import "AppDelegate.h"
 #import "PauseLayer.h"
 #import "CCSlider.h"
-#import "CCUIViewWrapper.h"
 #import "Tag.h"
 #import "DesignValues.h"
 
@@ -148,8 +147,7 @@
 	[ready runAction:[CCSequence actions:[CCDelayTime actionWithDuration:0.5],[CCSpawn actions:[CCFadeIn actionWithDuration:0.1],[CCScaleTo actionWithDuration:0.1 scale:1.2],nil] ,[CCDelayTime actionWithDuration:0.1],[CCFadeOut actionWithDuration:0.1],[CCCallFuncN actionWithTarget:self selector:@selector(removeSprite:)],nil]];
 	[set runAction:[CCSequence actions:[CCDelayTime actionWithDuration:1.0],[CCSpawn actions:[CCFadeIn actionWithDuration:0.1],[CCScaleTo actionWithDuration:0.1 scale:1.2],nil] ,[CCDelayTime actionWithDuration:0.1],[CCFadeOut actionWithDuration:0.1],[CCCallFuncN actionWithTarget:self selector:@selector(removeSprite:)],nil]];
 	[go runAction:[CCSequence actions:[CCDelayTime actionWithDuration:1.5],[CCSpawn actions:[CCFadeIn actionWithDuration:0.1],[CCScaleTo actionWithDuration:0.1 scale:1.2],nil] ,[CCDelayTime actionWithDuration:0.1],[CCFadeOut actionWithDuration:0.1],[CCCallFuncN actionWithTarget:self selector:@selector(removeSpriteAndAddCatchemSpritesBegin:)],nil]];
-    
-	
+
 	
 }
 
@@ -441,7 +439,12 @@
 
 }
 
--(void)checkCatchablePositionX:(Catchable *)Catchable withYaw:(float)yawPosition {
+-(void)TakePicturesWarning
+{
+
+}
+
+-(void)checkCatchablePositionX:(Catchable *)catchable withYaw:(float)yawPosition {
     // Convert the yaw value to a value in the range of 0 to 360
     float positionInX360 = yawPosition;
     if (positionInX360 < 0) {
@@ -465,12 +468,12 @@
     }    
     
     if (checkAlternateRange) {
-        if ((Catchable.yawPosition < rangeMax || Catchable.yawPosition > rangeMin ) || (Catchable.yawPosition > rangeMin || Catchable.yawPosition < rangeMax)) {
-            [self updateCatchablePositionX:positionInX360 withEnemy:Catchable];
+        if ((catchable.yawPosition < rangeMax || catchable.yawPosition > rangeMin ) || (catchable.yawPosition > rangeMin || catchable.yawPosition < rangeMax)) {
+            [self updateCatchablePositionX:positionInX360 withEnemy:catchable];
         }        
     } else {
-        if (Catchable.yawPosition > rangeMin && Catchable.yawPosition < rangeMax) {
-            [self updateCatchablePositionX:positionInX360 withEnemy:Catchable];
+        if (catchable.yawPosition > rangeMin && catchable.yawPosition < rangeMax) {
+            [self updateCatchablePositionX:positionInX360 withEnemy:catchable];
         } 
     }
     
@@ -572,7 +575,7 @@
             difference = (360 - catchable.rollPosition) + positionInY360;
             float yPosition = 160 + (difference * kYPositionMultiplier);
             [catchable setPosition:ccp(catchable.position.x, yPosition)];
-
+            
             
         } else {
             // Run Standard Position Check
@@ -604,29 +607,28 @@
         float xPosition = 240 - (difference * kXPositionMultiplier);
         [catchable setPosition:ccp(xPosition, catchable.position.y)];
         
-        
     } else {
         difference = positionInX360 - catchable.yawPosition;
         float xPosition = 240 + (difference * kXPositionMultiplier);
         [catchable setPosition:ccp(xPosition, catchable.position.y)];
-
+       //  NSLog(@"xPosition: %f ", xPosition);
         
     }
 }
 
--(void)runStandardPositionYCheck:(float)positionInY360 withDiff:(float)difference withEnemy:(Catchable *)Catchable
+-(void)runStandardPositionYCheck:(float)positionInY360 withDiff:(float)difference withEnemy:(Catchable *)catchable
 {
-    if (Catchable.rollPosition > positionInY360) {
-        difference = Catchable.rollPosition - positionInY360;
+    if (catchable.rollPosition > positionInY360) {
+        difference = catchable.rollPosition - positionInY360;
         float yPosition = 160 - (difference * kYPositionMultiplier);
-        [Catchable setPosition:ccp(Catchable.position.x, yPosition)];
-        
+        [catchable setPosition:ccp(catchable.position.x, yPosition)];
+
         
     } else {
-        difference = positionInY360 - Catchable.rollPosition;
+        difference = positionInY360 - catchable.rollPosition;
         float yPosition = 160 + (difference * kYPositionMultiplier);
-        [Catchable setPosition:ccp(Catchable.position.x, yPosition)];
-        
+        [catchable setPosition:ccp(catchable.position.x, yPosition)];
+
         
     }
     

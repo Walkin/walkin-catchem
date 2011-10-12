@@ -97,6 +97,7 @@
 -(void)HideItemsBeforeCapture;
 -(void)TakePictures;
 -(void)ShowItemsAfterCapture;
+-(void)TakePicturesWarning;
 
 @property (nonatomic, retain) CMMotionManager *motionManager;
 @property (readwrite) int catchableCount;

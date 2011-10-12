@@ -14,7 +14,6 @@
 #import "AppDelegate.h"
 #import "PauseLayer2.h"
 #import "CCSlider.h"
-#import "CCUIViewWrapper.h"
 #import "DesignValues.h"
 #import "Tag.h"
 

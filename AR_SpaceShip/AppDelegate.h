@@ -23,6 +23,7 @@
 
 @property (nonatomic, retain) UIWindow *window;
 @property (nonatomic, retain) UIImagePickerController *uip;
+@property (nonatomic, retain) UIView * overlay;
 @property (readwrite) BOOL paused;
 
 @end

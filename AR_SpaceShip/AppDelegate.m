@@ -20,6 +20,7 @@
 @synthesize window;
 @synthesize paused;
 @synthesize uip;
+@synthesize overlay;
 
 - (void) removeStartupFlicker
 {
@@ -117,8 +118,7 @@
     [window addSubview:overlay];
     
 #define CAMERA_TRANSFORM  1.24299
-    
-//    UIImagePickerController *uip;
+
     
     @try {
         uip = [[[UIImagePickerController alloc] init] autorelease];
@@ -143,7 +143,7 @@
     }
     
     [window bringSubviewToFront:viewController.view];
-    
+
 	[window makeKeyAndVisible];
 	
 	// Default texture format for PNG/BMP/TIFF/JPEG/GIF images

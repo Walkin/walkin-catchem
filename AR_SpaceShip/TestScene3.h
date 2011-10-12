@@ -13,6 +13,8 @@
 #import "SneakyJoystickSkinnedDPadExample.h"
 #import "ColoredCircleSprite.h"
 
+
+
 @class PauseLayer3;
 
 @interface TestScene3 : TestScene {

@@ -15,9 +15,12 @@
 #import "AppDelegate.h"
 #import "PauseLayer3.h"
 #import "CCSlider.h"
-#import "CCUIViewWrapper.h"
 #import "DesignValues.h"
 #import "Tag.h"
+
+
+
+#define kNoticeZ 3
 
 
 @implementation TestScene3
@@ -49,6 +52,7 @@
 
 
 @implementation TestLayer3
+
 
 
 -(id) init
@@ -99,6 +103,14 @@
 	}
 	return self;
 }
+
+-(void)startGame
+{
+    
+    [self runAction:[CCCallFuncN actionWithTarget:self selector:@selector(removeSpriteAndAddCatchemSpritesBegin:)]];
+    
+}
+
 
 
 -(void)MatchCamera: (id) sender
@@ -189,28 +201,6 @@
     
 }
 
-- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
-{
-    
-    
-    UIAlertView *alert;
-    
-    // Unable to save the image  
-    if (error)
-        alert = [[UIAlertView alloc] initWithTitle:@"Error" 
-                                           message:@"Unable to save image to Photo Album." 
-                                          delegate:self cancelButtonTitle:@"Ok" 
-                                 otherButtonTitles:nil];
-    else // All is well
-        alert = [[UIAlertView alloc] initWithTitle:@"Success" 
-                                           message:@"Image saved to Photo Album." 
-                                          delegate:self cancelButtonTitle:@"Ok" 
-                                 otherButtonTitles:nil];
-    [alert show];
-    [alert release];
-    
-}
-
 
 - (void)captureScreen: (id) sender
 {
@@ -234,34 +224,73 @@
     }
     
     
-    [self schedule:@selector(TakePictures) interval:0.1];
+    [self schedule:@selector(TakePicturesWarning) interval:0.1];
 
 }
+
+-(void)TakePicturesWarning
+{
+    [self unschedule:@selector(TakePicturesWarning)];
+    
+    CGSize size2 = [[CCDirector sharedDirector] winSize];
+	CCSprite * ready = [CCSprite spriteWithFile:@"ready.png"];
+	[self addChild:ready z:kNoticeZ];
+	[ready setPosition:ccp(size2.width / 2, size2.height / 2)];
+	[ready setOpacity:0];
+	
+	CCSprite * set =[CCSprite spriteWithFile:@"set.png"];
+	[self addChild:set z:kNoticeZ];
+	[set setPosition:ccp(size2.width / 2, size2.height / 2)];
+	[set setOpacity:0];
+	
+	CCSprite * go = [CCSprite spriteWithFile:@"go.png"];
+	[self addChild:go z:kNoticeZ];
+	[go setPosition:ccp(size2.width / 2, size2.height / 2)];
+	[go setOpacity:0];
+	
+	[ready runAction:[CCSequence actions:[CCDelayTime actionWithDuration:0.5],[CCSpawn actions:[CCFadeIn actionWithDuration:0.1],[CCScaleTo actionWithDuration:0.1 scale:1.2],nil] ,[CCDelayTime actionWithDuration:0.1],[CCFadeOut actionWithDuration:0.1],[CCCallFuncN actionWithTarget:self selector:@selector(removeSprite:)],nil]];
+	[set runAction:[CCSequence actions:[CCDelayTime actionWithDuration:1.0],[CCSpawn actions:[CCFadeIn actionWithDuration:0.1],[CCScaleTo actionWithDuration:0.1 scale:1.2],nil] ,[CCDelayTime actionWithDuration:0.1],[CCFadeOut actionWithDuration:0.1],[CCCallFuncN actionWithTarget:self selector:@selector(removeSprite:)],nil]];
+	[go runAction:[CCSequence actions:[CCDelayTime actionWithDuration:1.5],[CCSpawn actions:[CCFadeIn actionWithDuration:0.1],[CCScaleTo actionWithDuration:0.1 scale:1.2],nil] ,[CCDelayTime actionWithDuration:0.1],[CCFadeOut actionWithDuration:0.1],[CCCallFuncN actionWithTarget:self selector:@selector(TakePictures)],nil]];
+
+//        [[[CCDirector sharedDirector] openGLView] addSubview:[AppDelegate get].overlay];
+
+        
+}
+
 
 -(void)TakePictures
 {
     [self unschedule:@selector(TakePictures)];
     
-    CGImageRef screen = UIGetScreenImage();
     
-    UIImage *sourceImage = [UIImage imageWithCGImage:screen];
+//    CGImageRef screen = UIGetScreenImage();
+//    
+//    UIImage *sourceImage = [UIImage imageWithCGImage:screen];
+
+    
+
+    UIImage *sourceImage = [[CCDirector sharedDirector]screenshotUIImage];
+
+
+    
     NSData *data = UIImagePNGRepresentation(sourceImage);
     UIImage *tmp = [UIImage imageWithData:data];
     UIImage *fixed = [UIImage imageWithCGImage:tmp.CGImage
                                          scale:sourceImage.scale
                                    orientation: UIImageOrientationLeft];
     
-    
     UIImageWriteToSavedPhotosAlbum(fixed, self, nil, nil);
     
-    [[SimpleAudioEngine sharedEngine] playEffect:@"takePicture.mp3"];
+//    CGImageRelease(screen);
     
+    [[SimpleAudioEngine sharedEngine] playEffect:@"takePicture.mp3"];
 
-    CGImageRelease(screen);
     
     [self schedule:@selector(ShowItemsAfterCapture) ];
 
 }
+
+
 
 -(void)ShowItemsAfterCapture
 {

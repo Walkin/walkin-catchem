@@ -14,7 +14,6 @@
 #import "AppDelegate.h"
 #import "PauseLayer.h"
 #import "CCSlider.h"
-#import "CCUIViewWrapper.h"
 #import "Tag.h"
 #import "AppDelegate.h"
 #import "DesignValues.h"
@@ -131,7 +130,7 @@
                                         selector:@selector(GoToMainMenuScene:)];
     
     
-    CCMenu *aboutmenu = [CCMenu menuWithItems:mnuBack,nil];
+    aboutmenu = [CCMenu menuWithItems:mnuBack,nil];
     [self addChild:aboutmenu z:4 tag:2];
     [aboutmenu setAnchorPoint:CGPointZero];
     [aboutmenu setPosition:CGPointZero];
