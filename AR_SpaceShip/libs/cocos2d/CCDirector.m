@@ -146,6 +146,7 @@ static CCDirector *_sharedDirector = nil;
 		runningThread_ = nil;
 		
 		winSizeInPixels_ = winSizeInPoints_ = CGSizeZero;
+       
 	}
 
 	return self;

@@ -32,6 +32,8 @@
         [[NSFileManager defaultManager] createFileAtPath:designerValuesPath contents:data attributes:nil];
     }
     return designerValuesPath;
+    
+    [diskCachePath release];
 }
 
 - (NSString *)jsonPath{
@@ -67,12 +69,14 @@
         [self
          appendRowToSection:0
          cellClass:[JSONDesginerTextFieldCell class]
-         cellData:[[NSMutableDictionary alloc] initWithDictionary:dict]
+         cellData:[[[NSMutableDictionary alloc] initWithDictionary:dict]autorelease]
          withAnimation:UITableViewRowAnimationRight];
-    }
+        
+            }
     
 	[self hideLoadingIndicator];
 }
+
 //
 // refresh
 //

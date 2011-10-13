@@ -67,6 +67,7 @@
 }
 
 -(Catchable *)addCombinedCatchable:(int)shipTag; 
+-(Catchable *)addParticleCatchable:(int)shipTag; 
 -(Catchable *)addStableCatchable:(int)shipTag; 
 -(void)dataInitialize;
 -(void)update:(ccTime)delta;
@@ -98,6 +99,7 @@
 -(void)TakePictures;
 -(void)ShowItemsAfterCapture;
 -(void)TakePicturesWarning;
+
 
 @property (nonatomic, retain) CMMotionManager *motionManager;
 @property (readwrite) int catchableCount;

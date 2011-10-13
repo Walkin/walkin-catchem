@@ -7,6 +7,7 @@
 //
 
 #import "TestScene.h"
+#import "ExplosionParticle.h"
 @class PauseLayer;
 
 
@@ -21,7 +22,8 @@
 @interface TestLayer1 : TestLayer
 {
     PauseLayer * p;
-
+    CMDeviceMotion *currentDeviceMotion;
+    CMAttitude *currentAttitude;
 }
 
 

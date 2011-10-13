@@ -8,8 +8,6 @@
 
 
 #import "cocos2d.h"
-#import <CoreMotion/CoreMotion.h>
-#import <CoreFoundation/CoreFoundation.h>
 
 @interface Catchable : CCSprite{
     float yawPosition;
@@ -26,7 +24,6 @@
     int CombineMoveCount;
     int StableCount;
     CCSprite *redSpot;
-    CMMotionManager *motionManager;
     float MaximumYaw;
     float initialYaw;
     float initialRoll;
@@ -45,7 +42,6 @@
 
 }
 
-@property (nonatomic, retain) CMMotionManager *motionManager;
 @property (nonatomic, retain) CCSprite *redSpot;
 @property (readwrite) float yawPosition;
 @property (readwrite) float rollPosition;
@@ -81,18 +77,16 @@
 - (void)updatePosition:(ccTime)delta;
 - (void)updateScale:(ccTime)delta;
 -(void)moveSelf:(ccTime)delta;
+///////////////////////////////////////Radar System///////////////////////////////////////////////////
 -(void)addRedSpot;
 - (void)radarSystem;
+-(float)circleRadius;
 - (CGPoint) RotateAroundPt:(CGPoint) centerPt withAngle:(float) radAngle withRadius:(float) radius;
 
--(void) setInitialPosition:(CGPoint)postion;
-
--(float)circleRadius;
+-(void)setInitialPosition:(CGPoint)postion;
 -(void)moveSelf:(ccTime)delta;
 -(void)checkTime:(ccTime)delta;
-
 -(void)pauseCatchablesWithBool:(BOOL)pause;
-
 -(void)moveCatchableToFront;
 
 @end

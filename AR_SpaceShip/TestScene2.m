@@ -123,8 +123,8 @@
     float y;
     float randomX;
     float randomY;
-    x = 0;
-    y = 0;
+//    x = 0;
+//    y = 0;
     
     catchable = [CombineMovement spriteWithFile:[NSString stringWithFormat:@"catchable_00%d.png",picChoose]];
     CombinedCatchemCount += catchable.CombineMoveCount;

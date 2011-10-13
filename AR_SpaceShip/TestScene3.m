@@ -134,9 +134,11 @@
     leftJoy.backgroundSprite = [ColoredCircleSprite circleWithColor:ccc4(255, 255, 255, 128) radius:64];
     leftJoy.thumbSprite = [ColoredCircleSprite circleWithColor:ccc4(255, 255, 255, 255) radius:32];
     leftJoy.joystick = [[SneakyJoystick alloc] initWithRect:CGRectMake(0,0,128,128)];
-    joystick = [leftJoy.joystick retain];
+ 
     
     [self addChild:leftJoy z:6];
+    
+    [leftJoy.joystick release];
     
     [self schedule:@selector(tick:) interval:1.0f/120.0f];
 }
@@ -498,7 +500,7 @@
             
             if (catchable.EnableCatch && catchable.wasTouched) {
                 
-                CCParticleSystemQuad *particle = [CCParticleSystemQuad particleWithFile:@"Explosion.plist"];
+                CCParticleSystemQuad *particle = [CCParticleSystemQuad particleWithFile:@"heartBeating.plist"];
                 particle.position = ccp(240,160);
                 [self addChild:particle z:20];
                 particle.life = 1.5;
@@ -589,7 +591,7 @@
 }
 
 
-//function to apply a velocity to a position with delta
+///////////////function to apply a velocity to a position with delta/////////////
 static CGPoint applyVelocity(CGPoint velocity, Catchable *position, float delta){
 	return CGPointMake(position.yawPosition - velocity.x * delta, position.rollPosition - velocity.y * delta);
 }
@@ -609,7 +611,7 @@ static CGPoint applyVelocity(CGPoint velocity, Catchable *position, float delta)
         aNode.yawPosition = aNode.yawPosition +360.0;
     }
     
-    //  NSLog(@"yaw: %f, roll: %f", aNode.yawPosition, aNode.rollPosition);
+    
 }
 
 

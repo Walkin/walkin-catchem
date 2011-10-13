@@ -10,6 +10,7 @@
 #import "SimpleAudioEngine.h"
 #import "Catchable.h"
 #import "CombineMovement.h"
+#import "ParticleCatchable.h"
 #import "MainMenuScene.h"
 #import "AppDelegate.h"
 #import "PauseLayer.h"
@@ -17,7 +18,9 @@
 #import "Tag.h"
 #import "AppDelegate.h"
 #import "DesignValues.h"
+#import "ExplosionParticle.h"
 
+#import "CCParticleSystemPoint.h"
 
 @implementation TestScene1
 
@@ -73,7 +76,6 @@
         
         [self addScopeCrosshairs];
         
-        
         // Allow touches with the layer
         [self registerWithTouchDispatcher];
 
@@ -89,11 +91,18 @@
         [self startGame];
         
         [self addScoreLabel];
+        
+  //      [self AddParticleItems];
+        
+        [[CCDirector sharedDirector]setDisplayFPS:YES];
 
         
 	}
 	return self;
 }
+
+
+
 
 -(void)update:(ccTime)delta {
     
@@ -102,8 +111,8 @@
     
     changePic = (int)(CCRANDOM_0_1()*10);
     
-    CMDeviceMotion *currentDeviceMotion = motionManager.deviceMotion;
-    CMAttitude *currentAttitude = currentDeviceMotion.attitude;
+    currentDeviceMotion = motionManager.deviceMotion;
+    currentAttitude = currentDeviceMotion.attitude;
     
     
     yaw = (float)(CC_RADIANS_TO_DEGREES(currentAttitude.yaw));
@@ -116,6 +125,9 @@
     for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
         [self checkCatchablePositionX:catchable withYaw:yaw];
         [self checkCatchablePositionY:catchable withRoll:roll];
+        
+////////////////////////sign the yaw value from CMMotionManager to catchable's yaw///////////////////////        
+        catchable.yaw = yaw;
         
         [catchable radarSystem];
     }
@@ -155,13 +167,79 @@
         [catchable addRedSpot];
         [self addChild:catchable.redSpot z:4];
 
+    }
+    
+
+    for(int i = 0; i < [[DesignValues sharedDesignValues] getParticleCatchable]; i++) {
         
+        Catchable *particleCatchable = [self addParticleCatchable:i];
+        [[DesignValues sharedDesignValues].catchableSprites  addObject:particleCatchable];
+        catchableCount += 1;
+        particleCatchable.MaximumYaw = 90;
+//        [catchable addRedSpot];
+//        [self addChild:catchable.redSpot z:4];
+        
+
+
     }
 
       enableTouch = YES;
-    
 }
  
+-(Catchable *)addParticleCatchable:(int)shipTag
+{
+    Catchable *catchable;
+
+    
+    float x;
+    float y;
+    float randomX;
+    float randomY;
+    
+    
+    catchable = [ParticleCatchable spriteWithFile:[NSString stringWithFormat:@"heart-small-red.png"]];
+    CombinedCatchemCount += catchable.CombineMoveCount;
+    
+    randomX = CCRANDOM_MINUS1_1()*MaximumYaw;
+    randomY = -CCRANDOM_0_1()*100;
+    
+    if (yaw <= -0.0 && yaw >= -180.0) {
+        yaw = yaw +360.0;
+    }
+    
+    x = randomX + yaw;
+    
+    while ( randomY > -10 && randomY < -150 ) {
+        randomY = -CCRANDOM_0_1()*100;
+    }
+    
+    y = randomY;
+    
+    //    catchable.yawPosition = x;   
+    //    catchable.rollPosition = y;
+    CGPoint positionPoint = ccp(x, y);
+    [catchable setInitialPosition:positionPoint];
+    
+    // Set the position of the space ship off the screen
+    // we will update it in another method
+    [catchable setPosition:ccp(5000, 5000)];
+    
+    catchable.visible = true;
+    
+    // catchable.scale = 3.0;
+    
+    [self addChild:catchable z:3 tag:shipTag];
+    
+    ExplosionParticle * stars = [ExplosionParticle node];
+    [catchable addChild:stars z:20];
+    
+
+    
+    return catchable;
+
+    [self removeSprite:catchable];
+
+}
 
 
 -(Catchable *)addCombinedCatchable:(int)shipTag{
@@ -174,8 +252,6 @@
     float y;
     float randomX;
     float randomY;
-    x = 0;
-    y = 0;
     
 
     catchable = [CombineMovement spriteWithFile:[NSString stringWithFormat:@"catchable_00%d.png",picChoose]];
@@ -213,12 +289,15 @@
     
 ///////////////////////////Make catchable Wave itself/////////////////////// 
     
-  id shaky = [CCShaky3D actionWithRange:2 shakeZ:NO grid:ccg(15,10) duration:20];
+
+  id wave3D = [CCWaves3D actionWithWaves:18 amplitude:15 grid:ccg(15,10) duration:10];
 
  //   id waves = [CCWaves actionWithWaves:3 amplitude:20 horizontal:YES vertical:YES grid:ccg(15,10) duration:5];
-    [catchable runAction: [CCRepeatForever actionWithAction: shaky]];
+    [catchable runAction: [CCRepeatForever actionWithAction: wave3D]];
     
     return catchable;
+    
+    [self removeSprite:catchable];
 }
     
 
@@ -386,7 +465,8 @@
 
 - (void) dealloc
 {
-
+    [currentAttitude release];
+    [currentDeviceMotion release];
 	[super dealloc];
 }
 

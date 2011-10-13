@@ -123,6 +123,7 @@
 //		hierarchy)
 //    anIndexPath - the indexPath of the cell
 //
+
 - (void)configureForData:(id)dataObject
                tableView:(UITableView *)aTableView
                indexPath:(NSIndexPath *)anIndexPath

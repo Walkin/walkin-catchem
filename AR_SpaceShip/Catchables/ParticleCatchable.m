@@ -1,15 +1,14 @@
 //
-//  CombineMovement.m
-//  FunnyShake
+//  ParticleCatchable.m
+//  AR_SpaceShip
 //
-//  Created by Zelin Ou on 7/21/11.
-//  Copyright 2011 iTeam. All rights reserved.
+//  Created by Oliver Ou on 11-10-13.
+//  Copyright (c) 2011年 iTeam. All rights reserved.
 //
 
 
 
-
-#import "CombineMovement.h"
+#import "ParticleCatchable.h"
 #define kScallSpeed 5
 
 
@@ -19,7 +18,7 @@ static inline float lerpf(float a, float b, float t)
 }
 
 
-@implementation CombineMovement
+@implementation ParticleCatchable
 @synthesize speed;
 @synthesize timer;
 @synthesize ratio;
@@ -42,11 +41,11 @@ static inline float lerpf(float a, float b, float t)
         Zorg = self.scale;
         self.EnableCatchTimer = 0.0;
         wasTouched = YES;
-
+        
         
         [self scheduleUpdate];
         
-
+        
     }
     
     return self;
@@ -56,23 +55,18 @@ static inline float lerpf(float a, float b, float t)
 
 -(void)update:(ccTime)delta {
     
-    // NSLog(@"The value of EnableCatchTimer is %f", self.EnableCatchTimer);
-    // NSLog(@"The yaw of the device is %f", yaw);
-    // NSLog(@"The scale of the catchable is %f", self.scale);
-    // NSLog(@"The Zdest is %f and Zorg is %f", Zdest, Zorg);
 
     
-///////////////When using the accelerometer////////////////////////////////////////
-//    [self updatePosition:delta*0.1];
-//    [self checkTime:delta*0.1];
     
-//    NSLog(@"The ratio is %f, progressTimer is %f, timer is %f",self.ratio,self.progressTimer,self.timer);
+    ///////////////When using the accelerometer////////////////////////////////////////
+    
+    //    NSLog(@"The ratio is %f, progressTimer is %f, timer is %f",self.ratio,self.progressTimer,self.timer);
     
     if(self.EnableCatchTimer > 0.0 ) {
-       self.EnableCatch = YES;
-       self.EnableCatchTimer -= delta;
-
-   }
+        self.EnableCatch = YES;
+        self.EnableCatchTimer -= delta;
+        
+    }
     
     if (self.EnableCatchTimer <= 0.0) {
         self.EnableCatch = NO;
@@ -81,8 +75,8 @@ static inline float lerpf(float a, float b, float t)
     
     [self updatePosition:delta/4];
     [self checkTime:delta];
-
-//////////////////Control the scale size of catchable instantly///////////////////
+    
+    //////////////////Control the scale size of catchable instantly///////////////////
     if (Zdest > 3.0 || Zdest < 0.5) {
         
         Zorg = 1.5;
@@ -101,7 +95,7 @@ static inline float lerpf(float a, float b, float t)
 
 -(void)checkTime:(ccTime)delta
 {
- //   NSLog(@"timer: %f, progress: %f",timer, progressTimer);    
+    //   NSLog(@"timer: %f, progress: %f",timer, progressTimer);    
     
     if ( self.progressTimer > self.timer) {
         [self resetRandomMovement];
@@ -114,8 +108,6 @@ static inline float lerpf(float a, float b, float t)
     if (Xdest > self.initialYaw + MaximumYaw || Xdest < self.initialYaw - MaximumYaw) {
         
         return 2;
-        
-        NSLog(@"I am Out of the range! ");
         
     }
     
@@ -141,12 +133,12 @@ static inline float lerpf(float a, float b, float t)
     }
     
     if (value > 0.3 || value < 1.5) {
-    //    NSLog(@"I am out of bounds!");
+        //    NSLog(@"I am out of bounds!");
         return 2;
     }
- 
+    
     return 0;
-
+    
 }
 
 
@@ -170,7 +162,7 @@ static inline float lerpf(float a, float b, float t)
         case 2: 
             Zdest = CCRANDOM_MINUS1_1() * 0.5 + self.scale;
             break;
-
+            
         default:
             break;
 	}
@@ -180,19 +172,19 @@ static inline float lerpf(float a, float b, float t)
     
 	{
             
-//////////////////////When the catchable is in the range, update it's Xdest//////////////////            
+            //////////////////////When the catchable is in the range, update it's Xdest//////////////////            
         case 1:
             
             Xdest = CCRANDOM_MINUS1_1()*10 + self.yawPosition;
             
             break;
             
-///////////////////////When the catchable is out of the range, reset its Xdest to the initialYaw//////////
+            ///////////////////////When the catchable is out of the range, reset its Xdest to the initialYaw//////////
         case 2: 
-
             
-//            Xdest = self.initialYaw;
-//            Xorg = self.initialYaw;
+            
+            //            Xdest = self.initialYaw;
+            //            Xorg = self.initialYaw;
             
             
             if (yaw <= -0.0 && yaw >= -180.0) {
@@ -203,7 +195,7 @@ static inline float lerpf(float a, float b, float t)
             Xorg = CCRANDOM_MINUS1_1()* self.MaximumYaw + yaw;
             
             break;
-
+            
             
         default:
             break;
@@ -211,7 +203,7 @@ static inline float lerpf(float a, float b, float t)
     
     // We should double check our Randoms here to make sure that they
     // do not go beyond the maximums and minimums defined in designer values
-
+    
     Xorg = self.yawPosition;
     Yorg = self.rollPosition;
     Zorg = self.scale;    
@@ -222,8 +214,8 @@ static inline float lerpf(float a, float b, float t)
     
     self.progressTimer += delta;
     self.ratio = self.progressTimer / self.timer ;
-
-
+    
+    
     if (self.ratio < 1.0) {
         self.yawPosition = lerpf(Xorg, Xdest, self.ratio);
         self.rollPosition = lerpf(Yorg, Ydest, self.ratio);
@@ -235,14 +227,14 @@ static inline float lerpf(float a, float b, float t)
         self.rollPosition = Ydest;
         self.scale = Zdest;
     }
-
+    
 }
 
 
 
 - (void) dealloc
 {    
-
+    
 	[super dealloc];
 }
 

@@ -1,20 +1,21 @@
 //
-//  CombineMovement.h
-//  FunnyShake
+//  ParticleCatchable.h
+//  AR_SpaceShip
 //
-//  Created by Zelin Ou on 7/21/11.
-//  Copyright 2011 iTeam. All rights reserved.
+//  Created by Oliver Ou on 11-10-13.
+//  Copyright (c) 2011年 iTeam. All rights reserved.
 //
 
 #import "Catchable.h"
 
-@interface CombineMovement : Catchable
+@interface ParticleCatchable : Catchable
 {
     float speed;
     float ratio;
     float timer;
     float progressTimer;
-
+    
+    
 }
 
 -(void)resetRandomMovement;

@@ -19,10 +19,13 @@ static DesignValues *sharedDesignValues = nil;
 @synthesize orderedValues;
 @synthesize catchableSprites;
 @synthesize FloaterCombined;
+@synthesize ParticleCatchable;
 @synthesize MaximumYaw;
 @synthesize MinimumYaw;
 @synthesize UpdateFrequency;
 @synthesize EnableCatchTimer;
+@synthesize yaw;
+@synthesize roll;
 
 
 +(DesignValues *)sharedDesignValues
@@ -30,6 +33,7 @@ static DesignValues *sharedDesignValues = nil;
 	@synchronized (self) {
 		if (sharedDesignValues == nil) {
 			[[self alloc] init]; // assignment not done here, see allocWithZone
+            
 		}
 	}
 	
@@ -79,6 +83,7 @@ static DesignValues *sharedDesignValues = nil;
 	@synchronized(self) {
 		[super init];	
         
+
         NSString *responseString = [NSString stringWithContentsOfFile:[DesignerValuesTableView designerPath] encoding:NSUTF8StringEncoding error:nil];
         responseString = [responseString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         responseString = [responseString stringByReplacingOccurrencesOfString:@"\t" withString:@""];
@@ -97,6 +102,7 @@ static DesignValues *sharedDesignValues = nil;
         
         self.temp  = [[NSDictionary alloc] initWithObjects:orderedValues forKeys:orderedKeys];
         self.FloaterCombined = [[temp objectForKey:@"FloaterCombinedTotal"] intValue];
+        self.ParticleCatchable = [[temp objectForKey:@"FloaterUpDownTotal"] intValue];
         self.MaximumYaw = [[temp objectForKey:@"MaximumYaw"] floatValue];
         self.MinimumYaw = [[temp objectForKey:@"MinimumYaw"] floatValue];
         self.UpdateFrequency = [[temp objectForKey:@"UpdateFrequency"] floatValue];
@@ -107,6 +113,7 @@ static DesignValues *sharedDesignValues = nil;
 		return self;
 	}
 }
+
 
 - (int)getFloaterCombined
 {
@@ -148,6 +155,39 @@ static DesignValues *sharedDesignValues = nil;
 
 }
 
+- (int)getParticleCatchable
+{
+    @synchronized(self) {
+		return  self.ParticleCatchable;
+	}	
+}
+
+- (float)getYaw
+{
+    @synchronized(self) {
+		return  self.yaw;
+	}	
+
+}
+- (float)getRoll
+{
+    @synchronized(self) {
+		return  self.roll;
+	}	
+
+}
+
+- (void) dealloc
+{    
+
+    [temp release];
+    [orderedKeys release];
+    [orderedValues release];
+    [catchableSprites release];
+    
+    
+	[super dealloc];
+}
 
 
 

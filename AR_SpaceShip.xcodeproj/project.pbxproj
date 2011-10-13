@@ -177,7 +177,6 @@
 		78DCDD7D13EF873C00C76853 /* powerup.caf in Resources */ = {isa = PBXBuildFile; fileRef = 78DCDD6713EF873C00C76853 /* powerup.caf */; };
 		78DCDD7E13EF873C00C76853 /* shake.caf in Resources */ = {isa = PBXBuildFile; fileRef = 78DCDD6813EF873C00C76853 /* shake.caf */; };
 		78DCDD7F13EF873C00C76853 /* SpaceGame.caf in Resources */ = {isa = PBXBuildFile; fileRef = 78DCDD6913EF873C00C76853 /* SpaceGame.caf */; };
-		78DCDD8013EF873C00C76853 /* TunnableValue.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78DCDD6A13EF873C00C76853 /* TunnableValue.plist */; };
 		78DCDD8413EF875F00C76853 /* Sprites.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78DCDD8213EF875F00C76853 /* Sprites.plist */; };
 		78DCDD8513EF875F00C76853 /* Sprites.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 78DCDD8313EF875F00C76853 /* Sprites.pvr.ccz */; };
 		78DCDD9913EF8A2E00C76853 /* CCNode+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DCDD9613EF8A2E00C76853 /* CCNode+Ext.m */; };
@@ -195,6 +194,10 @@
 		F3557C68141F10000084C0E3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3557C67141F10000084C0E3 /* CoreLocation.framework */; };
 		F378B16C143ACACA00A78416 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F378B16B143ACACA00A78416 /* CoreMotion.framework */; };
 		F378B173143ACB3C00A78416 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F378B172143ACB3C00A78416 /* QuartzCore.framework */; };
+		F3807629144687C300285650 /* heart-small-red.png in Resources */ = {isa = PBXBuildFile; fileRef = F3807624144687C300285650 /* heart-small-red.png */; };
+		F38076301446936800285650 /* ParticleCatchable.m in Sources */ = {isa = PBXBuildFile; fileRef = F380762F1446936800285650 /* ParticleCatchable.m */; };
+		F380768214469F9B00285650 /* stars-grayscale.png in Resources */ = {isa = PBXBuildFile; fileRef = F380768114469F9B00285650 /* stars-grayscale.png */; };
+		F380768A1446E1A400285650 /* ExplosionParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = F38076891446E1A100285650 /* ExplosionParticle.m */; };
 		F383B64A1430264700E7593C /* stableCatchable_001.png in Resources */ = {isa = PBXBuildFile; fileRef = F383B6491430264700E7593C /* stableCatchable_001.png */; };
 		F383B6501430335800E7593C /* stableCatchable_005.png in Resources */ = {isa = PBXBuildFile; fileRef = F383B64F1430335800E7593C /* stableCatchable_005.png */; };
 		F383B6521430336A00E7593C /* stableCatchable_006.png in Resources */ = {isa = PBXBuildFile; fileRef = F383B6511430336A00E7593C /* stableCatchable_006.png */; };
@@ -542,7 +545,6 @@
 		78DCDD6713EF873C00C76853 /* powerup.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = powerup.caf; sourceTree = "<group>"; };
 		78DCDD6813EF873C00C76853 /* shake.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = shake.caf; sourceTree = "<group>"; };
 		78DCDD6913EF873C00C76853 /* SpaceGame.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SpaceGame.caf; sourceTree = "<group>"; };
-		78DCDD6A13EF873C00C76853 /* TunnableValue.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TunnableValue.plist; sourceTree = "<group>"; };
 		78DCDD8213EF875F00C76853 /* Sprites.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Sprites.plist; sourceTree = "<group>"; };
 		78DCDD8313EF875F00C76853 /* Sprites.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sprites.pvr.ccz; sourceTree = "<group>"; };
 		78DCDD8A13EF88CF00C76853 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
@@ -573,6 +575,12 @@
 		F378B16B143ACACA00A78416 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		F378B16D143ACAF100A78416 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F378B172143ACB3C00A78416 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		F3807624144687C300285650 /* heart-small-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-small-red.png"; sourceTree = "<group>"; };
+		F380762E1446936800285650 /* ParticleCatchable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleCatchable.h; sourceTree = "<group>"; };
+		F380762F1446936800285650 /* ParticleCatchable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticleCatchable.m; sourceTree = "<group>"; };
+		F380768114469F9B00285650 /* stars-grayscale.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stars-grayscale.png"; sourceTree = "<group>"; };
+		F38076881446E19E00285650 /* ExplosionParticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExplosionParticle.h; sourceTree = "<group>"; };
+		F38076891446E1A100285650 /* ExplosionParticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExplosionParticle.m; sourceTree = "<group>"; };
 		F383B6491430264700E7593C /* stableCatchable_001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stableCatchable_001.png; sourceTree = "<group>"; };
 		F383B64F1430335800E7593C /* stableCatchable_005.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stableCatchable_005.png; sourceTree = "<group>"; };
 		F383B6511430336A00E7593C /* stableCatchable_006.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stableCatchable_006.png; sourceTree = "<group>"; };
@@ -665,9 +673,6 @@
 		78DCDB9113EF86C400C76853 = {
 			isa = PBXGroup;
 			children = (
-				F378B172143ACB3C00A78416 /* QuartzCore.framework */,
-				F378B16D143ACAF100A78416 /* CoreLocation.framework */,
-				F378B16B143ACACA00A78416 /* CoreMotion.framework */,
 				78DCDBB013EF86C400C76853 /* AR_SpaceShip */,
 				78DCDB9F13EF86C400C76853 /* Frameworks */,
 				78DCDB9D13EF86C400C76853 /* Products */,
@@ -685,6 +690,9 @@
 		78DCDB9F13EF86C400C76853 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F378B172143ACB3C00A78416 /* QuartzCore.framework */,
+				F378B16D143ACAF100A78416 /* CoreLocation.framework */,
+				F378B16B143ACACA00A78416 /* CoreMotion.framework */,
 				F3557C67141F10000084C0E3 /* CoreLocation.framework */,
 				F3557C64141F0FF70084C0E3 /* SystemConfiguration.framework */,
 				78DCDD8A13EF88CF00C76853 /* CoreMotion.framework */,
@@ -703,22 +711,18 @@
 		78DCDBB013EF86C400C76853 /* AR_SpaceShip */ = {
 			isa = PBXGroup;
 			children = (
+				F396C23E1445871F009AC065 /* Catchables class */,
+				F396C23D144586D0009AC065 /* Singleton */,
+				F396C23C1445868D009AC065 /* Scenes&Layers */,
 				F383B66414305B1F00E7593C /* SneakyJoyStick */,
-				78DCDD9B13EF8A3500C76853 /* TestScene */,
-				7806AE2713F245F600175EB9 /* PauseLayer */,
 				78DCDD9013EF897200C76853 /* TableView */,
-				78DCDD3013EF871900C76853 /* MainMenuScene.h */,
-				78DCDD3113EF871900C76853 /* MainMenuScene.m */,
 				78DCDD3813EF871900C76853 /* RootViewController.h */,
 				78DCDD3913EF871900C76853 /* RootViewController.m */,
-				F3E6F329142210AA00DD9C28 /* DesignValues.h */,
-				F3E6F32A142210AA00DD9C28 /* DesignValues.m */,
 				78DCDD0B13EF86EB00C76853 /* AppDelegate.h */,
 				78DCDD0C13EF86EB00C76853 /* AppDelegate.m */,
-				F3E6F327142210AA00DD9C28 /* Catchable.h */,
-				F3E6F328142210AA00DD9C28 /* Catchable.m */,
-				78DCDD0F13EF86EB00C76853 /* Catchables */,
 				78DCDD0513EF86C700C76853 /* GameConfig.h */,
+				F38076881446E19E00285650 /* ExplosionParticle.h */,
+				F38076891446E1A100285650 /* ExplosionParticle.m */,
 				78AD638A13F3786700209E3C /* Tag.h */,
 				78DCDBB113EF86C400C76853 /* Resources */,
 				78DCDBC513EF86C400C76853 /* cocos2d */,
@@ -734,21 +738,13 @@
 		78DCDBB113EF86C400C76853 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F3807622144687AA00285650 /* particle effects */,
+				F396C24014458787009AC065 /* items */,
+				F396C23F14458757009AC065 /* background */,
 				F3E4344D14284CBC00A32B0D /* buttons */,
 				F3E4344C14284C8D00A32B0D /* catchablePictures */,
-				789F188913FBB25200422C14 /* texturedWhiteBG.png */,
-				789F188A13FBB25200422C14 /* TieGuyBackground.png */,
-				78A31EF813FA50AF001EF082 /* scope.png */,
-				786D399713F50CFE00547731 /* radarCircle.png */,
-				787933CD13F4E52E00F3043A /* redSpot.png */,
-				7806AE2C13F247CE00175EB9 /* pauseBackground.jpg */,
 				78DCDD8113EF875F00C76853 /* Spritesheets */,
-				78DCDD5513EF873C00C76853 /* background.png */,
-				78DCDD5813EF873C00C76853 /* Explosion.plist */,
 				78DCDD5913EF873C00C76853 /* Fonts */,
-				78DCDD5E13EF873C00C76853 /* go.png */,
-				78DCDD5F13EF873C00C76853 /* ready.png */,
-				78DCDD6113EF873C00C76853 /* set.png */,
 				78DCDD6213EF873C00C76853 /* Sounds */,
 				789F188113FBB1B500422C14 /* Default.png */,
 				78DCDBB413EF86C400C76853 /* fps_images.png */,
@@ -1021,6 +1017,8 @@
 				F3E6F32E142210D100DD9C28 /* CombineMovement.m */,
 				F3DF82211429A0CD0056945E /* StableCatchable.h */,
 				F3DF82221429A0CD0056945E /* StableCatchable.m */,
+				F380762E1446936800285650 /* ParticleCatchable.h */,
+				F380762F1446936800285650 /* ParticleCatchable.m */,
 			);
 			path = Catchables;
 			sourceTree = "<group>";
@@ -1081,7 +1079,6 @@
 				DAD24FC013F25718005F2B3A /* SBJsonWriter.m */,
 				78DCDD4213EF871900C76853 /* TextFieldCell.h */,
 				78DCDD4313EF871900C76853 /* TextFieldCell.m */,
-				78DCDD6A13EF873C00C76853 /* TunnableValue.plist */,
 				78DCDD2B13EF871900C76853 /* DesignerValuesTableView.h */,
 				78DCDD2C13EF871900C76853 /* DesignerValuesTableView.m */,
 				78DCDD2D13EF871900C76853 /* DesignerValuesTableView.xib */,
@@ -1139,7 +1136,7 @@
 			name = SliderControl;
 			sourceTree = "<group>";
 		};
-		78DCDD9B13EF8A3500C76853 /* TestScene */ = {
+		78DCDD9B13EF8A3500C76853 /* TestScenes */ = {
 			isa = PBXGroup;
 			children = (
 				F3E6F3241422108A00DD9C28 /* TestScene1.h */,
@@ -1151,7 +1148,17 @@
 				78AD63B013F39B2E00209E3C /* TestScene.h */,
 				78AD63B113F39B2E00209E3C /* TestScene.m */,
 			);
-			name = TestScene;
+			name = TestScenes;
+			sourceTree = "<group>";
+		};
+		F3807622144687AA00285650 /* particle effects */ = {
+			isa = PBXGroup;
+			children = (
+				F380768114469F9B00285650 /* stars-grayscale.png */,
+				F3807624144687C300285650 /* heart-small-red.png */,
+				78DCDD5813EF873C00C76853 /* Explosion.plist */,
+			);
+			name = "particle effects";
 			sourceTree = "<group>";
 		};
 		F383B66414305B1F00E7593C /* SneakyJoyStick */ = {
@@ -1177,6 +1184,60 @@
 				F383B65F14305B1700E7593C /* SneakyJoystickSkinnedJoystickExample.m */,
 			);
 			name = Skinning;
+			sourceTree = "<group>";
+		};
+		F396C23C1445868D009AC065 /* Scenes&Layers */ = {
+			isa = PBXGroup;
+			children = (
+				78DCDD9B13EF8A3500C76853 /* TestScenes */,
+				7806AE2713F245F600175EB9 /* PauseLayer */,
+				78DCDD3013EF871900C76853 /* MainMenuScene.h */,
+				78DCDD3113EF871900C76853 /* MainMenuScene.m */,
+			);
+			name = "Scenes&Layers";
+			sourceTree = "<group>";
+		};
+		F396C23D144586D0009AC065 /* Singleton */ = {
+			isa = PBXGroup;
+			children = (
+				F3E6F329142210AA00DD9C28 /* DesignValues.h */,
+				F3E6F32A142210AA00DD9C28 /* DesignValues.m */,
+			);
+			name = Singleton;
+			sourceTree = "<group>";
+		};
+		F396C23E1445871F009AC065 /* Catchables class */ = {
+			isa = PBXGroup;
+			children = (
+				F3E6F327142210AA00DD9C28 /* Catchable.h */,
+				F3E6F328142210AA00DD9C28 /* Catchable.m */,
+				78DCDD0F13EF86EB00C76853 /* Catchables */,
+			);
+			name = "Catchables class";
+			sourceTree = "<group>";
+		};
+		F396C23F14458757009AC065 /* background */ = {
+			isa = PBXGroup;
+			children = (
+				78DCDD5513EF873C00C76853 /* background.png */,
+				7806AE2C13F247CE00175EB9 /* pauseBackground.jpg */,
+				789F188913FBB25200422C14 /* texturedWhiteBG.png */,
+				789F188A13FBB25200422C14 /* TieGuyBackground.png */,
+			);
+			name = background;
+			sourceTree = "<group>";
+		};
+		F396C24014458787009AC065 /* items */ = {
+			isa = PBXGroup;
+			children = (
+				78DCDD5E13EF873C00C76853 /* go.png */,
+				78DCDD5F13EF873C00C76853 /* ready.png */,
+				78DCDD6113EF873C00C76853 /* set.png */,
+				78A31EF813FA50AF001EF082 /* scope.png */,
+				786D399713F50CFE00547731 /* radarCircle.png */,
+				787933CD13F4E52E00F3043A /* redSpot.png */,
+			);
+			name = items;
 			sourceTree = "<group>";
 		};
 		F3E4344C14284C8D00A32B0D /* catchablePictures */ = {
@@ -1317,7 +1378,6 @@
 				78DCDD7D13EF873C00C76853 /* powerup.caf in Resources */,
 				78DCDD7E13EF873C00C76853 /* shake.caf in Resources */,
 				78DCDD7F13EF873C00C76853 /* SpaceGame.caf in Resources */,
-				78DCDD8013EF873C00C76853 /* TunnableValue.plist in Resources */,
 				78DCDD8413EF875F00C76853 /* Sprites.plist in Resources */,
 				78DCDD8513EF875F00C76853 /* Sprites.pvr.ccz in Resources */,
 				7806AE2D13F247CE00175EB9 /* pauseBackground.jpg in Resources */,
@@ -1377,6 +1437,8 @@
 				F3D0C7C5143301F700BB20C8 /* stableCatchable_008.png in Resources */,
 				F3D0C7C6143301F700BB20C8 /* stableCatchable_009.png in Resources */,
 				F3B34D3914359DF900C05D28 /* match.png in Resources */,
+				F3807629144687C300285650 /* heart-small-red.png in Resources */,
+				F380768214469F9B00285650 /* stars-grayscale.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1520,6 +1582,8 @@
 				F383B66214305B1700E7593C /* SneakyJoystickSkinnedDPadExample.m in Sources */,
 				F383B66314305B1700E7593C /* SneakyJoystickSkinnedJoystickExample.m in Sources */,
 				F383B66814305C9900E7593C /* ColoredCircleSprite.m in Sources */,
+				F38076301446936800285650 /* ParticleCatchable.m in Sources */,
+				F380768A1446E1A400285650 /* ExplosionParticle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

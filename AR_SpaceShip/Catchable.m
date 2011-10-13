@@ -28,7 +28,6 @@ static inline float lerpf(float a, float b, float t)
 @synthesize CombineMoveCount;
 @synthesize StableCount;
 @synthesize scaleSpeed;
-@synthesize motionManager; 
 @synthesize redSpot;
 @synthesize wasTouched;
 @synthesize MovingRight;
@@ -66,12 +65,6 @@ static inline float lerpf(float a, float b, float t)
         wasTouched = YES;
 
 
-        self.motionManager = [[[CMMotionManager alloc] init] autorelease];
-        motionManager.deviceMotionUpdateInterval = 1.0/60.0;
-        if (motionManager.isDeviceMotionAvailable) {
-            [motionManager startDeviceMotionUpdates];
-         }
-
 	}
   
      return self;
@@ -96,14 +89,16 @@ static inline float lerpf(float a, float b, float t)
     self.Yorg = incPosition.y;
 }
 
+
+-(void)moveSelf:(ccTime)delta{}
+-(void)checkTime:(ccTime)delta{}
+
+////////////////////////////////////////////////Radar System///////////////////////////////////////////////
 -(void)addRedSpot
 {
     redSpot = [CCSprite spriteWithFile:@"redSpot.png"];
     redSpot.position = ccp(420,300);
 }
-
--(void)moveSelf:(ccTime)delta{}
--(void)checkTime:(ccTime)delta{}
 
 - (CGPoint) RotateAroundPt:(CGPoint) centerPt withAngle:(float) radAngle withRadius:(float) radius {
     CGPoint Spot;
@@ -115,7 +110,6 @@ static inline float lerpf(float a, float b, float t)
 -(float)circleRadius{
     float scaleRatio = 3.0 / (self.scale + 3.0);
     float val = lerpf(10.0, 37.0, scaleRatio);
-  //  NSLog(@"Scale: %f, Ratio: %f, val : %f, RedPos: x= %f , y = %f",self.scale,scaleRatio,val, redSpot.position.x, redSpot.position.y);
     
     if (val > 37.0) {
         val = 37.0;
@@ -129,14 +123,10 @@ static inline float lerpf(float a, float b, float t)
 
 - (void)radarSystem
 {
- 
-    CMDeviceMotion *currentDeviceMotion = motionManager.deviceMotion;
-    CMAttitude *currentAttitude = currentDeviceMotion.attitude;
-    
 
 
-//////////////////////Using the CMDeviceMotion's yaw///////////////////////
-    yaw = (float)(CC_RADIANS_TO_DEGREES(currentAttitude.yaw));
+//////////////////////Using the CMDeviceMotion's yaw//////////////////////////////////////////////////
+
 
     
     float differentYaw;
@@ -187,7 +177,7 @@ static inline float lerpf(float a, float b, float t)
 
 - (void) dealloc
 {    
-    [motionManager release];
+
     [redSpot release];
 
     

@@ -100,6 +100,8 @@
     [self addChild:radar z:4];
     
     
+    
+    
 }
 
 -(void)addScoreLabel
@@ -114,6 +116,8 @@
     [self addChild:scoreLabel z:4];
     
     [self schedule:@selector(ScoreUpdate) interval:0.1];
+    
+    
     
     
 }
@@ -161,23 +165,6 @@
 -(void)removeSpriteAndAddCatchemSpritesBegin:(CCNode *)n
 {
 
-    
-    catchableCount = 0;
-    
-    
-    
-    for(int i = 0; i < [[DesignValues sharedDesignValues] getFloaterCombined]; i++) {
-        Catchable *catchable = [self addCombinedCatchable:i];
-        [[DesignValues sharedDesignValues].catchableSprites  addObject:catchable];
-        catchableCount += 1;
-        
-        [catchable addRedSpot];
-        [self addChild:catchable.redSpot z:4];
-        
-    }
-    
-    
-    enableTouch = YES;
 
 }
 
@@ -290,56 +277,14 @@
 
 }
 
+-(Catchable *)addParticleCatchable:(int)shipTag
+{
+
+
+}
+
 -(Catchable *)addCombinedCatchable:(int)shipTag{
-    
-    Catchable *catchable;
-    
-    int picChoose = (int)(CCRANDOM_0_1()*10);
-    
-    
-    float x;
-    float y;
-    float randomX;
-    float randomY;
-    x = 0;
-    y = 0;
-    
-    catchable = [CombineMovement spriteWithFile:[NSString stringWithFormat:@"catchable_00%d.png",picChoose]];
-    CombinedCatchemCount += catchable.CombineMoveCount;
-    
-    randomX = CCRANDOM_MINUS1_1()*MaximumYaw;
-    randomY = -CCRANDOM_0_1()*100;
-    
-    if (yaw <= -0.0 && yaw >= -180.0) {
-        yaw = yaw +360.0;
-    }
 
-    
-    x = randomX + yaw;
-
-    
-    while ( randomY > -10 && randomY < -150 ) {
-        randomY = -CCRANDOM_0_1()*100;
-    }
-    
-    y = randomY;
-    
-    
-//    catchable.yawPosition = x;   
-//    catchable.rollPosition = y;
-    CGPoint positionPoint = ccp(x, y);
-    [catchable setInitialPosition:positionPoint];
-    
-    // Set the position of the space ship off the screen
-    // we will update it in another method
-    [catchable setPosition:ccp(5000, 5000)];
-    
-    catchable.visible = true;
-    
-    
-    [self addChild:catchable z:3 tag:shipTag];
-    
-    return catchable;
 }
 
 
@@ -443,6 +388,7 @@
 {
 
 }
+
 
 -(void)checkCatchablePositionX:(Catchable *)catchable withYaw:(float)yawPosition {
     // Convert the yaw value to a value in the range of 0 to 360

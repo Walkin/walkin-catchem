@@ -105,6 +105,7 @@ static CGGradientRef TableBackgroundGradient(void)
 //
 // Draw the view.
 //
+
 - (void)drawRect:(CGRect)rect
 {
 	if (self.opaque)
