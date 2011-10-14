@@ -53,7 +53,6 @@ static inline float lerpf(float a, float b, float t)
 }
 
 
-
 -(void)update:(ccTime)delta {
     
     // NSLog(@"The value of EnableCatchTimer is %f", self.EnableCatchTimer);
@@ -79,7 +78,7 @@ static inline float lerpf(float a, float b, float t)
         
     }
     
-    [self updatePosition:delta/4];
+    [self updatePosition:delta/2];
     [self checkTime:delta];
 
 //////////////////Control the scale size of catchable instantly///////////////////

@@ -183,7 +183,7 @@ static DesignValues *sharedDesignValues = nil;
     [temp release];
     [orderedKeys release];
     [orderedValues release];
-    [catchableSprites release];
+
     
     
 	[super dealloc];
