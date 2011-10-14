@@ -165,6 +165,22 @@
 -(void)removeSpriteAndAddCatchemSpritesBegin:(CCNode *)n
 {
 
+    catchableCount = 0;
+    
+    
+    
+    for(int i = 0; i < [[DesignValues sharedDesignValues] getFloaterCombined]; i++) {
+        Catchable *catchable = [self addCombinedCatchable:i];
+        [[DesignValues sharedDesignValues].catchableSprites  addObject:catchable];
+        catchableCount += 1;
+        
+        [catchable addRedSpot];
+        [self addChild:catchable.redSpot z:4];
+        
+    }
+    
+    
+    enableTouch = YES;
 
 }
 
