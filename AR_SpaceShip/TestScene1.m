@@ -290,7 +290,7 @@
 ///////////////////////////Make catchable Wave itself/////////////////////// 
     
 
-  id wave3D = [CCWaves3D actionWithWaves:18 amplitude:15 grid:ccg(15,10) duration:10];
+  id wave3D = [CCWaves3D actionWithWaves:10 amplitude:15 grid:ccg(15,10) duration:20];
 
  //   id waves = [CCWaves actionWithWaves:3 amplitude:20 horizontal:YES vertical:YES grid:ccg(15,10) duration:5];
     [catchable runAction: [CCRepeatForever actionWithAction: wave3D]];
@@ -386,7 +386,7 @@
                 particle.autoRemoveOnFinish = YES;
 
                 
-                //////////////////////////Set the catchable randomly to another position of the range///////////////////////
+//////////////////////////Set the catchable randomly to another position of the range///////////////////////
                 
                 
                 float randomY = -CCRANDOM_0_1()*100;
@@ -409,10 +409,11 @@
                     
                 }
                 
-                
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
                 playTouchSound = YES;
                 score++;
+                
+//////////////////////////////////////////////Play Sound//////////////////////////////////////////////////////
+                
                 
                 [[SimpleAudioEngine sharedEngine] playEffect:@"getCatchable.wav"];
             }
@@ -420,7 +421,7 @@
         }
         
         
-//////////////////////////////////////////When you clean up the Catchable,You Win!/////////////////////////////////
+//////////////////////////////////////////When your score reach some number ,You Win!/////////////////////////////////
         if (score >= 20 && pauseGame == YES) {
             if(enableTouch)
             {
