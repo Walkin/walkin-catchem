@@ -134,11 +134,9 @@
     leftJoy.backgroundSprite = [ColoredCircleSprite circleWithColor:ccc4(255, 255, 255, 128) radius:64];
     leftJoy.thumbSprite = [ColoredCircleSprite circleWithColor:ccc4(255, 255, 255, 255) radius:32];
     leftJoy.joystick = [[SneakyJoystick alloc] initWithRect:CGRectMake(0,0,128,128)];
- 
+    joystick = [leftJoy.joystick retain];
     
     [self addChild:leftJoy z:6];
-    
-    [leftJoy.joystick release];
     
     [self schedule:@selector(tick:) interval:1.0f/120.0f];
 }
