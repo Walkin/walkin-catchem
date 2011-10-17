@@ -3,7 +3,7 @@
 //  FunnyShake
 //
 //  Created by Oliver on 3/14/11.
-//  Copyright 2011 iTeam . All rights reserved.
+//  Copyright 2011 Walkin . All rights reserved.
 
 
 #import "TestScene3.h"
@@ -174,9 +174,8 @@
         [self checkCatchablePositionY:catchable withRoll:roll];
         
         
-//       NSLog(@"Yaw: %f, Roll: %f ", catchable.position.x, catchable.position.y);
-//        
-//        catchable.position = CGPointMake(catchable.position.x, catchable.position.y);
+////////////////////////sign the yaw value from CMMotionManager to catchable's yaw///////////////////////        
+        catchable.yaw = yaw;
         
         [catchable radarSystem];
     }
@@ -430,152 +429,6 @@
     }
     
 
-}
-
-
-
-#pragma mark Accelerometer Input
-
-- (void)accelerometer:(UIAccelerometer*)accelerometer didAccelerate:(UIAcceleration*)acceleration
-{	
-	
-	
-	const float violence = 1.8;
-	static BOOL beenhere;
-	BOOL shake = FALSE;
-    
-    
-	if (beenhere) return;
-	beenhere = TRUE;
-    
-    CGPoint location = CGPointMake(240,160);
-    
-    for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
-        
-        // Check to see if yaw position is in range
-        BOOL wasTouched = [self circle:location withRadius:50 collisionWithCircle:catchable.position collisionCircleRadius:50];
-        
-        if(wasTouched)
-        {
-            catchable.EnableCatchTimer = [[DesignValues sharedDesignValues]getEnableCatchTimer];
-            //  NSLog(@"I am in the scope!");
-        }
-        
-    }
-    
-//	if (acceleration.x > violence * 0.6 || acceleration.x < (-1.5* violence))
-//	{
-//		
-//		shake = TRUE;
-//        //  NSLog(@"You are shaking in the x axis");  
-//        
-//		
-//	}
-    
-	if (acceleration.y > violence * 0.25 || acceleration.y < (-1.5 * violence))
-	{
-		shake = TRUE;
-        //  NSLog(@"You are shaking in the y axis");
-        
-	}
-	
-	if (acceleration.x > violence * 0.3 || acceleration.x < (-1.5* violence) || acceleration.z > violence * 0.5 || acceleration.z < (-1.5 * violence))
-	{
-		shake = TRUE;
-        //	NSLog(@"You are shaking in the z axis");
-        
-        
-        if (catchableCount != 0) {
-            if (playTouchSound && pauseGame) {
-                
-                [[SimpleAudioEngine sharedEngine] playEffect:@"catch.wav"];
-            }
-        }
-        
-        
-        for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
-            
-            
-            if (catchable.EnableCatch && catchable.wasTouched) {
-                
-                CCParticleSystemQuad *particle = [CCParticleSystemQuad particleWithFile:@"heartBeating.plist"];
-                particle.position = ccp(240,160);
-                [self addChild:particle z:20];
-                particle.life = 1.5;
-                particle.autoRemoveOnFinish = YES;
-                
-                
-                //////////////////////////Set the catchable randomly to another position of the range///////////////////////
-                
-                
-                float randomY = -CCRANDOM_0_1()*100;
-                
-                
-                while ( randomY > -10 && randomY < -150 ) {
-                    randomY = -CCRANDOM_0_1()*100;
-                }
-                
-                if (yaw >= catchable.Xorg) {
-                    catchable.Xdest = catchable.Xorg - catchable.MaximumYaw;
-                    catchable.Ydest = randomY;
-                    
-                }
-                
-                if (yaw < catchable.Xorg) {
-                    
-                    catchable.Xdest = catchable.Xorg + catchable.MaximumYaw;
-                    catchable.Ydest = randomY;
-                    
-                }
-                
-                
-                ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-                playTouchSound = YES;
-                score++;
-                
-                [[SimpleAudioEngine sharedEngine] playEffect:@"getCatchable.wav"];
-            }
-            
-        }
-        
-        
-        //////////////////////////////////////////When you clean up the Catchable,You Win!/////////////////////////////////
-        if (score >= 20 && pauseGame == YES) {
-            if(enableTouch)
-            {
-                // Show end game
-                CGSize winSize = [CCDirector sharedDirector].winSize;
-                CCLabelBMFont *winLabel = [CCLabelBMFont labelWithString:@"You win!" fntFile:@"Arial.fnt"];
-                winLabel.scale = 2.0;
-                winLabel.position = ccp(winSize.width/2, winSize.height/2);
-                [self addChild:winLabel z:4];
-                [mnuBack setVisible:YES];
-                pauseGame = NO;
-                
-                
-                for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
-                    catchable.wasTouched = NO;
-                }
-            }   
-        }
-
-        
-	}
-	
-	beenhere = FALSE;
-	
-}
-
-- (BOOL) AccelerationIsShakingLast:(UIAcceleration *)last current:(UIAcceleration *)current threshold:(double)threshold {
-    double
-    deltaX = fabs(last.x - current.x),
-    deltaY = fabs(last.y - current.y),
-    deltaZ = fabs(last.z - current.z);
-	
-    return
-    (deltaX > threshold && deltaY > threshold) ||
-    (deltaX > threshold && deltaZ > threshold) ||
-    (deltaY > threshold && deltaZ > threshold);
 }
 
 

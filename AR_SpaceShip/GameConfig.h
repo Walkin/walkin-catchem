@@ -3,7 +3,7 @@
 //  AR_SpaceShip
 //
 //  Created by Zelin Ou on 8/8/11.
-//  Copyright iTeam 2011. All rights reserved.
+//  Copyright Walkin 2011. All rights reserved.
 //
 
 #ifndef __GAME_CONFIG_H

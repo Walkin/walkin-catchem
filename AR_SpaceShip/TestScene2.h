@@ -3,7 +3,7 @@
 //  FunnyShake
 //
 //  Created by Oliver on 3/14/11.
-//  Copyright 2011 iTeam . All rights reserved.
+//  Copyright 2011 Walkin . All rights reserved.
 //
 
 #import "TestScene.h"

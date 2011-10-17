@@ -3,7 +3,7 @@
 //  AR
 //
 //  Created by Zelin Ou on 7/14/11.
-//  Copyright iTeam 2011. All rights reserved.
+//  Copyright Walkin 2011. All rights reserved.
 //
 
 //

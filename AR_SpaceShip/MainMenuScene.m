@@ -1,5 +1,5 @@
 //  Created by Oliver on 3/14/11.
-//  Copyright 2011 iTeam . All rights reserved.
+//  Copyright 2011 Walkin . All rights reserved.
 //
 #import "MainMenuScene.h"
 #import "TestScene.h"
@@ -120,6 +120,7 @@
     tableView1.navigationItem.leftBarButtonItem = backButton;
     
     tableDelegate = [CCDirector sharedDirector].openGLView.window.rootViewController;
+    
     [tableDelegate presentModalViewController:nav animated:YES];
     
     

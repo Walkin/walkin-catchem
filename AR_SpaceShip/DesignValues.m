@@ -3,7 +3,7 @@
 //  AR_SpaceShip
 //
 //  Created by Zelin Ou on 8/26/11.
-//  Copyright (c) 2011 iTeam. All rights reserved.
+//  Copyright (c) 2011 Walkin. All rights reserved.
 //
 
 #import "DesignValues.h"

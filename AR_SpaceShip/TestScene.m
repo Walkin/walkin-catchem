@@ -3,7 +3,7 @@
 //  AR_SpaceShip
 //
 //  Created by Zelin Ou on 8/11/11.
-//  Copyright 2011 iTeam. All rights reserved.
+//  Copyright 2011 Walkin. All rights reserved.
 //
 
 #import "TestScene.h"
@@ -596,99 +596,6 @@
     
 }
 
-
-//
-//
-//-(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-//    CGPoint location = CGPointMake(240,160);
-//    
-//    if (catchableCount != 0) {
-//        if (playTouchSound && pauseGame) {
-//            
-//            [[SimpleAudioEngine sharedEngine] playEffect:@"catch.wav"];
-//        }
-//    }
-//    
-//
-//    
-//    for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
-//        
-//        // Check to see if yaw position is in range
-//        BOOL wasTouched = [self circle:location withRadius:50 collisionWithCircle:catchable.position collisionCircleRadius:50];
-//        
-//        if (catchable.wasTouched && wasTouched) {
-//            
-//            CCParticleSystemQuad *particle = [CCParticleSystemQuad particleWithFile:@"Explosion.plist"];
-//            particle.position = ccp(240,160);
-//            [self addChild:particle z:20];
-//            particle.autoRemoveOnFinish = YES;
-//            
-//            //            catchable.wasTouched = NO;
-//            //            catchable.visible = false;
-//            //            catchable.redSpot.visible = false;
-//            //            catchableCount -= 1;
-//            
-////////////////////////////Set the catchable randomly to another position of the range///////////////////////
-//            
-//
-//            float randomY = -CCRANDOM_0_1()*100;
-//            
-//            
-//            while ( randomY > -10 && randomY < -150 ) {
-//                randomY = -CCRANDOM_0_1()*100;
-//            }
-//            
-//            if (yaw >= catchable.Xorg) {
-//              catchable.Xdest = catchable.Xorg - catchable.MaximumYaw;
-//                catchable.Ydest = randomY;
-//
-//            }
-//            
-//            if (yaw < catchable.Xorg) {
-//                
-//                catchable.Xdest = catchable.Xorg + catchable.MaximumYaw;
-//                catchable.Ydest = randomY;
-//
-//            }
-//            
-//
-//            
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//            playTouchSound = YES;
-//            score++;
-//            
-//            [[SimpleAudioEngine sharedEngine] playEffect:@"getCatchable.wav"];
-//        }
-//        
-//    }
-//    
-//       
-//    //////////////////////////////////////////When you clean up the Catchable,You Win!/////////////////////////////////
-//    if (score >= 20 && pauseGame == YES) {
-//        if(enableTouch)
-//        {
-//            // Show end game
-//            CGSize winSize = [CCDirector sharedDirector].winSize;
-//            CCLabelBMFont *winLabel = [CCLabelBMFont labelWithString:@"You win!" fntFile:@"Arial.fnt"];
-//            winLabel.scale = 2.0;
-//            winLabel.position = ccp(winSize.width/2, winSize.height/2);
-//            [self addChild:winLabel z:4];
-//            [mnuBack setVisible:YES];
-//            pauseGame = NO;
-//            
-//
-//            
-//            for (Catchable *catchable in [DesignValues sharedDesignValues].catchableSprites ) {
-//                catchable.wasTouched = NO;
-//            }
-//            
-//
-//            
-//            
-//        }   
-//        
-//    }
-//}
 
 -(void) GoToPauseLayer
 {

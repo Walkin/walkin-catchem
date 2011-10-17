@@ -3,7 +3,7 @@
 //  FunnyShake
 //
 //  Created by Oliver on 3/14/11.
-//  Copyright 2011 iTeam . All rights reserved.
+//  Copyright 2011 Walkin . All rights reserved.
 //
 
 #import "TestScene1.h"
@@ -56,7 +56,7 @@
 
         self.isAccelerometerEnabled = YES;
         
-/////////////////////////////Create the pause layer//////////////////////////////
+/////////////////////////////Create the pause layer////////////////////////////////////////////////////
         p = [[[PauseLayer alloc]init]autorelease];
         [self addChild:p z:10];
         p.visible = NO;
@@ -84,7 +84,7 @@
         
         [self addRadar];
         
-        ///////////////////////////Show Ready,Set,Go before start playing game/////////////////////////
+///////////////////////////////////Show Ready,Set,Go before start playing game/////////////////////////
         
         [self scheduleUpdate];
         
@@ -287,12 +287,11 @@
     
     [self addChild:catchable z:3 tag:shipTag];
     
-///////////////////////////Make catchable Wave itself/////////////////////// 
+///////////////////////////Make catchable Wave itself///////////////////////////////////////////////////////////
     
 
   id wave3D = [CCWaves3D actionWithWaves:10 amplitude:15 grid:ccg(15,10) duration:20];
-
- //   id waves = [CCWaves actionWithWaves:3 amplitude:20 horizontal:YES vertical:YES grid:ccg(15,10) duration:5];
+    
     [catchable runAction: [CCRepeatForever actionWithAction: wave3D]];
     
     return catchable;

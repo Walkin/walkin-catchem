@@ -3,7 +3,7 @@
 //  AR_SpaceShip
 //
 //  Created by Oliver Ou on 11-10-13.
-//  Copyright (c) 2011年 iTeam. All rights reserved.
+//  Copyright (c) 2011年 Walkin. All rights reserved.
 //
 
 

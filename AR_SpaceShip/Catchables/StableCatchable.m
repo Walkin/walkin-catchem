@@ -3,7 +3,7 @@
 //  AR_SpaceShip
 //
 //  Created by Oliver Ou on 11-9-21.
-//  Copyright 2011年 iTeam. All rights reserved.
+//  Copyright 2011年 Walkin. All rights reserved.
 //
 
 
@@ -205,8 +205,14 @@ static inline float lerpf(float a, float b, float t)
             
         case 2: 
             
-            Xdest = XInit;
-            Xorg = XInit;
+
+
+            if (yaw <= -0.0 && yaw >= -180.0) {
+                yaw = yaw +360.0;
+            }
+            
+            Xdest = CCRANDOM_MINUS1_1()* self.MaximumYaw + yaw;
+            Xorg = CCRANDOM_MINUS1_1()* self.MaximumYaw + yaw;
             
             break;
             
