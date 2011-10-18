@@ -53,7 +53,6 @@
 
 -(void)dataInitialize;
 
--(void)GoToPauseLayer;
 -(void)addMenuBackground;
 -(void)addAudio;
 -(void)presentQuestions;

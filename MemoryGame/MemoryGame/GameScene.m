@@ -59,12 +59,7 @@
 	if( (self=[super init] )) {
         
         [[CCDirector sharedDirector]setDeviceOrientation:CCDeviceOrientationPortrait];
-        
-//        /////////////////////////////Create the pause layer//////////////////////////////
-//        p = [[[PauseLayer alloc]init]autorelease];
-//        [self addChild:p z:10];
-//        p.visible = NO;
-//        [p.mnuBackToMenu setIsEnabled:NO];
+
         
         [self dataInitialize];
         
@@ -81,9 +76,6 @@
 		[[CCDirector sharedDirector] setDisplayFPS:NO];
 
         [self addAudio];
-
-
-
         
 	}
 	return self;
@@ -106,6 +98,7 @@
     for (int i = 0; i<[self.pointArray count];i++) {
         int randomNum = random() % [self.pointArray count];
         [self.pointArray exchangeObjectAtIndex:firstObject withObjectAtIndex:randomNum];
+       
         firstObject +=1;
 		
     }
@@ -181,7 +174,6 @@
         [[brandArray objectAtIndex:i] setTexture:[[CCTextureCache sharedTextureCache] addImage:image]];
         
     }
-
 
 }
 
@@ -357,11 +349,6 @@
 }
 
 
--(void)GoToPauseLayer
-{
-
-}
-
 
 -(void)addAudio
 {
@@ -371,7 +358,7 @@
 
 - (void) dealloc
 {
-    
+    [brandArray release];
 	[super dealloc];
 }
 
