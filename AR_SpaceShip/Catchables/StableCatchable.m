@@ -43,15 +43,13 @@ static inline float lerpf(float a, float b, float t)
         
         [self pauseCatchablesWithBool:YES];
         
-
-        
     }
     
     return self;
 }
 
 
-
+////////////////////////////////Position the Objects to Front and unschedule the update method to pause ////////////////////////
 
 -(void)moveCatchableToFront
 {
@@ -239,7 +237,7 @@ static inline float lerpf(float a, float b, float t)
         self.rollPosition = lerpf(Yorg, Ydest, ratio);
         self.scale = lerpf(Zorg, Zdest, ratio);
     }
-    
+
     else{
         self.yawPosition = Xdest;
         self.rollPosition = Ydest;

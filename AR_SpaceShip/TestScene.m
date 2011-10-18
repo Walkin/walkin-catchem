@@ -446,11 +446,12 @@
 {
     float PositionInY360 = rollPosition;
     
-    ///////////////////////////Pause the game when user move the device too high or too slow///////////////////    
+/////////////////////// Pause the game when user move the device too high or too slow////////////////////////////////////////
+/////////////////////// for example, out of the range between -150 to -10 ///////////////////////////////////////////////////
+    
     if (PositionInY360 >= -10 || PositionInY360 <= -150) {
         
-   //     [self GoToPauseLayer];
-       // NSLog(@"I am in the pause scene now!");
+
         [self schedule:@selector(GoToPauseLayer) interval:2.0];
         
     }else

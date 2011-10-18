@@ -55,10 +55,7 @@ static inline float lerpf(float a, float b, float t)
 
 -(void)update:(ccTime)delta {
     
-
-    
-    
-    ///////////////When using the accelerometer////////////////////////////////////////
+///////////////When using the accelerometer////////////////////////////////////////
     
     //    NSLog(@"The ratio is %f, progressTimer is %f, timer is %f",self.ratio,self.progressTimer,self.timer);
     
@@ -73,6 +70,7 @@ static inline float lerpf(float a, float b, float t)
         
     }
     
+/////////////////////////////////Slow down catchable's movement by decrease delta when call updatePosition method///////////////////     
     [self updatePosition:delta/2];
     [self checkTime:delta];
     

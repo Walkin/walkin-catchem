@@ -344,14 +344,7 @@
         }
     
     }
-    
-//	if (acceleration.x > violence * 0.6 || acceleration.x < (-1.5* violence))
-//	{
-//		
-//		shake = TRUE;
-//      //  NSLog(@"You are shaking in the x axis");  
-//		
-//	}
+
     
 	if (acceleration.y > violence * 0.6 || acceleration.y < (-1.5 * violence))
 	{

@@ -81,6 +81,9 @@ static inline float lerpf(float a, float b, float t)
 
 }
 
+-(void)resetRandomMovement
+{}
+
 
 -(void) setInitialPosition:(CGPoint)incPosition{
     self.Xdest = incPosition.x;
@@ -90,7 +93,7 @@ static inline float lerpf(float a, float b, float t)
 }
 
 
--(void)moveSelf:(ccTime)delta{}
+
 -(void)checkTime:(ccTime)delta{}
 
 ////////////////////////////////////////////////Radar System///////////////////////////////////////////////

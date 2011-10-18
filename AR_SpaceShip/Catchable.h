@@ -76,15 +76,14 @@
 
 - (void)updatePosition:(ccTime)delta;
 - (void)updateScale:(ccTime)delta;
--(void)moveSelf:(ccTime)delta;
+-(void)resetRandomMovement;
 ///////////////////////////////////////Radar System///////////////////////////////////////////////////
 -(void)addRedSpot;
 - (void)radarSystem;
 -(float)circleRadius;
 - (CGPoint) RotateAroundPt:(CGPoint) centerPt withAngle:(float) radAngle withRadius:(float) radius;
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)setInitialPosition:(CGPoint)postion;
--(void)moveSelf:(ccTime)delta;
 -(void)checkTime:(ccTime)delta;
 -(void)pauseCatchablesWithBool:(BOOL)pause;
 -(void)moveCatchableToFront;

@@ -18,7 +18,6 @@
     
 }
 
--(void)resetRandomMovement;
 
 @property (readwrite) float speed;
 @property (readwrite) float timer;

@@ -77,8 +77,8 @@ static inline float lerpf(float a, float b, float t)
         self.EnableCatch = NO;
         
     }
-    
-    [self updatePosition:delta/2];
+/////////////////////////////////Slow down catchable's movement by decrease delta when call updatePosition method/////////////////// 
+    [self updatePosition:delta/3];
     [self checkTime:delta];
 
 //////////////////Control the scale size of catchable instantly///////////////////
@@ -174,12 +174,11 @@ static inline float lerpf(float a, float b, float t)
             break;
 	}
     
-    
     switch ([self yawPositionWithinBounds:Xdest])
     
 	{
             
-//////////////////////When the catchable is in the range, update it's Xdest//////////////////            
+//////////////////////When the catchable is in the range, update it's Xdest//////////////////////////////            
         case 1:
             
             Xdest = CCRANDOM_MINUS1_1()*10 + self.yawPosition;
