@@ -262,16 +262,12 @@
     [self unschedule:@selector(TakePictures)];
     
     
-//    CGImageRef screen = UIGetScreenImage();
-//    
-//    UIImage *sourceImage = [UIImage imageWithCGImage:screen];
-
+    CGImageRef screen = UIGetScreenImage();
     
+    UIImage *sourceImage = [UIImage imageWithCGImage:screen];
 
-    UIImage *sourceImage = [[CCDirector sharedDirector]screenshotUIImage];
+//    UIImage *sourceImage = [[CCDirector sharedDirector]screenshotUIImage];
 
-
-    
     NSData *data = UIImagePNGRepresentation(sourceImage);
     UIImage *tmp = [UIImage imageWithData:data];
     UIImage *fixed = [UIImage imageWithCGImage:tmp.CGImage
@@ -280,7 +276,7 @@
     
     UIImageWriteToSavedPhotosAlbum(fixed, self, nil, nil);
     
-//    CGImageRelease(screen);
+    CGImageRelease(screen);
     
     [[SimpleAudioEngine sharedEngine] playEffect:@"takePicture.mp3"];
 
@@ -288,7 +284,6 @@
     [self schedule:@selector(ShowItemsAfterCapture) ];
 
 }
-
 
 
 -(void)ShowItemsAfterCapture

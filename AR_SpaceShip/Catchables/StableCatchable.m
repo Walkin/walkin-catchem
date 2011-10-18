@@ -216,7 +216,6 @@ static inline float lerpf(float a, float b, float t)
             
             break;
             
-            
         default:
             break;
 	}
