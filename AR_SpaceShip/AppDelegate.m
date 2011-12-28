@@ -15,6 +15,9 @@
 #import "TestScene1.h"
 #import "Tag.h"
 
+
+#import "PuzzleScene.h"
+
 @implementation AppDelegate
 
 @synthesize window;
@@ -137,7 +140,7 @@
     }
     @finally {
         if(uip) {
-            [overlay addSubview:[uip view]];
+            //[overlay addSubview:[uip view]];
             [overlay release];
         }
     }
@@ -157,7 +160,12 @@
 	
 	// Run the intro Scene
 
-    [[CCDirector sharedDirector] runWithScene: [MainMenuScene node]];
+//    [[CCDirector sharedDirector] runWithScene: [MainMenuScene node]];
+    
+    
+    //add by Eric 12 23 16:00
+    
+    [[CCDirector sharedDirector] runWithScene: [PuzzleScene scene]];
 }
 
 

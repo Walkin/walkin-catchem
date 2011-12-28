@@ -181,6 +181,14 @@
 		78DCDD8513EF875F00C76853 /* Sprites.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 78DCDD8313EF875F00C76853 /* Sprites.pvr.ccz */; };
 		78DCDD9913EF8A2E00C76853 /* CCNode+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DCDD9613EF8A2E00C76853 /* CCNode+Ext.m */; };
 		78DCDD9A13EF8A2E00C76853 /* CCSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DCDD9813EF8A2E00C76853 /* CCSlider.m */; };
+		BF4DD64314A969FE00563672 /* PuzzleSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4DD64214A969FE00563672 /* PuzzleSprite.m */; };
+		BF70698F14A467850058A57A /* PuzzleScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BF70698E14A467850058A57A /* PuzzleScene.m */; };
+		BF70699114A48FA70058A57A /* pic_demo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BF70699014A48FA70058A57A /* pic_demo.jpg */; };
+		BF82DFA814AABD3500980DDB /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = BF82DFA714AABD3500980DDB /* config.json */; };
+		BFF7A75114A85FCB0093E947 /* left_bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = BFF7A74D14A85FCB0093E947 /* left_bottom.png */; };
+		BFF7A75214A85FCB0093E947 /* left_top.png in Resources */ = {isa = PBXBuildFile; fileRef = BFF7A74E14A85FCB0093E947 /* left_top.png */; };
+		BFF7A75314A85FCB0093E947 /* right_bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = BFF7A74F14A85FCB0093E947 /* right_bottom.png */; };
+		BFF7A75414A85FCB0093E947 /* right_top.png in Resources */ = {isa = PBXBuildFile; fileRef = BFF7A75014A85FCB0093E947 /* right_top.png */; };
 		DAD24FB013F25687005F2B3A /* SavingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD24FAD13F25687005F2B3A /* SavingPageViewController.m */; };
 		DAD24FB113F25687005F2B3A /* JSONDesginerTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD24FAF13F25687005F2B3A /* JSONDesginerTextFieldCell.m */; };
 		DAD24FC113F25718005F2B3A /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD24FB613F25717005F2B3A /* NSObject+SBJSON.m */; };
@@ -552,6 +560,17 @@
 		78DCDD9613EF8A2E00C76853 /* CCNode+Ext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCNode+Ext.m"; sourceTree = "<group>"; };
 		78DCDD9713EF8A2E00C76853 /* CCSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSlider.h; sourceTree = "<group>"; };
 		78DCDD9813EF8A2E00C76853 /* CCSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCSlider.m; sourceTree = "<group>"; };
+		BF4DD64114A969FE00563672 /* PuzzleSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzleSprite.h; sourceTree = "<group>"; };
+		BF4DD64214A969FE00563672 /* PuzzleSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzleSprite.m; sourceTree = "<group>"; };
+		BF4DD64514A96C8000563672 /* SpriteTouchInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteTouchInterface.h; sourceTree = "<group>"; };
+		BF70698D14A467850058A57A /* PuzzleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzleScene.h; sourceTree = "<group>"; };
+		BF70698E14A467850058A57A /* PuzzleScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzleScene.m; sourceTree = "<group>"; };
+		BF70699014A48FA70058A57A /* pic_demo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pic_demo.jpg; sourceTree = "<group>"; };
+		BF82DFA714AABD3500980DDB /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
+		BFF7A74D14A85FCB0093E947 /* left_bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left_bottom.png; sourceTree = "<group>"; };
+		BFF7A74E14A85FCB0093E947 /* left_top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left_top.png; sourceTree = "<group>"; };
+		BFF7A74F14A85FCB0093E947 /* right_bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right_bottom.png; sourceTree = "<group>"; };
+		BFF7A75014A85FCB0093E947 /* right_top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right_top.png; sourceTree = "<group>"; };
 		DAD24FAC13F25687005F2B3A /* SavingPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavingPageViewController.h; sourceTree = "<group>"; };
 		DAD24FAD13F25687005F2B3A /* SavingPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavingPageViewController.m; sourceTree = "<group>"; };
 		DAD24FAE13F25687005F2B3A /* JSONDesginerTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONDesginerTextFieldCell.h; sourceTree = "<group>"; };
@@ -711,6 +730,7 @@
 		78DCDBB013EF86C400C76853 /* AR_SpaceShip */ = {
 			isa = PBXGroup;
 			children = (
+				BF70698C14A4673E0058A57A /* Puzzle */,
 				F396C23E1445871F009AC065 /* Catchables class */,
 				F396C23D144586D0009AC065 /* Singleton */,
 				F396C23C1445868D009AC065 /* Scenes&Layers */,
@@ -738,6 +758,9 @@
 		78DCDBB113EF86C400C76853 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BF82DFA714AABD3500980DDB /* config.json */,
+				BFF7A74B14A85F9D0093E947 /* Puzzle */,
+				BF70699014A48FA70058A57A /* pic_demo.jpg */,
 				F3807622144687AA00285650 /* particle effects */,
 				F396C24014458787009AC065 /* items */,
 				F396C23F14458757009AC065 /* background */,
@@ -1151,6 +1174,29 @@
 			name = TestScenes;
 			sourceTree = "<group>";
 		};
+		BF70698C14A4673E0058A57A /* Puzzle */ = {
+			isa = PBXGroup;
+			children = (
+				BF70698D14A467850058A57A /* PuzzleScene.h */,
+				BF70698E14A467850058A57A /* PuzzleScene.m */,
+				BF4DD64114A969FE00563672 /* PuzzleSprite.h */,
+				BF4DD64214A969FE00563672 /* PuzzleSprite.m */,
+				BF4DD64514A96C8000563672 /* SpriteTouchInterface.h */,
+			);
+			name = Puzzle;
+			sourceTree = "<group>";
+		};
+		BFF7A74B14A85F9D0093E947 /* Puzzle */ = {
+			isa = PBXGroup;
+			children = (
+				BFF7A74D14A85FCB0093E947 /* left_bottom.png */,
+				BFF7A74E14A85FCB0093E947 /* left_top.png */,
+				BFF7A74F14A85FCB0093E947 /* right_bottom.png */,
+				BFF7A75014A85FCB0093E947 /* right_top.png */,
+			);
+			name = Puzzle;
+			sourceTree = "<group>";
+		};
 		F3807622144687AA00285650 /* particle effects */ = {
 			isa = PBXGroup;
 			children = (
@@ -1439,6 +1485,12 @@
 				F3B34D3914359DF900C05D28 /* match.png in Resources */,
 				F3807629144687C300285650 /* heart-small-red.png in Resources */,
 				F380768214469F9B00285650 /* stars-grayscale.png in Resources */,
+				BF70699114A48FA70058A57A /* pic_demo.jpg in Resources */,
+				BFF7A75114A85FCB0093E947 /* left_bottom.png in Resources */,
+				BFF7A75214A85FCB0093E947 /* left_top.png in Resources */,
+				BFF7A75314A85FCB0093E947 /* right_bottom.png in Resources */,
+				BFF7A75414A85FCB0093E947 /* right_top.png in Resources */,
+				BF82DFA814AABD3500980DDB /* config.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1584,6 +1636,8 @@
 				F383B66814305C9900E7593C /* ColoredCircleSprite.m in Sources */,
 				F38076301446936800285650 /* ParticleCatchable.m in Sources */,
 				F380768A1446E1A400285650 /* ExplosionParticle.m in Sources */,
+				BF70698F14A467850058A57A /* PuzzleScene.m in Sources */,
+				BF4DD64314A969FE00563672 /* PuzzleSprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1635,6 +1689,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jonathan Wu (WQ9B49N5EJ)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1646,6 +1701,7 @@
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BD6D0502-59DD-43D3-A2A8-8F03CFF63830";
 				SDKROOT = iphoneos5.0;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1656,6 +1712,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jonathan Wu (WQ9B49N5EJ)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = AR_SpaceShip/Prefix.pch;
@@ -1666,6 +1723,7 @@
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BD6D0502-59DD-43D3-A2A8-8F03CFF63830";
 				SDKROOT = iphoneos5.0;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
