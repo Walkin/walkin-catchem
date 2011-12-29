@@ -33,73 +33,116 @@
         
         allowTouch = YES;
         
+        widthPics = 3;
         
-        NSString* dbpath = [[NSBundle mainBundle] pathForResource:@"config" ofType:@"json"];
+        heightPics = 3;
         
-        NSString* jsonString = [NSString stringWithContentsOfFile:dbpath encoding:NSUTF8StringEncoding error:nil];
+//        NSURL *url = [NSURL URLWithString:@"http://png.52design.com/caisheico/pic/png_52design_caishe_18.png"];
+//        
+//        ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+//        
+//        [request setDelegate:self];
+//        
+//        [request startAsynchronous];
         
-        SBJsonParser* jsonParser = [[[SBJsonParser alloc] init] autorelease];
-        
-        NSDictionary *dic = [jsonParser objectWithString:jsonString];
-        
-        
-        widthPics = [[dic objectForKey:@"widthPics"] intValue];
-        heightPics = [[dic objectForKey:@"heightPics"] intValue];
-        NSString *imgPath = [dic objectForKey:@"imgPath"] ;// @"pic_demo.jpg";
-        
-        CCTexture2D *catch = [[CCTextureCache sharedTextureCache] addImage:imgPath];
-        imgs = [[ NSMutableArray  arrayWithCapacity:1] retain];
-        CGSize imgSize = [catch contentSize];
-        
-        float spWidth = imgSize.width/widthPics;
-        float spHeight = imgSize.height/heightPics;
-        
-        CGSize winSize = [[CCDirector sharedDirector] winSize];
-        
-        CGPoint center = ccp(winSize.width/2,winSize.height/2);
-        
-        
-        for (int i=0; i<widthPics; i++) {
-            
-            for (int j=0; j<heightPics; j++) {
-                
-                PuzzleSprite *sp = [[PuzzleSprite new] initPuzzleSprite:catch row:i col:j spWidth:spWidth spHeight:spHeight];
-                
-                sp.delegate = self;
-                
-                float tempWidth = center.x - ((widthPics/2)*spWidth);
-                
-                if (widthPics%2==0) {
-                    tempWidth = tempWidth + spWidth/2 ;
-                }
-                
-                float tempHeight = center.y + ((heightPics/2)*spHeight);
-                
-                if (heightPics%2==0) {
-                    tempHeight = tempHeight- spHeight/2;
-                }
-                
-                float posx = tempWidth + i*spWidth;
-                
-                float posy = tempHeight - j*spHeight;                
-                
-                sp.position = ccp(posx,posy);
-                
-                sp.origPos = ccp(posx,posy);
-                
-                [imgs addObject:sp];
-                
-                [self addChild:sp];
-                
-            }
-        }
-        
-        [self reArrageSp];
         
     }
     
     return self;
 }
+
+//
+//-(void)requestFinished:request{
+//    
+//    
+//    NSError *error = [request error];
+//    if (!error) {
+//        
+//        NSDictionary *hdic = [request responseHeaders];
+//        
+//        
+//        NSString *str = [hdic objectForKey:@"Content-Type"];
+//
+//        
+//        NSRange range = [str rangeOfString:@"image"];
+//        
+//        NSLog(@"%i",range.location);
+//        
+//        return;
+//        
+//        NSData *response = [request responseData];
+//        
+//        UIImage *img = [UIImage imageWithData:response];
+//        
+//        CGImageRef *ref = [img CGImage];
+//        
+//        CCTexture2D *text = [[CCTextureCache sharedTextureCache] addCGImage:ref forKey:@"myPic.png"];
+//        
+//        [self initPicture:text];
+//        
+//    }
+//    
+//}
+
+
+
+
+
+
+-(void)initPicture:(CCTexture2D *)catch {
+    
+    
+    imgs = [[ NSMutableArray  arrayWithCapacity:1] retain];
+    CGSize imgSize = [catch contentSize];
+    
+    float spWidth = imgSize.width/widthPics;
+    float spHeight = imgSize.height/heightPics;
+    
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    
+    CGPoint center = ccp(winSize.width/2,winSize.height/2);
+    
+    
+    for (int i=0; i<widthPics; i++) {
+        
+        for (int j=0; j<heightPics; j++) {
+            
+            PuzzleSprite *sp = [[PuzzleSprite new] initPuzzleSprite:catch row:i col:j spWidth:spWidth spHeight:spHeight];
+            
+            sp.delegate = self;
+            
+            float tempWidth = center.x - ((widthPics/2)*spWidth);
+            
+            if (widthPics%2==0) {
+                tempWidth = tempWidth + spWidth/2 ;
+            }
+            
+            float tempHeight = center.y + ((heightPics/2)*spHeight);
+            
+            if (heightPics%2==0) {
+                tempHeight = tempHeight- spHeight/2;
+            }
+            
+            float posx = tempWidth + i*spWidth;
+            
+            float posy = tempHeight - j*spHeight;                
+            
+            sp.position = ccp(posx,posy);
+            
+            sp.origPos = ccp(posx,posy);
+            
+            [imgs addObject:sp];
+            
+            [self addChild:sp];
+            
+        }
+    }
+    
+    [self reArrageSp];
+    
+}
+
+
 
 -(void)reArrageSp{
     
