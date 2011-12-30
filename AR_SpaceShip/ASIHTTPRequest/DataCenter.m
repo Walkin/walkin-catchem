@@ -13,13 +13,14 @@
 @implementation DataCenter
 
 @synthesize delegate;
+@synthesize queue;
 
 static DataCenter* dc;
 
 +(DataCenter *)sharedDatacenter{
     
     if (!dc) {
-        dc = [[DataCenter alloc] init];
+        dc = [[[DataCenter alloc] init] retain];
     }
     return dc;
 }
@@ -38,18 +39,55 @@ static DataCenter* dc;
     
     url = [NSURL URLWithString:[dic objectForKey:@"url"]];
     
-    request = [ASIHTTPRequest requestWithURL:url];
-    
-    [request setDelegate:self];
-    
     return self;
 }
 
--(void)sendToHost{
-    [request startAsynchronous];
+//-(void)sendToHost{
+//    [request startAsynchronous];
+//}
+
+-(void)requestServer:(NSString *) action dic:(NSDictionary *)dic{
+    
+    NSArray *keys;
+    int i, count;
+    id key, value;
+    
+    keys = [dic allKeys];
+    count = [keys count];
+    
+    NSString *param =[NSString stringWithFormat:@"%@?action=%@",url,action];
+    
+    for (i = 0; i < count; i++)
+    {
+        key = [keys objectAtIndex: i];
+        value = [dic objectForKey: key];
+        
+        param = [NSString stringWithFormat:@"%@&%@=%@",param,key,value];
+        
+    }
+    
+    if (![self queue]) {
+        [self setQueue:[[[NSOperationQueue alloc] init] autorelease]];
+
+    }
+    NSLog(param);
+    NSURL *paramurl = [NSURL URLWithString:param];
+    
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:paramurl] ;
+    
+    [request setDelegate:self];
+    
+    [request setDidFinishSelector:@selector(requestDone:)];
+    
+    [request setDidFailSelector:@selector(requestWentWrong:)];
+    
+    [[self queue] addOperation:request];
+    NSLog(@"request finish");
 }
 
--(void)requestFinished:request{
+-(void)requestDone:(ASIHTTPRequest *)request{
+    
+    NSLog(@"callback");
     
     NSDictionary *hdic = [request responseHeaders];
     
@@ -80,6 +118,9 @@ static DataCenter* dc;
         
         NSString *responsString = [request responseString];
         
+        
+        //NSString *rsstr = [NSString stringWithFormat:@"%@",responsString];
+        
         NSDictionary *dic = [jsonParser objectWithString:responsString]; 
         
         [self.delegate onServerCallbackDictionary:dic];
@@ -89,5 +130,11 @@ static DataCenter* dc;
     
 }
 
+- (void)requestWentWrong:(ASIHTTPRequest *)request
+{
+    
+    NSError *error = [request error];
+    
+}
 
 @end

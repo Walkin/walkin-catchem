@@ -13,17 +13,19 @@
 
 @interface DataCenter : NSObject{
     NSURL *url;
-    ASIHTTPRequest *request;
+//    ASIHTTPRequest *request;
     id<DataCenterInterface> *delegate;
+    NSOperationQueue *queue;
     SBJsonParser* jsonParser;
 }
 
 @property id<DataCenterInterface> *delegate;
+@property NSOperationQueue *queue;
 
 -(DataCenter *)init;
 
 +(DataCenter*)sharedDatacenter;
 
-//-(void)
+-(void)requestServer:(NSString *) action dic:(NSDictionary *)dic;
 
 @end

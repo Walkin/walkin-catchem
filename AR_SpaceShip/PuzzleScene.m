@@ -8,7 +8,7 @@
 
 #import "PuzzleScene.h"
 #import "PuzzleSprite.h"
-#import "JSON.h"
+#import "DataCenter.h"
 
 
 
@@ -37,6 +37,15 @@
         
         heightPics = 3;
         
+        NSDictionary *d1 = [NSDictionary dictionary];
+        
+        DataCenter *dc = [DataCenter sharedDatacenter];
+        
+        NSDictionary *d2 = [NSDictionary dictionaryWithObject:@"aa" forKey:@"b"];
+        
+        [dc requestServer:@"puzzleConfig" dic:d1];
+        //[dc requestServer:d2];
+        
 //        NSURL *url = [NSURL URLWithString:@"http://png.52design.com/caisheico/pic/png_52design_caishe_18.png"];
 //        
 //        ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
@@ -51,42 +60,13 @@
     return self;
 }
 
-//
-//-(void)requestFinished:request{
-//    
-//    
-//    NSError *error = [request error];
-//    if (!error) {
-//        
-//        NSDictionary *hdic = [request responseHeaders];
-//        
-//        
-//        NSString *str = [hdic objectForKey:@"Content-Type"];
-//
-//        
-//        NSRange range = [str rangeOfString:@"image"];
-//        
-//        NSLog(@"%i",range.location);
-//        
-//        return;
-//        
-//        NSData *response = [request responseData];
-//        
-//        UIImage *img = [UIImage imageWithData:response];
-//        
-//        CGImageRef *ref = [img CGImage];
-//        
-//        CCTexture2D *text = [[CCTextureCache sharedTextureCache] addCGImage:ref forKey:@"myPic.png"];
-//        
-//        [self initPicture:text];
-//        
-//    }
-//    
-//}
-
-
-
-
+-(void)onServerCallbackDictionary:(NSDictionary*)dic{
+    
+    NSString *str = [dic objectForKey:@"url"];
+    
+    NSLog(str);
+    
+}
 
 
 -(void)initPicture:(CCTexture2D *)catch {
