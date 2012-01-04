@@ -28,4 +28,6 @@
 
 -(void)requestServer:(NSString *) action dic:(NSDictionary *)dic;
 
+-(void)requestData:(NSString *) picurl;
+
 @end

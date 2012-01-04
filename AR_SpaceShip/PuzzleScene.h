@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "DataCenter.h"
 #import "SpriteTouchInterface.h"
 
 @interface PuzzleScene : CCLayer <SpriteTouchInterface>{
@@ -18,6 +19,8 @@
     NSMutableArray *imgs;
     
     BOOL allowTouch;
+    
+    DataCenter *dc;
 }
 
 @property BOOL allowTouch;

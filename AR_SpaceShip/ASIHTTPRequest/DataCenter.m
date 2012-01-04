@@ -33,7 +33,7 @@ static DataCenter* dc;
     
     NSString* jsonString = [NSString stringWithContentsOfFile:dbpath encoding:NSUTF8StringEncoding error:nil];
     
-    jsonParser = [[[SBJsonParser alloc] init] autorelease];
+    jsonParser = [[SBJsonParser alloc] init] ;
     
     NSDictionary *dic = [jsonParser objectWithString:jsonString];
     
@@ -42,9 +42,26 @@ static DataCenter* dc;
     return self;
 }
 
-//-(void)sendToHost{
-//    [request startAsynchronous];
-//}
+
+-(void)requestData:(NSString *) picurl{
+    
+    if (![self queue]) {
+        [self setQueue:[[NSOperationQueue alloc] init] ];
+        
+    }
+    
+    NSURL *paramurl = [NSURL URLWithString:picurl];
+    
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:paramurl] ;
+    
+    [request setDelegate:self];
+    
+    [request setDidFinishSelector:@selector(requestDone:)];
+    
+    [request setDidFailSelector:@selector(requestWentWrong:)];
+    
+    [[self queue] addOperation:request];
+}
 
 -(void)requestServer:(NSString *) action dic:(NSDictionary *)dic{
     
@@ -66,28 +83,13 @@ static DataCenter* dc;
         
     }
     
-    if (![self queue]) {
-        [self setQueue:[[[NSOperationQueue alloc] init] autorelease]];
-
-    }
-    NSLog(param);
-    NSURL *paramurl = [NSURL URLWithString:param];
     
-    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:paramurl] ;
+    [self requestData:param];
     
-    [request setDelegate:self];
-    
-    [request setDidFinishSelector:@selector(requestDone:)];
-    
-    [request setDidFailSelector:@selector(requestWentWrong:)];
-    
-    [[self queue] addOperation:request];
-    NSLog(@"request finish");
 }
 
+
 -(void)requestDone:(ASIHTTPRequest *)request{
-    
-    NSLog(@"callback");
     
     NSDictionary *hdic = [request responseHeaders];
     
@@ -103,13 +105,11 @@ static DataCenter* dc;
         
         CGImageRef *ref = [img CGImage];
         
-        NSTimeInterval time=[[NSDate date] timeIntervalSince1970]*1000;
+        int i=arc4random()%10000;
         
-        int i=time;
+        NSLog(@"texture name %d",i);
         
-        NSLog(@"texture name %i",i);
-        
-        CCTexture2D *text = [[CCTextureCache sharedTextureCache] addCGImage:ref forKey:[NSString stringWithFormat:@"%i.png",i]];
+        CCTexture2D *text = [[CCTextureCache sharedTextureCache] addCGImage:ref forKey:[NSString stringWithFormat:@"%d.png",i]];
         
         [self.delegate onServerCallbackTexure:text];
         
@@ -119,9 +119,9 @@ static DataCenter* dc;
         NSString *responsString = [request responseString];
         
         
-        //NSString *rsstr = [NSString stringWithFormat:@"%@",responsString];
+        NSString *rsstr = [NSString stringWithFormat:@"%@",responsString];
         
-        NSDictionary *dic = [jsonParser objectWithString:responsString]; 
+        NSDictionary *dic = [jsonParser objectWithString:rsstr]; 
         
         [self.delegate onServerCallbackDictionary:dic];
         
@@ -130,10 +130,11 @@ static DataCenter* dc;
     
 }
 
+
 - (void)requestWentWrong:(ASIHTTPRequest *)request
 {
     
-    NSError *error = [request error];
+    NSError *error = [request error];   
     
 }
 

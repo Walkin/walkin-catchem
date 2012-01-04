@@ -8,7 +8,6 @@
 
 #import "PuzzleScene.h"
 #import "PuzzleSprite.h"
-#import "DataCenter.h"
 
 
 
@@ -37,22 +36,17 @@
         
         heightPics = 3;
         
-        NSDictionary *d1 = [NSDictionary dictionary];
-        
-        DataCenter *dc = [DataCenter sharedDatacenter];
-        
-        NSDictionary *d2 = [NSDictionary dictionaryWithObject:@"aa" forKey:@"b"];
-        
-        [dc requestServer:@"puzzleConfig" dic:d1];
-        //[dc requestServer:d2];
-        
-//        NSURL *url = [NSURL URLWithString:@"http://png.52design.com/caisheico/pic/png_52design_caishe_18.png"];
+//        NSDictionary *d1 = [NSDictionary dictionary];
 //        
-//        ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+//        dc = [DataCenter sharedDatacenter];
 //        
-//        [request setDelegate:self];
-//        
-//        [request startAsynchronous];
+//        dc.delegate = self;
+//
+//        [dc requestServer:@"puzzleConfig" dic:d1];
+        
+        CCTexture2D *texture = [[CCTextureCache sharedTextureCache] addImage:@"pic_demo.jpg"];
+        
+        [self initPicture:texture];
         
         
     }
@@ -64,7 +58,13 @@
     
     NSString *str = [dic objectForKey:@"url"];
     
-    NSLog(str);
+    [dc requestData:str];
+    
+}
+
+-(void)onServerCallbackTexure:(CCTexture2D *)texture{
+    
+    [self initPicture:texture];
     
 }
 
